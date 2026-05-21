@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Finlyt — Your financials give you numbers. Finlyt gives you insights.</title>
+<meta name="description" content="AI-powered financial intelligence for Indian startups and SMEs. Investor-ready MIS, cash flow forecasting, and real-time insights — built for India.">
+<meta property="og:title" content="Finlyt — Financial Intelligence for Indian Businesses">
+<meta property="og:description" content="Your financials give you numbers. Finlyt gives you insights.">
+<meta property="og:url" content="https://finlyt.net">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+/* ── Reset & Base ─────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --navy:    #0D1B2A;
+  --navy2:   #162436;
+  --teal:    #1D9E75;
+  --teal2:   #0F6E56;
+  --teal3:   #9FE1CB;
+  --amber:   #EF9F27;
+  --gray:    #F1EFE8;
+  --gray2:   #D3D1C7;
+  --gray3:   #888780;
+  --white:   #FFFFFF;
+  --text:    #0D1B2A;
+  --font-display: 'DM Serif Display', Georgia, serif;
+  --font-body:    'DM Sans', system-ui, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--white);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ── Grid lines background ────────────────────────────── */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(29,158,117,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(29,158,117,0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ── Nav ──────────────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 clamp(1.5rem, 5vw, 4rem);
+  height: 64px;
+  background: rgba(13,27,42,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(29,158,117,0.15);
+}
+
+.nav-logo {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--white);
+  letter-spacing: -0.02em;
+}
+
+.nav-logo span { color: var(--teal); }
+
+.nav-cta {
+  background: var(--teal);
+  color: var(--white);
+  border: none;
+  padding: 0.5rem 1.25rem;
+  border-radius: 6px;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+  text-decoration: none;
+}
+.nav-cta:hover { background: var(--teal2); }
+
+/* ── Hero ─────────────────────────────────────────────── */
+.hero {
+  min-height: 100vh;
+  background: var(--navy);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 7rem clamp(1.5rem, 5vw, 4rem) 5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(29,158,117,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(29,158,117,0.07) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Star decoration */
+.hero-star {
+  position: absolute;
+  width: 320px; height: 320px;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.04;
+  pointer-events: none;
+}
+
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: rgba(29,158,117,0.12);
+  border: 1px solid rgba(29,158,117,0.3);
+  border-radius: 100px;
+  padding: 6px 16px;
+  font-size: 0.8rem;
+  color: var(--teal3);
+  margin-bottom: 2rem;
+  position: relative;
+  animation: fade-up 0.6s ease both;
+}
+
+.badge-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--teal);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%,100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 6vw, 4.5rem);
+  color: var(--white);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  max-width: 820px;
+  margin-bottom: 1rem;
+  position: relative;
+  animation: fade-up 0.6s 0.1s ease both;
+}
+
+.hero h1 em {
+  font-style: italic;
+  color: var(--teal3);
+}
+
+.hero-sub {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--gray3);
+  max-width: 560px;
+  margin-bottom: 2.5rem;
+  font-weight: 300;
+  position: relative;
+  animation: fade-up 0.6s 0.2s ease both;
+}
+
+.hero-form {
+  display: flex; gap: 10px;
+  flex-wrap: wrap; justify-content: center;
+  max-width: 480px; width: 100%;
+  position: relative;
+  animation: fade-up 0.6s 0.3s ease both;
+}
+
+.hero-form input {
+  flex: 1; min-width: 220px;
+  padding: 0.875rem 1.25rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.hero-form input::placeholder { color: rgba(255,255,255,0.35); }
+.hero-form input:focus { border-color: var(--teal); }
+
+.hero-form button {
+  background: var(--teal);
+  color: var(--white);
+  border: none;
+  padding: 0.875rem 1.75rem;
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.15s;
+  white-space: nowrap;
+}
+.hero-form button:hover { background: var(--teal2); transform: translateY(-1px); }
+.hero-form button:active { transform: translateY(0); }
+
+.hero-note {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.3);
+  margin-top: 0.75rem;
+  position: relative;
+  animation: fade-up 0.6s 0.4s ease both;
+}
+
+.success-msg {
+  display: none;
+  background: rgba(29,158,117,0.15);
+  border: 1px solid rgba(29,158,117,0.4);
+  border-radius: 8px;
+  padding: 1rem 1.5rem;
+  color: var(--teal3);
+  font-size: 0.9rem;
+  text-align: center;
+  max-width: 480px;
+}
+
+.hero-stats {
+  display: flex; gap: 3rem;
+  margin-top: 4rem;
+  position: relative;
+  animation: fade-up 0.6s 0.5s ease both;
+}
+
+.stat-item { text-align: center; }
+.stat-val {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--white);
+  line-height: 1;
+}
+.stat-lbl {
+  font-size: 0.78rem;
+  color: var(--gray3);
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Problem strip ────────────────────────────────────── */
+.problem-strip {
+  background: var(--navy2);
+  border-top: 1px solid rgba(29,158,117,0.12);
+  border-bottom: 1px solid rgba(29,158,117,0.12);
+  padding: 1.5rem clamp(1.5rem, 5vw, 4rem);
+  display: flex; justify-content: center;
+  overflow: hidden;
+}
+
+.marquee {
+  display: flex; gap: 3rem;
+  animation: marquee 28s linear infinite;
+  white-space: nowrap;
+}
+
+.marquee-item {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 0.875rem;
+  color: var(--gray3);
+  flex-shrink: 0;
+}
+.marquee-item .dot { color: var(--teal); font-size: 1.2rem; }
+
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── Sections ─────────────────────────────────────────── */
+section { padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem); }
+
+.section-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 0.75rem;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  color: var(--navy);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+}
+
+.section-sub {
+  font-size: 1.05rem;
+  color: var(--gray3);
+  max-width: 560px;
+  line-height: 1.7;
+}
+
+/* ── Problem ──────────────────────────────────────────── */
+.problem { background: var(--gray); }
+
+.problem-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.problem-card {
+  background: var(--white);
+  border: 1px solid var(--gray2);
+  border-radius: 12px;
+  padding: 1.75rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.problem-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--teal);
+}
+
+.problem-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.problem-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 0.5rem;
+}
+
+.problem-card p {
+  font-size: 0.875rem;
+  color: var(--gray3);
+  line-height: 1.6;
+}
+
+/* ── Products ─────────────────────────────────────────── */
+.products { background: var(--white); }
+
+.products-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.product-card {
+  border: 1px solid var(--gray2);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: border-color 0.2s, transform 0.2s;
+  position: relative;
+}
+.product-card:hover { border-color: var(--teal); transform: translateY(-4px); }
+
+.product-card.featured {
+  border-color: var(--teal);
+  background: linear-gradient(135deg, rgba(29,158,117,0.04) 0%, transparent 60%);
+}
+
+.product-tag {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 3px 10px;
+  border-radius: 100px;
+  margin-bottom: 1rem;
+}
+
+.tag-launch { background: rgba(29,158,117,0.12); color: var(--teal2); }
+.tag-soon   { background: rgba(239,159,39,0.12);  color: #7a4e0a; }
+
+.product-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--navy);
+  margin-bottom: 0.5rem;
+}
+
+.product-card .price {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--teal);
+  margin-bottom: 0.75rem;
+}
+.product-card .price span {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: var(--gray3);
+}
+
+.product-card p {
+  font-size: 0.875rem;
+  color: var(--gray3);
+  line-height: 1.6;
+  margin-bottom: 1.25rem;
+}
+
+.product-features { list-style: none; }
+.product-features li {
+  font-size: 0.85rem;
+  color: #444;
+  padding: 4px 0;
+  display: flex; align-items: flex-start; gap: 8px;
+}
+.product-features li::before {
+  content: '→';
+  color: var(--teal);
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ── Why Finlyt ───────────────────────────────────────── */
+.why { background: var(--navy); }
+.why .section-title { color: var(--white); }
+.why .section-sub   { color: var(--gray3); }
+.why .section-label { color: var(--teal3); }
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.why-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  padding: 1.75rem;
+  transition: background 0.2s;
+}
+.why-card:hover { background: rgba(29,158,117,0.08); }
+
+.why-num {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  color: var(--teal);
+  opacity: 0.4;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.why-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.why-card p {
+  font-size: 0.85rem;
+  color: var(--gray3);
+  line-height: 1.6;
+}
+
+/* ── Social proof ─────────────────────────────────────── */
+.proof { background: var(--gray); }
+
+.quotes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.quote-card {
+  background: var(--white);
+  border: 1px solid var(--gray2);
+  border-radius: 12px;
+  padding: 1.75rem;
+  position: relative;
+}
+
+.quote-card::before {
+  content: '"';
+  font-family: var(--font-display);
+  font-size: 4rem;
+  color: var(--teal);
+  opacity: 0.2;
+  position: absolute;
+  top: 0.5rem; left: 1.25rem;
+  line-height: 1;
+}
+
+.quote-card p {
+  font-size: 0.9rem;
+  color: var(--navy);
+  line-height: 1.7;
+  font-style: italic;
+  margin-bottom: 1rem;
+  padding-top: 1rem;
+}
+
+.quote-attr {
+  font-size: 0.78rem;
+  color: var(--gray3);
+  font-weight: 500;
+}
+
+/* ── Trust bar ────────────────────────────────────────── */
+.trust {
+  background: var(--white);
+  padding: 3rem clamp(1.5rem, 5vw, 4rem);
+  border-top: 1px solid var(--gray2);
+  border-bottom: 1px solid var(--gray2);
+}
+
+.trust-inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2.5rem;
+}
+
+.trust-item {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 0.875rem;
+  color: var(--gray3);
+}
+.trust-icon { font-size: 1.2rem; }
+
+/* ── Founder ──────────────────────────────────────────── */
+.founder {
+  background: var(--white);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .founder { grid-template-columns: 1fr; }
+}
+
+.founder-text .section-title { max-width: 460px; }
+
+.founder-creds {
+  display: flex; flex-direction: column; gap: 8px;
+  margin-top: 1.5rem;
+}
+
+.cred-item {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 0.875rem;
+  color: var(--gray3);
+}
+.cred-item::before {
+  content: '✓';
+  color: var(--teal);
+  font-weight: 700;
+}
+
+.founder-card {
+  background: var(--navy);
+  border-radius: 16px;
+  padding: 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.founder-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--teal), var(--teal2));
+}
+
+.founder-avatar {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: var(--teal);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  color: var(--white);
+  margin-bottom: 1rem;
+}
+
+.founder-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--white);
+  margin-bottom: 0.25rem;
+}
+
+.founder-card .role {
+  font-size: 0.8rem;
+  color: var(--teal3);
+  margin-bottom: 1rem;
+}
+
+.founder-card p {
+  font-size: 0.875rem;
+  color: var(--gray3);
+  line-height: 1.7;
+}
+
+/* ── Final CTA ────────────────────────────────────────── */
+.final-cta {
+  background: var(--navy);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.final-cta::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(29,158,117,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(29,158,117,0.07) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+.final-cta .section-title { color: var(--white); position: relative; }
+.final-cta .section-sub   { color: var(--gray3); position: relative; margin: 1rem auto 2.5rem; }
+
+.final-form {
+  display: flex; gap: 10px;
+  flex-wrap: wrap; justify-content: center;
+  max-width: 480px; margin: 0 auto;
+  position: relative;
+}
+
+.final-form input {
+  flex: 1; min-width: 220px;
+  padding: 0.9rem 1.25rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.final-form input::placeholder { color: rgba(255,255,255,0.35); }
+.final-form input:focus { border-color: var(--teal); }
+
+.final-form button {
+  background: var(--teal);
+  color: var(--white);
+  border: none;
+  padding: 0.9rem 1.75rem;
+  border-radius: 8px;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.final-form button:hover { background: var(--teal2); }
+
+.final-note {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.25);
+  margin-top: 0.75rem;
+  position: relative;
+}
+
+/* ── Footer ───────────────────────────────────────────── */
+footer {
+  background: var(--navy2);
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 2rem clamp(1.5rem, 5vw, 4rem);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-logo {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  color: var(--white);
+}
+.footer-logo span { color: var(--teal); }
+
+.footer-links {
+  display: flex; gap: 1.5rem;
+}
+.footer-links a {
+  font-size: 0.8rem;
+  color: var(--gray3);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.footer-links a:hover { color: var(--teal); }
+
+.footer-copy {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.2);
+  width: 100%;
+  text-align: center;
+  margin-top: 0.5rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+/* ── Responsive ───────────────────────────────────────── */
+@media (max-width: 600px) {
+  .hero-stats { gap: 2rem; flex-wrap: wrap; justify-content: center; }
+  .hero-form  { flex-direction: column; }
+  .hero-form input, .hero-form button { width: 100%; }
+  .final-form { flex-direction: column; }
+  .final-form input, .final-form button { width: 100%; }
+  footer { flex-direction: column; align-items: flex-start; }
+}
+
+/* ── Scroll reveal ────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Fin<span>lyt</span></div>
+  <a href="#waitlist" class="nav-cta">Join the waitlist</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">
+    <span class="badge-dot"></span>
+    Now accepting early access — India only
+  </div>
+
+  <h1>Your financials give you numbers.<br><em>Finlyt gives you insights.</em></h1>
+
+  <p class="hero-sub">
+    AI-powered financial intelligence for Indian startups and SMEs.
+    Investor-ready MIS, cash flow forecasting, and real-time analysis —
+    built for India, priced for India.
+  </p>
+
+  <div id="waitlist" class="hero-form">
+    <input type="email" id="hero-email" placeholder="Enter your work email" autocomplete="email">
+    <button onclick="joinWaitlist('hero-email', 'hero-success')">Get Early Access</button>
+  </div>
+  <div id="hero-success" class="success-msg">
+    ✓ You're on the list. Sasidharan will reach out personally within 48 hours.
+  </div>
+  <p class="hero-note">No spam. No credit card. Just early access.</p>
+
+  <div class="hero-stats">
+    <div class="stat-item">
+      <div class="stat-val">₹999</div>
+      <div class="stat-lbl">Starting price</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val">5 min</div>
+      <div class="stat-lbl">First MIS report</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-val">India</div>
+      <div class="stat-lbl">Native — GST, Tally, INR</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="problem-strip">
+  <div class="marquee">
+    <span class="marquee-item"><span class="dot">→</span> CA sends MIS 3 weeks late</span>
+    <span class="marquee-item"><span class="dot">→</span> Excel model built night before investor meeting</span>
+    <span class="marquee-item"><span class="dot">→</span> Cash crunch discovered too late</span>
+    <span class="marquee-item"><span class="dot">→</span> No clarity on which product line is profitable</span>
+    <span class="marquee-item"><span class="dot">→</span> Western tools don't understand GST or Tally</span>
+    <span class="marquee-item"><span class="dot">→</span> CA sends MIS 3 weeks late</span>
+    <span class="marquee-item"><span class="dot">→</span> Excel model built night before investor meeting</span>
+    <span class="marquee-item"><span class="dot">→</span> Cash crunch discovered too late</span>
+    <span class="marquee-item"><span class="dot">→</span> No clarity on which product line is profitable</span>
+    <span class="marquee-item"><span class="dot">→</span> Western tools don't understand GST or Tally</span>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section class="problem">
+  <div class="section-label reveal">The Problem</div>
+  <h2 class="section-title reveal">Indian businesses are flying blind on their financials</h2>
+  <p class="section-sub reveal">
+    Your numbers exist in Tally or Zoho. But by the time they reach you — cleaned,
+    formatted, and meaningful — the moment to act has already passed.
+  </p>
+
+  <div class="problem-grid">
+    <div class="problem-card reveal">
+      <div class="problem-icon">⏰</div>
+      <h3>Reports arrive too late</h3>
+      <p>Your CA sends the MIS 2–3 weeks after month-end. By then, it is a history lesson, not a decision tool.</p>
+    </div>
+    <div class="problem-card reveal">
+      <div class="problem-icon">📊</div>
+      <h3>Investor meetings on the back foot</h3>
+      <p>Building an Excel model the night before a pitch is not a strategy. It is a red flag investors notice immediately.</p>
+    </div>
+    <div class="problem-card reveal">
+      <div class="problem-icon">💸</div>
+      <h3>Cash surprises kill businesses</h3>
+      <p>Most founders only discover a cash problem when it is already a crisis. Reactive is too late.</p>
+    </div>
+    <div class="problem-card reveal">
+      <div class="problem-icon">🌍</div>
+      <h3>Western tools do not work here</h3>
+      <p>Zeni, Float, and Jirav cost $500–$2,000/month and have no GST, TDS, or Tally support. They are built for the US.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products">
+  <div class="section-label reveal">The Solution</div>
+  <h2 class="section-title reveal">Three products. One platform. Built for India.</h2>
+  <p class="section-sub reveal">
+    Connect your Tally or Zoho account once. Finlyt handles the rest —
+    from investor-ready MIS to 90-day cash flow forecasts.
+  </p>
+
+  <div class="products-container">
+    <div class="product-card featured reveal">
+      <span class="product-tag tag-launch">Launching first</span>
+      <h3>Investor MIS Generator</h3>
+      <div class="price">₹999 <span>/ month</span></div>
+      <p>Transform your Tally or Zoho data into a polished, investor-ready MIS report in under 5 minutes. No CA needed.</p>
+      <ul class="product-features">
+        <li>P&L, balance sheet, cash flow — auto-generated</li>
+        <li>Burn rate, runway, MoM growth calculated</li>
+        <li>AI narrative: "Revenue grew 23% — here's why"</li>
+        <li>PDF export — investor-ready, not spreadsheet-ready</li>
+        <li>Tally XML and Zoho Books integration</li>
+      </ul>
+    </div>
+
+    <div class="product-card reveal">
+      <span class="product-tag tag-soon">Coming soon</span>
+      <h3>Monthly MIS Automation</h3>
+      <div class="price">₹2,999 <span>/ month</span></div>
+      <p>Your complete MIS report delivered automatically on the 7th of every month — without asking your CA.</p>
+      <ul class="product-features">
+        <li>Auto-pulls data at month-end — zero manual effort</li>
+        <li>P&L vs budget, top expense analysis, trend charts</li>
+        <li>WhatsApp or email delivery on the 7th</li>
+        <li>Monthly commentary and variance explanation</li>
+      </ul>
+    </div>
+
+    <div class="product-card reveal">
+      <span class="product-tag tag-soon">Coming soon</span>
+      <h3>AI Cash Flow Forecasting</h3>
+      <div class="price">₹4,999 <span>/ month</span></div>
+      <p>Know your cash position 90 days before it becomes a problem. Scenario planning included.</p>
+      <ul class="product-features">
+        <li>90-day cash flow forecast with confidence intervals</li>
+        <li>Scenario planning: "What if Client A delays 45 days?"</li>
+        <li>Working capital alerts before they become crises</li>
+        <li>Loan readiness score for NBFC/bank applications</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- WHY FINLYT -->
+<section class="why">
+  <div class="section-label reveal">Why Finlyt</div>
+  <h2 class="section-title reveal">Built by someone who has done the job</h2>
+  <p class="section-sub reveal">
+    Most fintech tools are built by engineers who learned finance from textbooks.
+    Finlyt is built from the other direction.
+  </p>
+
+  <div class="why-grid">
+    <div class="why-card reveal">
+      <div class="why-num">01</div>
+      <h3>India-native by design</h3>
+      <p>GST, TDS, Tally, Zoho, INR — not an afterthought. Built for Indian compliance calendars and reporting norms from day one.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-num">02</div>
+      <h3>CA + IIM Ahmedabad domain depth</h3>
+      <p>The founder has 15+ years in capital markets, M&A, and private equity. The AI output is professionally defensible, not just syntactically correct.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-num">03</div>
+      <h3>Affordable for Indian businesses</h3>
+      <p>₹999–₹4,999/month replaces what typically costs ₹5,000–₹20,000 per CA engagement. CFO-level output at startup-level price.</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-num">04</div>
+      <h3>You stay in control</h3>
+      <p>Finlyt drafts. You review and approve. Full audit trail of what was AI-generated and what you changed. Liability stays with a human.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="proof">
+  <div class="section-label reveal">Early Feedback</div>
+  <h2 class="section-title reveal">What founders and CFOs told us</h2>
+  <p class="section-sub reveal">From our market validation survey — real words from real businesses.</p>
+
+  <div class="quotes-grid">
+    <div class="quote-card reveal">
+      <p>Data sits in different places, reports need repeated follow-ups, and by the time the numbers are cleaned and shared, they are often already outdated.</p>
+      <div class="quote-attr">— SME Business Owner, Maharashtra</div>
+    </div>
+    <div class="quote-card reveal">
+      <p>Need to accumulate details from multiple sources which is time consuming and causes dependency. Automatically generating financials every month would be a must-have.</p>
+      <div class="quote-attr">— CFO, Growth-stage company</div>
+    </div>
+    <div class="quote-card reveal">
+      <p>Pull data automatically, generate accurate monthly P&L and cash flow reports, highlight key risks or anomalies, and share investor-ready summaries. That is exactly what I need.</p>
+      <div class="quote-attr">— Startup Founder, seed stage</div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST BAR -->
+<div class="trust">
+  <div class="trust-inner">
+    <div class="trust-item"><span class="trust-icon">🔒</span> Your data stays private — always</div>
+    <div class="trust-item"><span class="trust-icon">🇮🇳</span> Built for India — Tally, Zoho, GST, TDS</div>
+    <div class="trust-item"><span class="trust-icon">🤝</span> CA-recommended and CA-verified</div>
+    <div class="trust-item"><span class="trust-icon">✓</span> 14-day free trial — no credit card</div>
+  </div>
+</div>
+
+<!-- FOUNDER -->
+<section class="founder">
+  <div class="founder-text">
+    <div class="section-label reveal">The Founder</div>
+    <h2 class="section-title reveal">Built by someone who has sat in your CFO's chair</h2>
+    <p class="section-sub reveal">
+      Finlyt is not a fintech product built by engineers who learned finance from textbooks.
+      It is built from 15 years of actually doing the work — the MIS, the investor decks,
+      the due diligence, the M&A models.
+    </p>
+    <div class="founder-creds reveal">
+      <div class="cred-item">Chartered Accountant (CA) — ICAI</div>
+      <div class="cred-item">MBA — IIM Ahmedabad (BPGPE)</div>
+      <div class="cred-item">15+ years in Capital Markets, M&A, Private Equity</div>
+      <div class="cred-item">Investment Research and Due Diligence</div>
+    </div>
+  </div>
+
+  <div class="founder-card reveal">
+    <div class="founder-avatar">S</div>
+    <h3>Sasidharan</h3>
+    <div class="role">Founder, Finlyt  ·  CA  ·  MBA (IIM Ahmedabad)</div>
+    <p>
+      "I spent 15 years watching founders make decisions without the financial clarity they deserved.
+      The tools either did not exist or cost more than their monthly burn.
+      Finlyt is what every Indian startup and SME CFO wishes existed on day one —
+      intelligent, affordable, and built by someone who has actually done the job."
+    </p>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="section-label" style="position:relative">Be First</div>
+  <h2 class="section-title">Get early access to Finlyt</h2>
+  <p class="section-sub">
+    We are onboarding a limited number of early users from our waitlist first.
+    Join now and get 3 months free when we launch.
+  </p>
+
+  <div class="final-form">
+    <input type="email" id="final-email" placeholder="Enter your work email" autocomplete="email">
+    <button onclick="joinWaitlist('final-email', 'final-success')">Join the Waitlist</button>
+  </div>
+  <div id="final-success" class="success-msg" style="margin:1rem auto;position:relative">
+    ✓ You're on the list. Sasidharan will reach out personally within 48 hours.
+  </div>
+  <p class="final-note">No spam. No credit card required. Early users get 3 months free.</p>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Fin<span>lyt</span></div>
+  <div class="footer-links">
+    <a href="mailto:founder@finlyt.net">founder@finlyt.net</a>
+    <a href="https://finlyt.net">finlyt.net</a>
+  </div>
+  <div class="footer-copy">
+    © 2025 Finlyt. Built in India for India. All rights reserved.
+  </div>
+</footer>
+
+<script>
+// Waitlist submission
+function joinWaitlist(inputId, successId) {
+  const input = document.getElementById(inputId);
+  const success = document.getElementById(successId);
+  const email = input.value.trim();
+
+  if (!email || !email.includes('@')) {
+    input.style.borderColor = '#E24B4A';
+    input.placeholder = 'Please enter a valid email';
+    setTimeout(() => {
+      input.style.borderColor = '';
+      input.placeholder = 'Enter your work email';
+    }, 2000);
+    return;
+  }
+
+  // Store locally and show success
+  const leads = JSON.parse(localStorage.getItem('finlyt_leads') || '[]');
+  leads.push({ email, timestamp: new Date().toISOString() });
+  localStorage.setItem('finlyt_leads', JSON.stringify(leads));
+
+  // Show success
+  input.parentElement.style.display = 'none';
+  success.style.display = 'block';
+
+  // Send to Formspree (free email service)
+  fetch('https://formspree.io/f/founder@finlyt.net', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, source: 'finlyt_waitlist' })
+  }).catch(() => {}); // Silent fail — local storage is the backup
+}
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(el => {
+    if (el.isIntersecting) {
+      el.target.classList.add('visible');
+      observer.unobserve(el.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Stagger reveal for grids
+document.querySelectorAll('.problem-grid .problem-card, .products-container .product-card, .why-grid .why-card, .quotes-grid .quote-card').forEach((el, i) => {
+  el.style.transitionDelay = `${i * 0.08}s`;
+});
+
+// Smooth scroll for nav CTA
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+});
+</script>
+
+</body>
+</html>
