@@ -933,8 +933,14 @@ footer {
   </div>
 
   <div style="margin-top:2.5rem;text-align:center">
-    <a href="mailto:founder@finlyt.net?subject=CA Partner Programme — Interest" style="display:inline-block;background:var(--teal);color:white;padding:0.875rem 2rem;border-radius:8px;text-decoration:none;font-family:var(--font-body);font-size:0.9rem;font-weight:600">Enquire about CA Partner Programme →</a>
-    <p style="margin-top:0.75rem;font-size:0.8rem;color:var(--gray3);font-family:var(--font-body)">Opens an email to founder@finlyt.net — Sasidharan responds personally within 48 hours</p>
+    <div id="ca-partner-form" style="max-width:480px;margin:0 auto;display:flex;flex-direction:column;gap:10px">
+      <input type="text" id="ca-name" placeholder="Your name" style="padding:0.875rem 1.25rem;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:var(--white);font-family:var(--font-body);font-size:0.9rem;outline:none">
+      <input type="text" id="ca-firm" placeholder="CA firm name" style="padding:0.875rem 1.25rem;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:var(--white);font-family:var(--font-body);font-size:0.9rem;outline:none">
+      <input type="email" id="ca-email" placeholder="Your email address" style="padding:0.875rem 1.25rem;border-radius:8px;border:1px solid rgba(255,255,255,0.12);background:rgba(255,255,255,0.06);color:var(--white);font-family:var(--font-body);font-size:0.9rem;outline:none">
+      <button onclick="submitCAPartner()" style="background:var(--teal);color:white;border:none;padding:0.875rem 2rem;border-radius:8px;font-family:var(--font-body);font-size:0.9rem;font-weight:600;cursor:pointer">Enquire about CA Partner Programme →</button>
+      <div id="ca-success" style="display:none;background:rgba(29,158,117,0.15);border:1px solid rgba(29,158,117,0.4);border-radius:8px;padding:1rem;color:var(--teal3);font-size:0.875rem;text-align:center">✓ Received. Sasidharan will reach out personally within 48 hours.</div>
+      <p style="font-size:0.78rem;color:rgba(255,255,255,0.3);text-align:center;font-family:var(--font-body)">No commitment. Just a conversation about the CA Partner Programme.</p>
+    </div>
   </div>
 </section>
 
@@ -1067,6 +1073,35 @@ footer {
 </footer>
 
 <script>
+// CA Partner form submission
+function submitCAPartner() {
+  const name = document.getElementById('ca-name').value.trim();
+  const firm = document.getElementById('ca-firm').value.trim();
+  const email = document.getElementById('ca-email').value.trim();
+
+  if (!name || !firm || !email || !email.includes('@')) {
+    alert('Please fill in all fields with a valid email.');
+    return;
+  }
+
+  fetch('https://formspree.io/f/mojbeovg', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      name, firm, email,
+      source: 'ca_partner_programme',
+      message: 'CA Partner Programme enquiry'
+    })
+  }).catch(() => {});
+
+  document.getElementById('ca-partner-form').querySelector('input, button').disabled = true;
+  document.getElementById('ca-name').style.display = 'none';
+  document.getElementById('ca-firm').style.display = 'none';
+  document.getElementById('ca-email').style.display = 'none';
+  document.getElementById('ca-partner-form').querySelector('button').style.display = 'none';
+  document.getElementById('ca-success').style.display = 'block';
+}
+
 // Waitlist submission
 function joinWaitlist(inputId, successId) {
   const input = document.getElementById(inputId);
