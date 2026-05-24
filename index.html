@@ -610,6 +610,22 @@
       font-family: var(--serif); font-size: 1.3rem; color: var(--white); margin-bottom: 4px;
     }
     .founder-title { font-size: 0.82rem; color: var(--muted); }
+    .founder-sub { font-size: 0.78rem; color: var(--teal); margin-top: 6px; letter-spacing: 0.2px; }
+    .founder-headline {
+      font-family: var(--serif); font-size: clamp(1.5rem, 3vw, 2.1rem);
+      color: var(--white); line-height: 1.28; margin: 14px 0 26px;
+    }
+    .founder-metrics {
+      display: flex; flex-wrap: wrap; gap: clamp(24px, 4vw, 44px);
+      margin-top: 30px; padding-top: 26px; border-top: 1px solid var(--line);
+    }
+    .founder-metric .fm-value {
+      font-family: var(--serif); font-size: clamp(1.3rem, 2.4vw, 1.7rem);
+      color: var(--teal); line-height: 1;
+    }
+    .founder-metric .fm-label {
+      font-size: 0.72rem; color: var(--muted); margin-top: 7px; line-height: 1.4; max-width: 150px;
+    }
 
     /* ─── FINAL CTA ──────────────────────────────────────── */
     #final-cta {
@@ -704,7 +720,7 @@
         <span class="nav-dot"></span> Why Finlyt
       </a>
       <a href="#founder" class="sidebar-nav-link" data-close-sidebar>
-        <span class="nav-dot"></span> The Founder
+        <span class="nav-dot"></span> Know the Founder
       </a>
       <a href="#final-cta" class="sidebar-nav-link" data-close-sidebar>
         <span class="nav-dot"></span> Get Early Access
@@ -1057,25 +1073,45 @@
   <section id="founder">
     <div class="founder-inner">
       <div class="reveal-left">
-        <div class="founder-avatar">S</div>
+        <div class="founder-avatar">VS</div>
+        <div class="founder-name">V. Sasidharan</div>
+        <div class="founder-title">Founder, Finlyt</div>
+        <div class="founder-sub">Chartered Accountant · MBA, IIM Ahmedabad</div>
         <div class="founder-tags">
-          <span class="founder-tag">Senior Finance Professional</span>
-          <span class="founder-tag">MBA — IIM Ahmedabad</span>
-          <span class="founder-tag">15+ years Capital Markets</span>
+          <span class="founder-tag">CA · ICAI</span>
+          <span class="founder-tag">MBA · IIM Ahmedabad</span>
+          <span class="founder-tag">15+ Years in Finance</span>
           <span class="founder-tag">M&A &amp; Private Equity</span>
-          <span class="founder-tag">Investment Research</span>
+          <span class="founder-tag">Ex-Apollo · Garware · Ashok Leyland</span>
         </div>
       </div>
       <div class="reveal d2">
-        <div class="section-label">The Founder</div>
+        <div class="section-label">Know the Founder</div>
+        <h2 class="founder-headline">
+          Built by a Chartered Accountant who has actually closed the deals — not just modelled them.
+        </h2>
         <blockquote class="founder-quote">
-          "I spent 15 years watching founders make decisions without the financial clarity they deserved.
-          The tools either did not exist or cost more than their monthly burn.
-          Finlyt is what every Indian startup and SME CFO wishes existed on day one —
-          intelligent, affordable, and built by someone who has actually done the job."
+          "I spent 15 years inside the numbers — closing a USD 100 Mn private-equity transaction,
+          raising EUR 50 Mn across borders, and steering a ~₹1,000 Cr promoter portfolio.
+          Every one of those rooms shared the same blind spot: decisions made without real-time
+          financial clarity, because the tools either did not exist or cost more than a month's burn.
+          Finlyt is the system I always wished I had — built from the Tally export up,
+          by someone who has sat in the CFO's chair."
         </blockquote>
-        <div class="founder-name">Sasidharan</div>
-        <div class="founder-title">Founder, Finlyt · Senior Finance Professional · MBA (IIM Ahmedabad)</div>
+        <div class="founder-metrics">
+          <div class="founder-metric">
+            <div class="fm-value">~₹1,000 Cr</div>
+            <div class="fm-label">Promoter portfolio managed</div>
+          </div>
+          <div class="founder-metric">
+            <div class="fm-value">USD 100 Mn</div>
+            <div class="fm-label">PE deal closed end-to-end</div>
+          </div>
+          <div class="founder-metric">
+            <div class="fm-value">EUR 50 Mn</div>
+            <div class="fm-label">Cross-border fundraise</div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
