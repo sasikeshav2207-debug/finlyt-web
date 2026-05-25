@@ -458,13 +458,9 @@
       background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
     }
     .panel-title { font-size: 0.74rem; color: rgba(255,255,255,0.78); font-weight: 600; margin-bottom: 16px; }
-    .bar-chart { display: flex; align-items: flex-end; gap: 10px; height: 120px; }
-    .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 7px; }
-    .bar-fill {
-      width: 100%; border-radius: 5px 5px 0 0;
-      background: linear-gradient(180deg, var(--teal), rgba(29,158,117,0.45));
-    }
-    .bar-month { font-size: 0.6rem; color: var(--muted); }
+    .line-chart svg { width: 100%; height: auto; display: block; }
+    .line-chart .lc-val { font-size: 8px; font-weight: 700; fill: var(--white); font-family: var(--serif); }
+    .line-chart .lc-month { font-size: 8px; fill: var(--muted); }
     .donut-wrap { display: flex; flex-direction: column; align-items: center; gap: 14px; }
     .donut-legend { display: flex; flex-direction: column; gap: 7px; width: 100%; }
     .dleg { display: flex; align-items: center; gap: 8px; font-size: 0.68rem; color: rgba(255,255,255,0.7); }
@@ -992,13 +988,44 @@
           <div class="dash-panels">
             <div class="dash-panel">
               <div class="panel-title">Monthly Revenue (₹ Lakh)</div>
-              <div class="bar-chart">
-                <div class="bar-col"><div class="bar-fill" style="height:48%"></div><div class="bar-month">Oct</div></div>
-                <div class="bar-col"><div class="bar-fill" style="height:60%"></div><div class="bar-month">Nov</div></div>
-                <div class="bar-col"><div class="bar-fill" style="height:54%"></div><div class="bar-month">Dec</div></div>
-                <div class="bar-col"><div class="bar-fill" style="height:72%"></div><div class="bar-month">Jan</div></div>
-                <div class="bar-col"><div class="bar-fill" style="height:85%"></div><div class="bar-month">Feb</div></div>
-                <div class="bar-col"><div class="bar-fill" style="height:100%"></div><div class="bar-month">Mar</div></div>
+              <div class="line-chart">
+                <svg viewBox="0 0 520 178" role="img" aria-label="Monthly revenue trend">
+                  <defs>
+                    <linearGradient id="revGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#1D9E75" stop-opacity="0.45"/>
+                      <stop offset="100%" stop-color="#1D9E75" stop-opacity="0"/>
+                    </linearGradient>
+                  </defs>
+                  <!-- gridlines -->
+                  <line x1="30" y1="40" x2="490" y2="40" stroke="rgba(255,255,255,0.05)"/>
+                  <line x1="30" y1="80" x2="490" y2="80" stroke="rgba(255,255,255,0.05)"/>
+                  <line x1="30" y1="120" x2="490" y2="120" stroke="rgba(255,255,255,0.05)"/>
+                  <!-- area fill -->
+                  <path d="M30 68 L122 59 L214 64 L306 49 L398 39 L490 29 L490 140 L30 140 Z" fill="url(#revGrad)"/>
+                  <!-- line -->
+                  <path d="M30 68 L122 59 L214 64 L306 49 L398 39 L490 29" fill="none" stroke="#1D9E75" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  <!-- markers -->
+                  <circle cx="30"  cy="68" r="3.5" fill="#0b1729" stroke="#1D9E75" stroke-width="2"/>
+                  <circle cx="122" cy="59" r="3.5" fill="#0b1729" stroke="#1D9E75" stroke-width="2"/>
+                  <circle cx="214" cy="64" r="3.5" fill="#0b1729" stroke="#1D9E75" stroke-width="2"/>
+                  <circle cx="306" cy="49" r="3.5" fill="#0b1729" stroke="#1D9E75" stroke-width="2"/>
+                  <circle cx="398" cy="39" r="3.5" fill="#0b1729" stroke="#1D9E75" stroke-width="2"/>
+                  <circle cx="490" cy="29" r="4"   fill="#1D9E75" stroke="#0b1729" stroke-width="2"/>
+                  <!-- value labels -->
+                  <text class="lc-val" x="30"  y="59" text-anchor="middle">168</text>
+                  <text class="lc-val" x="122" y="50" text-anchor="middle">190</text>
+                  <text class="lc-val" x="214" y="55" text-anchor="middle">178</text>
+                  <text class="lc-val" x="306" y="40" text-anchor="middle">212</text>
+                  <text class="lc-val" x="398" y="30" text-anchor="middle">235</text>
+                  <text class="lc-val" x="490" y="20" text-anchor="middle">258</text>
+                  <!-- month labels -->
+                  <text class="lc-month" x="30"  y="162" text-anchor="middle">Oct</text>
+                  <text class="lc-month" x="122" y="162" text-anchor="middle">Nov</text>
+                  <text class="lc-month" x="214" y="162" text-anchor="middle">Dec</text>
+                  <text class="lc-month" x="306" y="162" text-anchor="middle">Jan</text>
+                  <text class="lc-month" x="398" y="162" text-anchor="middle">Feb</text>
+                  <text class="lc-month" x="490" y="162" text-anchor="middle">Mar</text>
+                </svg>
               </div>
             </div>
 
