@@ -312,12 +312,16 @@
     .waitlist-form input[type="email"]::placeholder { color: var(--muted); }
     .btn-primary {
       padding: 13px 24px; border-radius: 8px;
-      background: var(--teal); color: var(--white);
+      background: linear-gradient(135deg, var(--teal), var(--teal2));
+      color: var(--white);
       font-family: var(--sans); font-size: 0.9rem; font-weight: 500;
-      transition: background 0.2s, transform 0.15s;
+      transition: box-shadow 0.2s, transform 0.15s, filter 0.2s;
       white-space: nowrap;
+      box-shadow: 0 6px 20px rgba(29,158,117,0.35);
     }
-    .btn-primary:hover { background: var(--teal2); transform: translateY(-1px); }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(29,158,117,0.55); filter: brightness(1.05); }
+    .stat-value span { color: var(--teal); }
+    .stat-value, .founder-metric .fm-value { text-shadow: 0 0 22px rgba(29,158,117,0.25); }
     .form-hint { font-size: 0.75rem; color: var(--muted); margin-top: 10px; }
     .form-success {
       display: none;
@@ -812,7 +816,7 @@
 
       <div class="hero-stats" aria-label="Key stats">
         <div class="hero-stat reveal-scale d1">
-          <div class="stat-value"><span>₹</span>999</div>
+          <div class="stat-value"><span>₹</span><span data-count="999">999</span></div>
           <div class="stat-label">Starting price per month</div>
         </div>
         <div class="hero-stat reveal-scale d2">
@@ -1107,15 +1111,15 @@
         </blockquote>
         <div class="founder-metrics">
           <div class="founder-metric">
-            <div class="fm-value">~₹1,000 Cr</div>
+            <div class="fm-value" data-count="1000" data-prefix="~₹" data-suffix=" Cr" data-sep="1">~₹1,000 Cr</div>
             <div class="fm-label">Promoter portfolio managed</div>
           </div>
           <div class="founder-metric">
-            <div class="fm-value">USD 100 Mn</div>
+            <div class="fm-value" data-count="100" data-prefix="USD " data-suffix=" Mn">USD 100 Mn</div>
             <div class="fm-label">PE deal closed end-to-end</div>
           </div>
           <div class="founder-metric">
-            <div class="fm-value">EUR 50 Mn</div>
+            <div class="fm-value" data-count="50" data-prefix="EUR " data-suffix=" Mn">EUR 50 Mn</div>
             <div class="fm-label">Cross-border fundraise</div>
           </div>
         </div>
@@ -1232,6 +1236,39 @@
       document.querySelectorAll('.reveal, .reveal-left, .reveal-scale').forEach(function (el) {
         animObserver.observe(el);
       });
+    }());
+
+    /* ── 3b. COUNT-UP NUMBERS (animate when scrolled into view) ─────── */
+    (function () {
+      function animateCount(el) {
+        var target = parseFloat(el.getAttribute('data-count'));
+        if (isNaN(target)) return;
+        var dec = parseInt(el.getAttribute('data-decimals') || '0', 10);
+        var prefix = el.getAttribute('data-prefix') || '';
+        var suffix = el.getAttribute('data-suffix') || '';
+        var sep = el.getAttribute('data-sep') === '1';
+        var dur = 1300, start = null;
+        function fmt(v) {
+          var n = dec > 0 ? Number(v.toFixed(dec)) : Math.round(v);
+          var s = sep ? n.toLocaleString('en-IN') : (dec > 0 ? n.toFixed(dec) : String(n));
+          return prefix + s + suffix;
+        }
+        function step(ts) {
+          if (!start) start = ts;
+          var t = Math.min(1, (ts - start) / dur);
+          var eased = 1 - Math.pow(1 - t, 3);
+          el.textContent = fmt(target * eased);
+          if (t < 1) requestAnimationFrame(step); else el.textContent = fmt(target);
+        }
+        requestAnimationFrame(step);
+      }
+      if (!('IntersectionObserver' in window)) return;
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+          if (e.isIntersecting) { animateCount(e.target); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.4 });
+      document.querySelectorAll('[data-count]').forEach(function (el) { io.observe(el); });
     }());
 
     /* ── 4. FORM SUBMISSIONS (AJAX via Formspree) ─────── */
