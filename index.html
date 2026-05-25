@@ -398,6 +398,83 @@
       100% { transform: translateX(-50%); }
     }
 
+    /* ─── SHOWCASE (product in action) ───────────────────── */
+    #showcase { background: var(--navy); position: relative; overflow: hidden; }
+    .showcase-glow {
+      position: absolute; top: -120px; left: 50%; transform: translateX(-50%);
+      width: 720px; height: 360px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(29,158,117,0.18), transparent 70%);
+      filter: blur(40px); pointer-events: none;
+    }
+    .showcase-frame {
+      max-width: 940px; margin: 52px auto 0; position: relative;
+      border-radius: 14px; overflow: hidden;
+      background: #0b1729; border: 1px solid rgba(255,255,255,0.1);
+      box-shadow: 0 40px 90px -30px rgba(0,0,0,0.7), 0 0 0 1px rgba(255,255,255,0.04);
+    }
+    .browser-bar {
+      display: flex; align-items: center; gap: 8px;
+      padding: 11px 16px; background: #11203a;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .browser-dot { width: 11px; height: 11px; border-radius: 50%; }
+    .browser-url {
+      flex: 1; margin-left: 12px; max-width: 320px;
+      display: flex; align-items: center; gap: 7px;
+      padding: 5px 12px; border-radius: 7px;
+      background: rgba(255,255,255,0.06);
+      font-size: 0.72rem; color: rgba(255,255,255,0.55);
+      font-family: var(--sans);
+    }
+    .browser-url svg { width: 11px; height: 11px; color: var(--teal); flex-shrink: 0; }
+    .dash-mock { padding: 22px clamp(16px, 3vw, 30px) 28px; }
+    .dash-head {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      flex-wrap: wrap; gap: 12px; margin-bottom: 20px;
+    }
+    .dash-title { font-family: var(--serif); font-size: 1.05rem; color: var(--white); }
+    .dash-sub { font-size: 0.72rem; color: var(--muted); margin-top: 3px; }
+    .dash-period {
+      font-size: 0.7rem; color: var(--teal); font-weight: 600;
+      padding: 5px 12px; border-radius: 100px;
+      background: rgba(29,158,117,0.12); border: 1px solid rgba(29,158,117,0.25);
+    }
+    .kpi-row {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 12px; margin-bottom: 18px;
+    }
+    .kpi {
+      padding: 14px 16px; border-radius: 10px;
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+    }
+    .kpi-label { font-size: 0.64rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); }
+    .kpi-value { font-family: var(--serif); font-size: 1.15rem; color: var(--white); margin: 6px 0 4px; }
+    .kpi-delta { font-size: 0.66rem; font-weight: 600; display: inline-flex; align-items: center; gap: 3px; }
+    .kpi-delta.up { color: #34d399; }
+    .kpi-delta.down { color: #f87171; }
+    .dash-panels { display: grid; grid-template-columns: 1.5fr 1fr; gap: 14px; }
+    .dash-panel {
+      padding: 16px 18px; border-radius: 10px;
+      background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06);
+    }
+    .panel-title { font-size: 0.74rem; color: rgba(255,255,255,0.78); font-weight: 600; margin-bottom: 16px; }
+    .bar-chart { display: flex; align-items: flex-end; gap: 10px; height: 120px; }
+    .bar-col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 7px; }
+    .bar-fill {
+      width: 100%; border-radius: 5px 5px 0 0;
+      background: linear-gradient(180deg, var(--teal), rgba(29,158,117,0.45));
+    }
+    .bar-month { font-size: 0.6rem; color: var(--muted); }
+    .donut-wrap { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+    .donut-legend { display: flex; flex-direction: column; gap: 7px; width: 100%; }
+    .dleg { display: flex; align-items: center; gap: 8px; font-size: 0.68rem; color: rgba(255,255,255,0.7); }
+    .dleg-sw { width: 9px; height: 9px; border-radius: 2px; flex-shrink: 0; }
+    .dleg-val { margin-left: auto; color: var(--white); font-weight: 600; }
+    @media (max-width: 720px) {
+      .kpi-row { grid-template-columns: repeat(2, 1fr); }
+      .dash-panels { grid-template-columns: 1fr; }
+    }
+
     /* ─── PROBLEM GRID ───────────────────────────────────── */
     #problem { background: var(--navy); }
     .problem-grid {
@@ -493,7 +570,12 @@
       transition: background 0.3s, border-color 0.3s, transform 0.3s;
     }
     .ca-card:hover { background: var(--card-h); border-color: rgba(255,255,255,0.12); transform: translateY(-4px); }
-    .ca-card-icon { font-size: 1.5rem; margin-bottom: 16px; }
+    .ca-card-icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 46px; height: 46px; border-radius: 12px;
+      background: rgba(29,158,117,0.12); color: var(--teal); margin-bottom: 16px;
+    }
+    .ca-card-icon svg { width: 24px; height: 24px; }
     .ca-card h3 { font-family: var(--serif); font-size: 1.1rem; color: var(--white); margin-bottom: 10px; }
     .ca-card p { font-size: 0.85rem; color: var(--muted); line-height: 1.65; }
 
@@ -580,7 +662,8 @@
       display: flex; align-items: center; gap: 10px;
       font-size: 0.82rem; color: rgba(255,255,255,0.6); font-weight: 400;
     }
-    .trust-icon { font-size: 1rem; }
+    .trust-icon { display: inline-flex; align-items: center; color: var(--teal); }
+    .trust-icon svg { width: 17px; height: 17px; vertical-align: middle; }
 
     /* ─── FOUNDER ────────────────────────────────────────── */
     #founder { background: var(--navy); }
@@ -852,6 +935,97 @@
     </div>
   </div>
 
+  <!-- ══ SHOWCASE ══════════════════════════════════════════ -->
+  <section id="showcase">
+    <div class="showcase-glow"></div>
+    <div class="section-inner">
+      <div class="section-label reveal">See it in action</div>
+      <h2 class="section-heading reveal d1">Your numbers,<br><em>finally legible</em></h2>
+      <p class="section-sub reveal d2">
+        Connect Tally or Zoho and Finlyt turns raw ledgers into a live dashboard —
+        the same view your investors and bankers want to see.
+      </p>
+
+      <div class="showcase-frame reveal d3">
+        <div class="browser-bar">
+          <span class="browser-dot" style="background:#ff5f57"></span>
+          <span class="browser-dot" style="background:#febc2e"></span>
+          <span class="browser-dot" style="background:#28c840"></span>
+          <span class="browser-url">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            dashboard.finlyt.net
+          </span>
+        </div>
+
+        <div class="dash-mock">
+          <div class="dash-head">
+            <div>
+              <div class="dash-title">Acme Manufacturing Pvt Ltd</div>
+              <div class="dash-sub">Management Dashboard · FY 2024–25</div>
+            </div>
+            <span class="dash-period">YTD · Apr–Mar</span>
+          </div>
+
+          <div class="kpi-row">
+            <div class="kpi">
+              <div class="kpi-label">Revenue</div>
+              <div class="kpi-value">₹14.2 Cr</div>
+              <div class="kpi-delta up">▲ 23.4% YoY</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-label">EBITDA</div>
+              <div class="kpi-value">₹2.8 Cr</div>
+              <div class="kpi-delta up">▲ 18.1% YoY</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-label">Net Margin</div>
+              <div class="kpi-value">12.6%</div>
+              <div class="kpi-delta up">▲ 1.9 pts</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-label">Debtor Days</div>
+              <div class="kpi-value">58</div>
+              <div class="kpi-delta down">▼ 6 days</div>
+            </div>
+          </div>
+
+          <div class="dash-panels">
+            <div class="dash-panel">
+              <div class="panel-title">Monthly Revenue (₹ Lakh)</div>
+              <div class="bar-chart">
+                <div class="bar-col"><div class="bar-fill" style="height:48%"></div><div class="bar-month">Oct</div></div>
+                <div class="bar-col"><div class="bar-fill" style="height:60%"></div><div class="bar-month">Nov</div></div>
+                <div class="bar-col"><div class="bar-fill" style="height:54%"></div><div class="bar-month">Dec</div></div>
+                <div class="bar-col"><div class="bar-fill" style="height:72%"></div><div class="bar-month">Jan</div></div>
+                <div class="bar-col"><div class="bar-fill" style="height:85%"></div><div class="bar-month">Feb</div></div>
+                <div class="bar-col"><div class="bar-fill" style="height:100%"></div><div class="bar-month">Mar</div></div>
+              </div>
+            </div>
+
+            <div class="dash-panel">
+              <div class="panel-title">Cost Structure</div>
+              <div class="donut-wrap">
+                <svg width="118" height="118" viewBox="0 0 42 42">
+                  <circle cx="21" cy="21" r="15.9" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="6"/>
+                  <circle cx="21" cy="21" r="15.9" fill="none" stroke="#1D9E75" stroke-width="6" stroke-dasharray="52 48" stroke-dashoffset="25" stroke-linecap="butt"/>
+                  <circle cx="21" cy="21" r="15.9" fill="none" stroke="#3b82f6" stroke-width="6" stroke-dasharray="28 72" stroke-dashoffset="-27" stroke-linecap="butt"/>
+                  <circle cx="21" cy="21" r="15.9" fill="none" stroke="#f39c12" stroke-width="6" stroke-dasharray="20 80" stroke-dashoffset="-55" stroke-linecap="butt"/>
+                  <text x="21" y="20" text-anchor="middle" fill="#fff" font-size="5.5" font-weight="700" font-family="Georgia,serif">₹11.4</text>
+                  <text x="21" y="25.5" text-anchor="middle" fill="#7d8ca0" font-size="3">Cr total</text>
+                </svg>
+                <div class="donut-legend">
+                  <div class="dleg"><span class="dleg-sw" style="background:#1D9E75"></span>Materials<span class="dleg-val">52%</span></div>
+                  <div class="dleg"><span class="dleg-sw" style="background:#3b82f6"></span>Employee cost<span class="dleg-val">28%</span></div>
+                  <div class="dleg"><span class="dleg-sw" style="background:#f39c12"></span>Overheads<span class="dleg-val">20%</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ══ PROBLEM ═══════════════════════════════════════════ -->
   <section id="problem">
     <div class="section-inner">
@@ -908,7 +1082,7 @@
             <li>P&amp;L, Balance Sheet, Cash Flow — auto-generated</li>
             <li>MoM, QoQ, YoY, YTD comparisons on all statements</li>
             <li>Variance analysis — absolute (₹) and percentage (%)</li>
-            <li>Key ratios with 🟢🟡🔴 health indicators</li>
+            <li>Key ratios with <span style="display:inline-flex;gap:3px;vertical-align:middle"><span style="width:8px;height:8px;border-radius:50%;background:#1D9E75;display:inline-block"></span><span style="width:8px;height:8px;border-radius:50%;background:#f59e0b;display:inline-block"></span><span style="width:8px;height:8px;border-radius:50%;background:#e53935;display:inline-block"></span></span> health indicators</li>
             <li>AI narrative: "Revenue grew 23% — here's why"</li>
             <li>Smart flags and alerts — anomalies detected automatically</li>
             <li>PDF export — investor-ready, not spreadsheet-ready</li>
@@ -962,22 +1136,22 @@
       </p>
       <div class="ca-grid">
         <div class="ca-card reveal d1">
-          <div class="ca-card-icon">⚡</div>
+          <div class="ca-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg></div>
           <h3>Deliver MIS 10× faster</h3>
           <p>Serve 3× more clients with the same effort. Your clients get investor-ready MIS automatically.</p>
         </div>
         <div class="ca-card reveal d2">
-          <div class="ca-card-icon">🏷️</div>
+          <div class="ca-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg></div>
           <h3>White-label ready</h3>
           <p>Your brand. Finlyt's engine. Offer MIS as your own service — your clients never need to know.</p>
         </div>
         <div class="ca-card reveal d3">
-          <div class="ca-card-icon">🎯</div>
+          <div class="ca-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg></div>
           <h3>Focus on advisory</h3>
           <p>Automating routine MIS prep means you become your client's most valuable advisor — not just their compliance person.</p>
         </div>
         <div class="ca-card reveal d4">
-          <div class="ca-card-icon">💰</div>
+          <div class="ca-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="6" rx="8" ry="3"></ellipse><path d="M4 6v6c0 1.66 3.58 3 8 3s8-1.34 8-3V6"></path><path d="M4 12v6c0 1.66 3.58 3 8 3s8-1.34 8-3v-6"></path></svg></div>
           <h3>CA Partner Programme</h3>
           <p>One CA firm partnership = 50+ client subscriptions. Flat monthly fee. You handle the clients. We handle the platform.</p>
         </div>
@@ -1073,11 +1247,11 @@
   <!-- ══ TRUST BAR ══════════════════════════════════════════ -->
   <div id="trust">
     <div class="trust-bar reveal">
-      <div class="trust-item"><span class="trust-icon">🔒</span> Your data stays private — always</div>
-      <div class="trust-item"><span class="trust-icon">🇮🇳</span> Built for India — Tally, Zoho, GST, TDS</div>
-      <div class="trust-item"><span class="trust-icon">🤝</span> CA-powered and CA-trusted</div>
-      <div class="trust-item"><span class="trust-icon">✓</span> 14-day free trial — no credit card</div>
-      <div class="trust-item"><span class="trust-icon">📊</span> White-label ready for CA firms</div>
+      <div class="trust-item"><span class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><path d="M9 12l2 2 4-4"></path></svg></span> Your data stays private — always</div>
+      <div class="trust-item"><span class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"></path><line x1="4" y1="22" x2="4" y2="15"></line></svg></span> Built for India — Tally, Zoho, GST, TDS</div>
+      <div class="trust-item"><span class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"></circle><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11"></path></svg></span> CA-powered and CA-trusted</div>
+      <div class="trust-item"><span class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line><path d="M9 16l2 2 4-4"></path></svg></span> 14-day free trial — no credit card</div>
+      <div class="trust-item"><span class="trust-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg></span> White-label ready for CA firms</div>
     </div>
   </div>
 
