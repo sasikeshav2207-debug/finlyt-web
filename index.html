@@ -347,6 +347,41 @@
     }
     .form-success.show { display: block; }
 
+    /* ─── CONTACT MODAL ──────────────────────────────────── */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 2000;
+      display: none; align-items: center; justify-content: center;
+      padding: 20px; background: rgba(6,12,20,0.72); backdrop-filter: blur(4px);
+    }
+    .modal-overlay.show { display: flex; }
+    .modal-card {
+      position: relative; width: 100%; max-width: 460px;
+      background: var(--navy2); border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px; padding: 32px 28px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+    }
+    .modal-close {
+      position: absolute; top: 14px; right: 14px;
+      width: 32px; height: 32px; border: none; border-radius: 8px;
+      background: var(--card); color: var(--muted); font-size: 1.1rem;
+      cursor: pointer; transition: background 0.2s, color 0.2s; line-height: 1;
+    }
+    .modal-close:hover { background: rgba(255,255,255,0.1); color: var(--white); }
+    .modal-card h3 { font-family: var(--serif); font-size: 1.4rem; color: var(--white); margin-bottom: 6px; }
+    .modal-card .modal-sub { font-size: 0.85rem; color: var(--muted); margin-bottom: 22px; line-height: 1.5; }
+    .modal-form { display: flex; flex-direction: column; gap: 12px; }
+    .modal-form input, .modal-form textarea {
+      width: 100%; padding: 12px 16px; border-radius: 8px;
+      background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+      color: var(--white); font-family: var(--sans); font-size: 0.875rem;
+      outline: none; transition: border-color 0.2s; resize: vertical;
+    }
+    .modal-form input:focus, .modal-form textarea:focus { border-color: var(--teal); }
+    .modal-form input::placeholder, .modal-form textarea::placeholder { color: var(--muted); }
+    .modal-form .btn-primary { width: 100%; justify-content: center; margin-top: 4px; }
+    .modal-alt { font-size: 0.78rem; color: var(--muted); text-align: center; margin-top: 14px; }
+    .modal-alt a { color: var(--teal); }
+
     .hero-demo-link {
       display: inline-flex; align-items: center; gap: 8px;
       margin-top: 20px; font-size: 0.875rem; color: var(--muted);
@@ -856,8 +891,11 @@
     </div>
 
     <div class="sidebar-footer">
+      <button type="button" data-open-contact data-close-sidebar
+        style="width:100%;padding:11px 16px;border:none;border-radius:8px;background:var(--teal);color:var(--white);font-family:var(--sans);font-size:0.9rem;font-weight:500;cursor:pointer;margin-bottom:14px;">
+        Contact Us
+      </button>
       <p>© 2026 Finlyt. Built in India for India.<br>
-      <a href="mailto:founder@finlyt.net" style="color:var(--teal);">founder@finlyt.net</a><br>
       <a href="https://www.linkedin.com/company/finlyt-tech" target="_blank" rel="noopener" style="color:var(--teal);">LinkedIn</a></p>
     </div>
   </nav>
@@ -1435,12 +1473,36 @@
       <div class="footer-logo">fin<span>lyt</span></div>
       <div class="footer-copy">© 2026 Finlyt. Built in India for India. &nbsp;·&nbsp; <a href="mailto:founder@finlyt.net" style="color:var(--muted);transition:color 0.2s" onmouseover="this.style.color='#F8F9FA'" onmouseout="this.style.color=''">founder@finlyt.net</a></div>
       <div class="footer-links">
+        <a href="#" data-open-contact>Contact Us</a>
         <a href="https://www.linkedin.com/company/finlyt-tech" target="_blank" rel="noopener">LinkedIn</a>
         <a href="https://finlyt.net/privacy">Privacy Policy</a>
         <a href="https://finlyt.net/terms">Terms of Service</a>
       </div>
     </div>
   </footer>
+
+  <!-- ══ CONTACT MODAL ═══════════════════════════════════════ -->
+  <div class="modal-overlay" id="contact-modal" role="dialog" aria-modal="true" aria-labelledby="contact-modal-title">
+    <div class="modal-card">
+      <button type="button" class="modal-close" id="contact-modal-close" aria-label="Close">&times;</button>
+      <h3 id="contact-modal-title">Get in touch</h3>
+      <p class="modal-sub">Tell us a bit about you and Sasidharan will reach out personally within 48 hours.</p>
+      <form class="modal-form" id="contact-form" action="https://formspree.io/f/mojbeovg" method="POST">
+        <input type="hidden" name="_subject" value="New Contact Enquiry — Finlyt" />
+        <input type="hidden" name="form_source" value="Contact Us (website)" />
+        <input type="text"  name="name"    placeholder="Your name" required />
+        <input type="email" name="email"   placeholder="Your email address" required />
+        <input type="text"  name="company" placeholder="Company / firm (optional)" />
+        <input type="tel"   name="phone"   placeholder="Phone (optional)" />
+        <textarea name="message" rows="3" placeholder="How can we help?"></textarea>
+        <button type="submit" class="btn-primary">Send enquiry</button>
+      </form>
+      <div class="form-success" id="contact-success" style="text-align:center">
+        ✓ Received. Sasidharan will reach out personally within 48 hours.
+      </div>
+      <p class="modal-alt">Prefer email? <a href="mailto:founder@finlyt.net">founder@finlyt.net</a></p>
+    </div>
+  </div>
 
   <!-- ══ JAVASCRIPT ═════════════════════════════════════════ -->
   <script>
@@ -1574,6 +1636,22 @@
       handleForm('hero-waitlist-form',  'hero-success');
       handleForm('ca-partner-form',     'ca-success');
       handleForm('cta-waitlist-form',   'cta-success');
+      handleForm('contact-form',        'contact-success');
+    }());
+
+    /* ── 5. CONTACT MODAL ─────────────────────────────── */
+    (function () {
+      var modal = document.getElementById('contact-modal');
+      if (!modal) return;
+      var closeBtn = document.getElementById('contact-modal-close');
+      function openModal(e) { if (e) e.preventDefault(); modal.classList.add('show'); document.body.style.overflow = 'hidden'; }
+      function closeModal() { modal.classList.remove('show'); document.body.style.overflow = ''; }
+      document.querySelectorAll('[data-open-contact]').forEach(function (el) {
+        el.addEventListener('click', openModal);
+      });
+      if (closeBtn) closeBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
+      document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
     }());
   </script>
 
