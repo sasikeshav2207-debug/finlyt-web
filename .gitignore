@@ -1,0 +1,9 @@
+# Jekyll build artefacts — GitHub Pages builds the site for us; these should
+# never be committed.
+_site/
+.jekyll-cache/
+.jekyll-metadata
+.sass-cache/
+Gemfile.lock
+vendor/
+.bundle/

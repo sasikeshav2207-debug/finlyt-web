@@ -1,0 +1,73 @@
+---
+layout: default
+---
+
+<article class="post" itemscope itemtype="https://schema.org/BlogPosting">
+  <header class="post-header">
+    <a href="{{ '/blog/' | relative_url }}" class="post-back">← All articles</a>
+    <h1 class="post-title" itemprop="headline">{{ page.title }}</h1>
+    {% if page.description %}
+      <p class="post-deck" itemprop="description">{{ page.description }}</p>
+    {% endif %}
+    <div class="post-meta">
+      <time datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+        {{ page.date | date: "%-d %b %Y" }}
+      </time>
+      {%- assign words = content | strip_html | number_of_words -%}
+      {%- assign minutes = words | divided_by: 220 | plus: 1 -%}
+      <span class="post-dot">·</span>
+      <span>{{ minutes }} min read</span>
+      {% if page.author %}
+        <span class="post-dot">·</span>
+        <span itemprop="author">{{ page.author }}</span>
+      {% endif %}
+    </div>
+    {% if page.tags and page.tags.size > 0 %}
+      <div class="post-tags">
+        {% for tag in page.tags %}<span class="post-tag">{{ tag }}</span>{% endfor %}
+      </div>
+    {% endif %}
+  </header>
+
+  <div class="post-body" itemprop="articleBody">
+    {{ content }}
+  </div>
+
+  <footer class="post-footer">
+    {% if page.linkedin %}
+      <p class="post-credit">
+        Originally published on
+        <a href="{{ page.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>.
+      </p>
+    {% endif %}
+    <div class="post-cta">
+      <h3>See how Finlyt works on your books</h3>
+      <p>Investor-ready MIS, cash-flow forecasting and AI insights — from your Tally or Zoho data.</p>
+      <a href="https://dashboard.finlyt.net" class="btn-primary" target="_blank" rel="noopener">Open the dashboard →</a>
+    </div>
+  </footer>
+</article>
+
+{% comment %} Sidebar: latest + related (same first tag). Cheap, no extra plugin. {% endcomment %}
+{% assign primary_tag = page.tags | first %}
+{% assign related = "" | split: "" %}
+{% if primary_tag %}
+  {% for p in site.posts %}
+    {% if p.url != page.url and p.tags contains primary_tag %}
+      {% assign related = related | push: p %}
+    {% endif %}
+    {% if related.size >= 3 %}{% break %}{% endif %}
+  {% endfor %}
+{% endif %}
+
+{% if related.size > 0 %}
+<aside class="post-related">
+  <h4>Related reads</h4>
+  <ul>
+    {% for p in related %}
+      <li><a href="{{ p.url | relative_url }}">{{ p.title }}</a>
+        <span class="r-date">{{ p.date | date: "%-d %b %Y" }}</span></li>
+    {% endfor %}
+  </ul>
+</aside>
+{% endif %}
