@@ -1,0 +1,46 @@
+<svg width="200" height="48" viewBox="0 0 200 48" xmlns="http://www.w3.org/2000/svg" role="img">
+  <title>FinLytTech</title>
+  <defs>
+    <radialGradient id="cg" cx="50%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#A8F0D8"/>
+      <stop offset="40%" stop-color="#1DCBA0"/>
+      <stop offset="100%" stop-color="#0A7A5E"/>
+    </radialGradient>
+    <linearGradient id="hg1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1DCBA0"/>
+      <stop offset="100%" stop-color="#0891B2"/>
+    </linearGradient>
+    <linearGradient id="hg2" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0891B2"/>
+      <stop offset="100%" stop-color="#1D9E75"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Logo mark — scaled to 48x48 within this canvas -->
+  <g transform="translate(24,24) scale(0.4)">
+    <path d="M-18,-38 C-28,-20 -28,0 -18,18 C-8,36 8,46 8,60" fill="none" stroke="url(#hg1)" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M18,-38 C28,-20 28,0 18,18 C8,36 -8,46 -8,60" fill="none" stroke="url(#hg2)" stroke-width="3.5" stroke-linecap="round"/>
+    <line x1="-16" y1="-28" x2="16" y2="-28" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+    <line x1="-22" y1="-14" x2="22" y2="-14" stroke="#0891B2" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+    <line x1="-24" y1="0" x2="24" y2="0" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round" opacity="0.7"/>
+    <line x1="-22" y1="14" x2="22" y2="14" stroke="#0891B2" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
+    <circle cx="-18" cy="-38" r="2.5" fill="#1DCBA0"/>
+    <circle cx="-18" cy="18" r="2.5" fill="#1DCBA0"/>
+    <circle cx="18" cy="-38" r="2.5" fill="#0891B2"/>
+    <circle cx="18" cy="18" r="2.5" fill="#0891B2"/>
+    <polygon points="0,-18 14,-6 10,8 -10,8 -14,-6" fill="url(#cg)" opacity="0.95"/>
+    <polygon points="0,-18 14,-6 0,-2" fill="#A8F0D8" opacity="0.5"/>
+    <polygon points="0,-18 -14,-6 0,-2" fill="#E0FFF5" opacity="0.3"/>
+    <polygon points="-14,-6 -10,8 0,2" fill="#1DCBA0" opacity="0.4"/>
+    <polygon points="14,-6 10,8 0,2" fill="#0891B2" opacity="0.35"/>
+    <polygon points="0,-18 14,-6 10,8 -10,8 -14,-6" fill="none" stroke="#A8F0D8" stroke-width="0.8" opacity="0.8"/>
+    <circle cx="0" cy="-4" r="2.5" fill="#E0FFF5" opacity="0.9"/>
+    <circle cx="0" cy="-4" r="1.2" fill="white" opacity="0.95"/>
+  </g>
+
+  <!-- Wordmark — fin (white) lyt (teal) tech (white) -->
+  <!-- Using text elements; embed Georgia/serif as fallback -->
+  <text x="52" y="32" font-family="Georgia, 'Times New Roman', serif" font-size="24" font-weight="700" letter-spacing="-0.5" fill="#FFFFFF">fin</text>
+  <text x="83" y="32" font-family="Georgia, 'Times New Roman', serif" font-size="24" font-weight="700" letter-spacing="-0.5" fill="#1DCBA0">lyt</text>
+  <text x="113" y="32" font-family="Georgia, 'Times New Roman', serif" font-size="24" font-weight="700" letter-spacing="-0.5" fill="#FFFFFF">tech</text>
+</svg>

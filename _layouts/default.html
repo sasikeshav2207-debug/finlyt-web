@@ -12,6 +12,9 @@
   {%- endcomment -%}
   {% seo %}
 
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="{{ '/assets/finlyttech-favicon.svg' | relative_url }}" />
+
   <!-- RSS feed auto-discovery (browsers + aggregators pick this up). -->
   {% feed_meta %}
 
@@ -26,7 +29,7 @@
 <body>
   <!-- Top nav — minimal, focused, matches the main site's brand. -->
   <header class="site-nav">
-    <a href="{{ '/' | relative_url }}" class="nav-logo">fin<span>lyt</span></a>
+    <a href="{{ '/' | relative_url }}" class="nav-logo"><img src="{{ '/assets/finlyttech-logo-horizontal-dark.svg' | relative_url }}" alt="FinLytTech" height="40" /></a>
     <nav class="nav-right" aria-label="Primary">
       <a href="{{ '/' | relative_url }}">Home</a>
       <a href="{{ '/blog/' | relative_url }}">Blog</a>
@@ -40,8 +43,8 @@
 
   <footer class="site-footer">
     <div class="footer-inner">
-      <div class="footer-logo">fin<span>lyt</span></div>
-      <div class="footer-copy">© {{ 'now' | date: '%Y' }} Finlyt. Built in India for India. &nbsp;·&nbsp;
+      <div class="footer-logo"><img src="{{ '/assets/finlyttech-logo-mark-dark.svg' | relative_url }}" alt="FinLytTech" height="40" /></div>
+      <div class="footer-copy">© {{ 'now' | date: '%Y' }} FinLytTech&trade;. Built in India for India. &nbsp;·&nbsp;
         <a href="mailto:founder@finlyt.net">founder@finlyt.net</a>
       </div>
       <div class="footer-links">
