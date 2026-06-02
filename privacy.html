@@ -110,13 +110,17 @@ footer a{color:var(--teal);text-decoration:none}
       </thead>
       <tbody>
         <tr><td><strong>Account data</strong></td><td>Name, company name, email address, password (hashed)</td><td>On signup</td><td><span class="badge badge-green">Yes — encrypted</span></td></tr>
+        <tr><td><strong>Business identifiers</strong></td><td>Entity type and PAN (mandatory). GSTIN, CIN or LLPIN (conditional on entity type)</td><td>On signup</td><td><span class="badge badge-green">Yes — encrypted</span></td></tr>
+        <tr><td><strong>Network metadata</strong></td><td>IP address of every signup and sign-in</td><td>On signup and every login</td><td><span class="badge badge-green">Yes — server logs</span></td></tr>
         <tr><td><strong>Authentication tokens</strong></td><td>Zoho Books OAuth access and refresh tokens</td><td>When you connect Zoho Books</td><td><span class="badge badge-green">Yes — encrypted</span></td></tr>
-        <tr><td><strong>Financial data</strong></td><td>P&L, Balance Sheet, Cash Flow, Chart of Accounts from your Zoho Books or Tally</td><td>When you generate a report</td><td><span class="badge badge-amber">No — fetched live, not stored</span></td></tr>
+        <tr><td><strong>Financial data</strong></td><td>P&L, Balance Sheet, Cash Flow, Chart of Accounts from your Zoho Books or Tally</td><td>When you generate a report</td><td><span class="badge badge-amber">Snapshots only — see Section 4</span></td></tr>
         <tr><td><strong>Usage data</strong></td><td>Pages visited, features used, error logs</td><td>During product use</td><td><span class="badge badge-green">Yes — anonymised</span></td></tr>
         <tr><td><strong>Payment data</strong></td><td>Subscription status, payment confirmation (not card details)</td><td>On payment</td><td><span class="badge badge-green">Yes — via Razorpay</span></td></tr>
       </tbody>
     </table></div>
-    <p>We do not collect: government ID numbers (Aadhaar, PAN), bank account details, or any data beyond what is required to provide the service.</p>
+    <p><strong>Why we collect business identifiers:</strong> Indian government IDs (PAN, GSTIN, CIN, LLPIN) are the only reliable way to ensure one account per legal entity — company names collide and email addresses don't. We use PAN as the unique key to prevent duplicate signups, and we use GSTIN to issue GST-compliant tax invoices on your subscription as required by Indian tax law. We never share these with third parties or use them for any purpose other than identity and billing.</p>
+    <p><strong>Why we collect IP addresses:</strong> Logged for security (account-takeover detection), abuse prevention, and statutory record-keeping under Section 67C of the Information Technology Act, 2000. IP logs are retained for 12 months and then deleted.</p>
+    <p>We do not collect: Aadhaar, bank account details, biometrics, or any data beyond what is listed above.</p>
   </div>
 
   <!-- 3 -->
