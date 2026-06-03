@@ -650,6 +650,33 @@
     .ca-form input:focus { border-color: var(--teal); }
     .ca-form input::placeholder { color: var(--muted); }
 
+    /* ─── IMPLEMENTATION ─────────────────────────────────── */
+    #implementation { background: var(--navy); }
+    .impl-note {
+      margin-top: 52px; padding: 28px 32px; border-radius: 14px;
+      background: rgba(29,158,117,0.06);
+      border: 1px solid rgba(29,158,117,0.18);
+      display: flex; gap: 22px; align-items: flex-start;
+    }
+    .impl-badge {
+      flex-shrink: 0; display: inline-flex; align-items: center; justify-content: center;
+      width: 48px; height: 48px; border-radius: 12px;
+      background: rgba(29,158,117,0.16); color: var(--teal);
+    }
+    .impl-badge svg { width: 24px; height: 24px; }
+    .impl-note-body h3 {
+      font-family: var(--serif); font-size: 1.15rem;
+      color: var(--white); margin-bottom: 8px;
+    }
+    .impl-note-body p { font-size: 0.875rem; color: var(--muted); line-height: 1.65; }
+    .impl-cta {
+      margin-top: 36px; display: flex; align-items: center; gap: 18px; flex-wrap: wrap;
+    }
+    .impl-cta-sub { font-size: 0.85rem; color: var(--muted); }
+    @media (max-width: 640px) {
+      .impl-note { flex-direction: column; gap: 16px; padding: 24px; }
+    }
+
     /* ─── WHY FINLYT ─────────────────────────────────────── */
     #why { background: var(--navy2); }
     .why-grid {
@@ -856,6 +883,9 @@
       </a>
       <a href="#products" class="sidebar-nav-link" data-close-sidebar>
         <span class="nav-dot"></span> Products
+      </a>
+      <a href="#implementation" class="sidebar-nav-link" data-close-sidebar>
+        <span class="nav-dot"></span> Implementation &amp; Onboarding
       </a>
       <a href="#for-cas" class="sidebar-nav-link" data-close-sidebar>
         <span class="nav-dot"></span> For Chartered Accountants
@@ -1262,6 +1292,64 @@
           </ul>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ IMPLEMENTATION ═════════════════════════════════════ -->
+  <section id="implementation">
+    <div class="section-inner">
+      <div class="section-label reveal">Implementation &amp; Onboarding</div>
+      <h2 class="section-heading reveal d1">Get your books<br><em>FinLyt-ready</em></h2>
+      <p class="section-sub reveal d2">
+        Most Indian SMEs run Tally just for compliance — ledgers are unstructured,
+        Excel runs in parallel, and most of Tally's power sits unused. Before
+        FinLytTech can give you investor-ready insights, your books need to
+        speak the right language. Our Implementation Partners handle that.
+      </p>
+
+      <div class="ca-grid">
+        <div class="ca-card reveal d1">
+          <div class="ca-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h18v4H3zM3 11h18v4H3zM3 19h18v2H3z"></path></svg></div>
+          <h3>Ledger structuring</h3>
+          <p>Clean grouping, proper Sundry Debtors / Creditors, expense classification — so every report rolls up correctly from day one.</p>
+        </div>
+        <div class="ca-card reveal d2">
+          <div class="ca-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg></div>
+          <h3>Opening balance reconciliation</h3>
+          <p>Anchored to your last filed Income Tax / GST return — so your Trial Balance is audit-defensible from the first day on the dashboard.</p>
+        </div>
+        <div class="ca-card reveal d3">
+          <div class="ca-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg></div>
+          <h3>Cost centre &amp; branch setup</h3>
+          <p>Tally's cost-centre framework configured so segment P&amp;L works the moment you sync — branch profit, project margin, vertical split — without rebuilding anything later.</p>
+        </div>
+        <div class="ca-card reveal d4">
+          <div class="ca-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
+          <h3>First-month handholding</h3>
+          <p>Two weeks of guided onboarding — every voucher entered, every report verified, until the dashboard reads exactly like Tally and you can run it yourself.</p>
+        </div>
+      </div>
+
+      <div class="impl-note reveal">
+        <div class="impl-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+        </div>
+        <div class="impl-note-body">
+          <h3>Delivered by ICAI-qualified Chartered Accountants</h3>
+          <p>
+            Implementation work is delivered by independent CA firms in our
+            partner network. Two clean relationships — your service contract
+            sits with the CA firm for accountancy work, your FinLytTech
+            subscription sits with us for the software. One outcome: books
+            that finally speak the language of the dashboard.
+          </p>
+        </div>
+      </div>
+
+      <div class="impl-cta reveal">
+        <button type="button" data-open-contact class="btn-primary">Talk to us about implementation</button>
+        <span class="impl-cta-sub">No commitment — we'll scope your books and introduce you to a Partner CA.</span>
       </div>
     </div>
   </section>
