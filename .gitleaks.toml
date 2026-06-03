@@ -1,0 +1,21 @@
+title = "FinLytTech landing-site Gitleaks config"
+
+# Landing site is static HTML / Jekyll — minimal secret surface, but worth
+# scanning in case a fetch URL or third-party widget snippet leaks a token.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "FinLyt landing allowlist"
+
+regexes = [
+  # Formspree form IDs are public by design (they're embedded in the form
+  # action URL that the browser POSTs to). Not secrets.
+  '''formspree\.io/f/[a-z]+''',
+]
+
+paths = [
+  '''_site''',          # Jekyll build output
+  '''.jekyll-cache''',
+  '''assets/.*\.min\.js''',
+]

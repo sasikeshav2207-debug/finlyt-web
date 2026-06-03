@@ -1,0 +1,28 @@
+name: Gitleaks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '0 4 * * 1'
+  workflow_dispatch:
+
+jobs:
+  scan:
+    name: Detect secrets
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Install gitleaks
+        run: |
+          GITLEAKS_VERSION="8.21.4"
+          curl -sSL "https://github.com/gitleaks/gitleaks/releases/download/v${GITLEAKS_VERSION}/gitleaks_${GITLEAKS_VERSION}_linux_x64.tar.gz" -o gl.tgz
+          tar -xzf gl.tgz
+          chmod +x gitleaks
+
+      - name: Run gitleaks detect
+        run: ./gitleaks detect --source . --config .gitleaks.toml --redact --verbose --no-banner

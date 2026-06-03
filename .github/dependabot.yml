@@ -1,0 +1,14 @@
+version: 2
+
+# Landing repo is a Jekyll static site — no npm tree to scan, so the only
+# ecosystem Dependabot tracks here is the GitHub Actions workflow itself
+# (keeping checkout / upload-sarif / etc. on supported versions).
+updates:
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
+    open-pull-requests-limit: 3
+    labels: ["dependencies", "ci"]
+    commit-message:
+      prefix: "deps(ci)"
