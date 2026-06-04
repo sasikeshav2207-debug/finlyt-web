@@ -65,7 +65,7 @@ footer a{color:var(--teal);text-decoration:none}
   <div style="max-width:800px;margin:0 auto">
     <div class="hero-label">Legal</div>
     <h1>Privacy Policy</h1>
-    <p class="hero-meta">Last updated: 22 May 2026 &nbsp;·&nbsp; Effective date: 22 May 2026 &nbsp;·&nbsp; Governed by DPDP Act 2023</p>
+    <p class="hero-meta">Last updated: 4 June 2026 &nbsp;·&nbsp; Effective date: 4 June 2026 &nbsp;·&nbsp; Governed by DPDP Act 2023</p>
   </div>
 </div>
 
@@ -82,6 +82,7 @@ footer a{color:var(--teal);text-decoration:none}
       <li><a href="#third-parties">Third-Party Services</a></li>
       <li><a href="#your-rights">Your Rights Under DPDP Act 2023</a></li>
       <li><a href="#data-retention">Data Retention</a></li>
+      <li><a href="#service-telemetry">Service Telemetry and Error Logging</a></li>
       <li><a href="#security">Security Measures</a></li>
       <li><a href="#children">Children's Privacy</a></li>
       <li><a href="#changes">Changes to This Policy</a></li>
@@ -221,8 +222,54 @@ footer a{color:var(--teal);text-decoration:none}
   </div>
 
   <!-- 9 -->
+  <div class="section" id="service-telemetry">
+    <h2><span class="section-num">9</span> Service Telemetry and Error Logging</h2>
+    <p>To operate the FinLytTech platform reliably and to diagnose issues you may encounter, we automatically record a limited set of service-operation events when you use the platform. We rely on <strong>legitimate interest</strong> as our legal basis under the Digital Personal Data Protection Act, 2023.</p>
+
+    <p><strong>What we record:</strong></p>
+    <ul>
+      <li>Sync events between your accounting software and the dashboard (success, failure, error class)</li>
+      <li>Report generation events (PDF / Excel exports)</li>
+      <li>Connection events (Tally pairing, Zoho authorization)</li>
+      <li>Authentication events (sign-in, sign-out, password reset, idle timeout, two-factor enablement)</li>
+      <li>Application errors encountered in your browser or on our servers</li>
+    </ul>
+
+    <p><strong>What we deliberately do NOT record:</strong></p>
+    <ul>
+      <li>Your financial data (P&amp;L figures, balances, transaction details)</li>
+      <li>Your customers' or vendors' names or amounts</li>
+      <li>The contents of any file you upload</li>
+      <li>Mouse movements, scrolling behaviour, or click-stream</li>
+      <li>Page-view analytics</li>
+    </ul>
+
+    <p>Each record contains: the event name, a sanitised metadata payload, your account identifier, your IP address, and your browser identifier. The payload is automatically scrubbed of any pattern that resembles a JWT token, API key, PAN, GSTIN, or Aadhaar number, and any string longer than 500 characters is truncated.</p>
+
+    <p><strong>Retention:</strong> These records are stored for 90 days and then automatically purged.</p>
+
+    <p><strong>How we use these records:</strong></p>
+    <ul>
+      <li>Diagnose and resolve errors you report to support</li>
+      <li>Identify systemic issues affecting multiple customers</li>
+      <li>Demonstrate the integrity of the platform if asked by a regulator or auditor</li>
+    </ul>
+
+    <p>We do not use these records for marketing, profiling, ad targeting, or any purpose other than the ones listed above. We do not share these records with third parties.</p>
+
+    <div class="highlight-box">
+      <p><strong>Your rights specific to this section:</strong></p>
+      <ul style="margin-top:0.5rem">
+        <li>You may request a copy of your telemetry records at any time by writing to <a href="mailto:founder@finlyt.net" style="color:var(--teal2)">founder@finlyt.net</a>, or by signing in and pulling them yourself from the dashboard.</li>
+        <li>You may request deletion of your telemetry records at any time (we will action this within 7 working days). This does not affect your right to continue using the service.</li>
+      </ul>
+      <p style="margin-bottom:0">These rights are in addition to the data subject rights set out in Section 7 above.</p>
+    </div>
+  </div>
+
+  <!-- 10 -->
   <div class="section" id="security">
-    <h2><span class="section-num">9</span> Security Measures</h2>
+    <h2><span class="section-num">10</span> Security Measures</h2>
     <ul>
       <li>All data transmitted over TLS 1.2 or higher (HTTPS everywhere)</li>
       <li>Passwords hashed using bcrypt — never stored in plain text</li>
@@ -235,21 +282,21 @@ footer a{color:var(--teal);text-decoration:none}
     <p>In the event of a data breach affecting your personal data, we will notify you within 72 hours of becoming aware of it, as required under the DPDP Act 2023.</p>
   </div>
 
-  <!-- 10 -->
+  <!-- 11 -->
   <div class="section" id="children">
-    <h2><span class="section-num">10</span> Children's Privacy</h2>
+    <h2><span class="section-num">11</span> Children's Privacy</h2>
     <p>FinLytTech is a B2B financial intelligence platform intended for use by businesses and professionals. We do not knowingly collect data from anyone under the age of 18. If you believe a minor has created an account, please contact us at founder@finlyt.net and we will delete it immediately.</p>
   </div>
 
-  <!-- 11 -->
+  <!-- 12 -->
   <div class="section" id="changes">
-    <h2><span class="section-num">11</span> Changes to This Policy</h2>
+    <h2><span class="section-num">12</span> Changes to This Policy</h2>
     <p>We may update this Privacy Policy from time to time. When we do, we will update the "Last updated" date at the top of this page and notify registered users by email if changes are material. Continued use of FinLytTech after changes take effect constitutes acceptance of the updated policy.</p>
   </div>
 
-  <!-- 12 -->
+  <!-- 13 -->
   <div class="section" id="contact">
-    <h2><span class="section-num">12</span> Contact Us</h2>
+    <h2><span class="section-num">13</span> Contact Us</h2>
     <p>For any privacy-related questions, data rights requests, or grievances:</p>
     <div class="highlight-box">
       <p><strong>FinLytTech — Data Fiduciary</strong><br>
