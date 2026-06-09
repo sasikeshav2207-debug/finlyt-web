@@ -1504,22 +1504,61 @@
             </button>
           </div>
           <div>
-            <ul style="list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:14px">
-              <li style="display:flex;gap:12px;align-items:center;font-size:0.9rem;color:rgba(255,255,255,0.9);line-height:1.5">
-                <span class="feat-ico" style="width:34px;height:34px;border-radius:9px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg></span>
-                <strong style="color:var(--white);font-weight:600">Lender Marketplace</strong>
+            <ul style="list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:16px" aria-label="Capital Suite pillars">
+              <!-- Tile 1 — Marketplace -->
+              <li style="position:relative;aspect-ratio:1.6/1;border-radius:14px;background:linear-gradient(135deg,rgba(29,158,117,0.18),rgba(29,158,117,0.04));border:1px solid rgba(29,158,117,0.22);overflow:hidden;display:flex;align-items:center;justify-content:center" title="Marketplace">
+                <svg viewBox="0 0 160 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:78%;height:78%">
+                  <rect x="14" y="40" width="32" height="44" rx="3" fill="rgba(29,158,117,0.25)" stroke="#1D9E75" stroke-width="1.5"/>
+                  <rect x="64" y="28" width="32" height="56" rx="3" fill="rgba(29,158,117,0.4)" stroke="#1D9E75" stroke-width="1.5"/>
+                  <rect x="114" y="46" width="32" height="38" rx="3" fill="rgba(29,158,117,0.25)" stroke="#1D9E75" stroke-width="1.5"/>
+                  <path d="M14 40 L30 24 L46 40 Z" fill="#1D9E75" opacity="0.7"/>
+                  <path d="M64 28 L80 12 L96 28 Z" fill="#1D9E75"/>
+                  <path d="M114 46 L130 30 L146 46 Z" fill="#1D9E75" opacity="0.7"/>
+                  <line x1="6" y1="84" x2="154" y2="84" stroke="#1D9E75" stroke-width="1.5"/>
+                  <circle cx="30" cy="58" r="2.5" fill="#fff"/>
+                  <circle cx="80" cy="50" r="2.5" fill="#fff"/>
+                  <circle cx="130" cy="62" r="2.5" fill="#fff"/>
+                </svg>
               </li>
-              <li style="display:flex;gap:12px;align-items:center;font-size:0.9rem;color:rgba(255,255,255,0.9);line-height:1.5">
-                <span class="feat-ico" style="width:34px;height:34px;border-radius:9px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg></span>
-                <strong style="color:var(--white);font-weight:600">Invoice Financing</strong>
+              <!-- Tile 2 — Invoice Financing -->
+              <li style="position:relative;aspect-ratio:1.6/1;border-radius:14px;background:linear-gradient(135deg,rgba(29,158,117,0.18),rgba(29,158,117,0.04));border:1px solid rgba(29,158,117,0.22);overflow:hidden;display:flex;align-items:center;justify-content:center" title="Invoice Financing">
+                <svg viewBox="0 0 160 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:78%;height:78%">
+                  <rect x="22" y="14" width="58" height="74" rx="4" fill="rgba(29,158,117,0.22)" stroke="#1D9E75" stroke-width="1.5"/>
+                  <line x1="32" y1="30" x2="70" y2="30" stroke="#1D9E75" stroke-width="1.5"/>
+                  <line x1="32" y1="42" x2="60" y2="42" stroke="#1D9E75" stroke-width="1.2" opacity="0.7"/>
+                  <line x1="32" y1="52" x2="68" y2="52" stroke="#1D9E75" stroke-width="1.2" opacity="0.7"/>
+                  <line x1="32" y1="62" x2="56" y2="62" stroke="#1D9E75" stroke-width="1.2" opacity="0.7"/>
+                  <text x="32" y="78" font-family="DM Sans" font-size="10" font-weight="700" fill="#1D9E75">₹</text>
+                  <path d="M88 50 L110 50 M104 44 L110 50 L104 56" stroke="#1D9E75" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                  <circle cx="132" cy="50" r="20" fill="rgba(29,158,117,0.35)" stroke="#1D9E75" stroke-width="1.5"/>
+                  <text x="132" y="56" text-anchor="middle" font-family="DM Sans" font-size="20" font-weight="700" fill="#fff">₹</text>
+                </svg>
               </li>
-              <li style="display:flex;gap:12px;align-items:center;font-size:0.9rem;color:rgba(255,255,255,0.9);line-height:1.5">
-                <span class="feat-ico" style="width:34px;height:34px;border-radius:9px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></span>
-                <strong style="color:var(--white);font-weight:600">Trade Credit Insurance</strong>
+              <!-- Tile 3 — Trade Credit Insurance -->
+              <li style="position:relative;aspect-ratio:1.6/1;border-radius:14px;background:linear-gradient(135deg,rgba(29,158,117,0.18),rgba(29,158,117,0.04));border:1px solid rgba(29,158,117,0.22);overflow:hidden;display:flex;align-items:center;justify-content:center" title="Trade Credit Insurance">
+                <svg viewBox="0 0 160 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:78%;height:78%">
+                  <path d="M80 10 L120 22 V52 C120 72 100 88 80 92 C60 88 40 72 40 52 V22 Z" fill="rgba(29,158,117,0.28)" stroke="#1D9E75" stroke-width="2"/>
+                  <path d="M62 50 L75 63 L100 38" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                  <circle cx="22" cy="30" r="6" fill="none" stroke="#1D9E75" stroke-width="1.2" opacity="0.5"/>
+                  <circle cx="22" cy="30" r="10" fill="none" stroke="#1D9E75" stroke-width="1" opacity="0.3"/>
+                  <circle cx="138" cy="72" r="6" fill="none" stroke="#1D9E75" stroke-width="1.2" opacity="0.5"/>
+                  <circle cx="138" cy="72" r="10" fill="none" stroke="#1D9E75" stroke-width="1" opacity="0.3"/>
+                </svg>
               </li>
-              <li style="display:flex;gap:12px;align-items:center;font-size:0.9rem;color:rgba(255,255,255,0.9);line-height:1.5">
-                <span class="feat-ico" style="width:34px;height:34px;border-radius:9px"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" style="width:18px;height:18px"><polyline points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></span>
-                <strong style="color:var(--white);font-weight:600">One-click Lender Application</strong>
+              <!-- Tile 4 — One-click Application -->
+              <li style="position:relative;aspect-ratio:1.6/1;border-radius:14px;background:linear-gradient(135deg,rgba(29,158,117,0.18),rgba(29,158,117,0.04));border:1px solid rgba(29,158,117,0.22);overflow:hidden;display:flex;align-items:center;justify-content:center" title="One-click Application">
+                <svg viewBox="0 0 160 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:78%;height:78%">
+                  <rect x="14" y="14" width="48" height="74" rx="4" fill="rgba(29,158,117,0.22)" stroke="#1D9E75" stroke-width="1.5"/>
+                  <line x1="22" y1="28" x2="54" y2="28" stroke="#1D9E75" stroke-width="1.2"/>
+                  <line x1="22" y1="40" x2="48" y2="40" stroke="#1D9E75" stroke-width="1.2" opacity="0.7"/>
+                  <line x1="22" y1="50" x2="52" y2="50" stroke="#1D9E75" stroke-width="1.2" opacity="0.7"/>
+                  <line x1="22" y1="60" x2="44" y2="60" stroke="#1D9E75" stroke-width="1.2" opacity="0.7"/>
+                  <circle cx="100" cy="50" r="24" fill="#1D9E75"/>
+                  <path d="M88 50 L96 58 L112 42" stroke="#0D1B2A" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+                  <circle cx="140" cy="22" r="3" fill="#1D9E75" opacity="0.6"/>
+                  <circle cx="148" cy="32" r="2" fill="#1D9E75" opacity="0.4"/>
+                  <circle cx="142" cy="40" r="1.5" fill="#1D9E75" opacity="0.3"/>
+                </svg>
               </li>
             </ul>
           </div>
