@@ -1499,7 +1499,7 @@
             <div style="font-size:0.75rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:8px">Capital Suite</div>
             <h3 style="font-family:var(--serif);font-size:1.7rem;color:var(--white);line-height:1.15;letter-spacing:-0.01em;margin-bottom:8px">T3 + <em style="font-style:italic;color:var(--teal)">Capital Suite</em></h3>
             <p style="font-size:0.875rem;color:var(--muted);line-height:1.6;margin-bottom:14px">Working capital, on tap.</p>
-            <button type="button" data-open-contact style="display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:8px;background:transparent;border:1px solid rgba(29,158,117,0.4);color:var(--teal);font-size:0.8rem;font-weight:600;cursor:pointer;font-family:var(--sans)">
+            <button type="button" data-open-contact data-contact-source="Capital Suite waitlist (website)" style="display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:8px;background:transparent;border:1px solid rgba(29,158,117,0.4);color:var(--teal);font-size:0.8rem;font-weight:600;cursor:pointer;font-family:var(--sans)">
               Register interest →
             </button>
           </div>
@@ -2175,7 +2175,18 @@
       var modal = document.getElementById('contact-modal');
       if (!modal) return;
       var closeBtn = document.getElementById('contact-modal-close');
-      function openModal(e) { if (e) e.preventDefault(); modal.classList.add('show'); document.body.style.overflow = 'hidden'; }
+      var sourceInput = modal.querySelector('input[name="source"]');
+      var defaultSource = sourceInput ? sourceInput.value : '';
+      function openModal(e) {
+        if (e) e.preventDefault();
+        if (sourceInput) {
+          var trigger = e && e.currentTarget;
+          var override = trigger && trigger.getAttribute('data-contact-source');
+          sourceInput.value = override || defaultSource;
+        }
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+      }
       function closeModal() { modal.classList.remove('show'); document.body.style.overflow = ''; }
       document.querySelectorAll('[data-open-contact]').forEach(function (el) {
         el.addEventListener('click', openModal);
