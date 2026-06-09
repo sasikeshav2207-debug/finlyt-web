@@ -248,6 +248,13 @@
       flex-shrink: 0; opacity: 0; transition: opacity 0.2s;
     }
     .sidebar-nav-link:hover .nav-dot { opacity: 1; }
+    .sidebar-group { margin: 0; }
+    .sidebar-group-summary { list-style: none; cursor: pointer; user-select: none; }
+    .sidebar-group-summary::-webkit-details-marker { display: none; }
+    .sidebar-group-caret { margin-left: auto; font-size: 0.7rem; color: var(--muted); transition: transform 0.2s; }
+    .sidebar-group[open] .sidebar-group-caret { transform: rotate(180deg); }
+    .sidebar-sublink { padding-left: 22px; font-size: 0.88rem; }
+    .sidebar-sublink .nav-dot { width: 4px; height: 4px; }
 
     .sidebar-quick-link {
       display: flex; align-items: center; justify-content: space-between;
@@ -1056,9 +1063,19 @@
       <a href="#problem" class="sidebar-nav-link" data-close-sidebar>
         <span class="nav-dot"></span> The Problem
       </a>
-      <a href="#products" class="sidebar-nav-link" data-close-sidebar>
-        <span class="nav-dot"></span> Products
-      </a>
+      <details class="sidebar-group">
+        <summary class="sidebar-nav-link sidebar-group-summary">
+          <span class="nav-dot"></span> Products
+          <span class="sidebar-group-caret" aria-hidden="true">▾</span>
+        </summary>
+        <a href="#products" class="sidebar-nav-link sidebar-sublink" data-close-sidebar>
+          <span class="nav-dot"></span> Available Now
+        </a>
+        <a href="#coming-soon" class="sidebar-nav-link sidebar-sublink" data-close-sidebar>
+          <span class="nav-dot" style="background:var(--amber)"></span> Coming Soon
+          <span style="margin-left:auto;font-size:0.62rem;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;color:var(--amber);padding:2px 7px;border-radius:100px;background:rgba(245,158,11,0.12)">New</span>
+        </a>
+      </details>
       <a href="#implementation" class="sidebar-nav-link" data-close-sidebar>
         <span class="nav-dot"></span> CA-Assisted Implementation
       </a>
@@ -1492,7 +1509,7 @@
       </div>
 
       <!-- ══ T3+ CAPITAL SUITE — COMING SOON TEASER ══════════ -->
-      <div class="reveal" style="margin-top:32px;padding:28px 32px;border:2px dashed rgba(29,158,117,0.4);border-radius:16px;background:linear-gradient(135deg,rgba(29,158,117,0.05),rgba(13,27,42,0.3));position:relative">
+      <div id="coming-soon" class="reveal" style="margin-top:32px;padding:28px 32px;border:2px dashed rgba(29,158,117,0.4);border-radius:16px;background:linear-gradient(135deg,rgba(29,158,117,0.05),rgba(13,27,42,0.3));position:relative;scroll-margin-top:80px">
         <span style="position:absolute;top:-12px;left:24px;display:inline-block;padding:4px 14px;background:var(--amber);color:var(--navy);font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;border-radius:100px">Coming soon · 2026 H2</span>
         <div style="display:grid;grid-template-columns:1fr 1.6fr;gap:32px;align-items:center;margin-top:6px">
           <div>
@@ -1506,8 +1523,8 @@
           <div>
             <ul style="list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:16px" aria-label="Capital Suite pillars">
               <!-- Tile 1 — Marketplace -->
-              <li style="position:relative;aspect-ratio:1.6/1;border-radius:14px;background:linear-gradient(135deg,rgba(29,158,117,0.18),rgba(29,158,117,0.04));border:1px solid rgba(29,158,117,0.22);overflow:hidden;display:flex;align-items:center;justify-content:center" title="Marketplace">
-                <svg viewBox="0 0 160 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:78%;height:78%">
+              <li style="position:relative;aspect-ratio:2.4/1;border-radius:14px;background:linear-gradient(135deg,rgba(29,158,117,0.18),rgba(29,158,117,0.04));border:1px solid rgba(29,158,117,0.22);overflow:hidden;display:flex;align-items:center;justify-content:center" title="Marketplace">
+                <svg viewBox="0 0 160 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:62%;height:78%">
                   <rect x="14" y="40" width="32" height="44" rx="3" fill="rgba(29,158,117,0.25)" stroke="#1D9E75" stroke-width="1.5"/>
                   <rect x="64" y="28" width="32" height="56" rx="3" fill="rgba(29,158,117,0.4)" stroke="#1D9E75" stroke-width="1.5"/>
                   <rect x="114" y="46" width="32" height="38" rx="3" fill="rgba(29,158,117,0.25)" stroke="#1D9E75" stroke-width="1.5"/>
@@ -1521,8 +1538,8 @@
                 </svg>
               </li>
               <!-- Tile 2 — Invoice Financing -->
-              <li style="position:relative;aspect-ratio:1.6/1;border-radius:14px;background:linear-gradient(135deg,rgba(29,158,117,0.18),rgba(29,158,117,0.04));border:1px solid rgba(29,158,117,0.22);overflow:hidden;display:flex;align-items:center;justify-content:center" title="Invoice Financing">
-                <svg viewBox="0 0 160 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:78%;height:78%">
+              <li style="position:relative;aspect-ratio:2.4/1;border-radius:14px;background:linear-gradient(135deg,rgba(29,158,117,0.18),rgba(29,158,117,0.04));border:1px solid rgba(29,158,117,0.22);overflow:hidden;display:flex;align-items:center;justify-content:center" title="Invoice Financing">
+                <svg viewBox="0 0 160 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:62%;height:78%">
                   <rect x="22" y="14" width="58" height="74" rx="4" fill="rgba(29,158,117,0.22)" stroke="#1D9E75" stroke-width="1.5"/>
                   <line x1="32" y1="30" x2="70" y2="30" stroke="#1D9E75" stroke-width="1.5"/>
                   <line x1="32" y1="42" x2="60" y2="42" stroke="#1D9E75" stroke-width="1.2" opacity="0.7"/>
@@ -1535,8 +1552,8 @@
                 </svg>
               </li>
               <!-- Tile 3 — Trade Credit Insurance -->
-              <li style="position:relative;aspect-ratio:1.6/1;border-radius:14px;background:linear-gradient(135deg,rgba(29,158,117,0.18),rgba(29,158,117,0.04));border:1px solid rgba(29,158,117,0.22);overflow:hidden;display:flex;align-items:center;justify-content:center" title="Trade Credit Insurance">
-                <svg viewBox="0 0 160 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:78%;height:78%">
+              <li style="position:relative;aspect-ratio:2.4/1;border-radius:14px;background:linear-gradient(135deg,rgba(29,158,117,0.18),rgba(29,158,117,0.04));border:1px solid rgba(29,158,117,0.22);overflow:hidden;display:flex;align-items:center;justify-content:center" title="Trade Credit Insurance">
+                <svg viewBox="0 0 160 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:62%;height:78%">
                   <path d="M80 10 L120 22 V52 C120 72 100 88 80 92 C60 88 40 72 40 52 V22 Z" fill="rgba(29,158,117,0.28)" stroke="#1D9E75" stroke-width="2"/>
                   <path d="M62 50 L75 63 L100 38" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
                   <circle cx="22" cy="30" r="6" fill="none" stroke="#1D9E75" stroke-width="1.2" opacity="0.5"/>
@@ -1546,8 +1563,8 @@
                 </svg>
               </li>
               <!-- Tile 4 — One-click Application -->
-              <li style="position:relative;aspect-ratio:1.6/1;border-radius:14px;background:linear-gradient(135deg,rgba(29,158,117,0.18),rgba(29,158,117,0.04));border:1px solid rgba(29,158,117,0.22);overflow:hidden;display:flex;align-items:center;justify-content:center" title="One-click Application">
-                <svg viewBox="0 0 160 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:78%;height:78%">
+              <li style="position:relative;aspect-ratio:2.4/1;border-radius:14px;background:linear-gradient(135deg,rgba(29,158,117,0.18),rgba(29,158,117,0.04));border:1px solid rgba(29,158,117,0.22);overflow:hidden;display:flex;align-items:center;justify-content:center" title="One-click Application">
+                <svg viewBox="0 0 160 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:62%;height:78%">
                   <rect x="14" y="14" width="48" height="74" rx="4" fill="rgba(29,158,117,0.22)" stroke="#1D9E75" stroke-width="1.5"/>
                   <line x1="22" y1="28" x2="54" y2="28" stroke="#1D9E75" stroke-width="1.2"/>
                   <line x1="22" y1="40" x2="48" y2="40" stroke="#1D9E75" stroke-width="1.2" opacity="0.7"/>
@@ -1562,10 +1579,6 @@
               </li>
             </ul>
           </div>
-        </div>
-        <div style="margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.06);font-size:0.78rem;color:var(--muted);line-height:1.6">
-          <strong style="color:rgba(255,255,255,0.85)">Launching after we ship T2 in full.</strong>
-          We earn a referral commission from partner financial institutions — fully disclosed in your application. We never recommend a lender based on commission alone.
         </div>
       </div>
 
