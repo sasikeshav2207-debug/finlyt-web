@@ -35,7 +35,12 @@
     "name": "FinLytTech",
     "alternateName": ["FinLyt", "FinLyt Tech"],
     "url": "https://finlyt.net",
-    "email": "founder@finlyt.net",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer support",
+      "url": "https://finlyt.net/?contact=1",
+      "areaServed": "IN"
+    },
     "foundingDate": "2026",
     "slogan": "Your business, board-ready — in 5 minutes.",
     "description": "FinLytTech is an AI-powered financial intelligence platform for Indian businesses. It turns Tally Prime or Zoho Books data into board-ready MIS, operating analytics and 90-day cash flow forecasts in under 5 minutes.",
@@ -1658,7 +1663,7 @@
     <div class="section-inner">
       <div class="section-label reveal">Frequently Asked</div>
       <h2 class="section-heading reveal d1">Questions we hear<br><em>most often</em></h2>
-      <p class="section-sub reveal d2">If you don't see your question, write to <a href="mailto:founder@finlyt.net" style="color:var(--teal)">founder@finlyt.net</a> — usually replied within a day.</p>
+      <p class="section-sub reveal d2">If you don't see your question, <button type="button" data-open-contact style="background:none;border:none;color:var(--teal);cursor:pointer;text-decoration:underline;padding:0;font:inherit">send us a quick note</button> — usually replied within a day.</p>
 
       <div class="faq-list">
         <details class="faq-item reveal">
@@ -1829,7 +1834,7 @@
   <footer>
     <div class="footer-inner">
       <div class="footer-logo"><img src="assets/finlyttech-logo-mark-dark.svg" alt="FinLytTech" height="40" /></div>
-      <div class="footer-copy">© 2026 FinLytTech&trade;. Built in India for India. &nbsp;·&nbsp; <a href="mailto:founder@finlyt.net" style="color:var(--muted);transition:color 0.2s" onmouseover="this.style.color='#F8F9FA'" onmouseout="this.style.color=''">founder@finlyt.net</a></div>
+      <div class="footer-copy">© 2026 FinLytTech&trade;. Built in India for India. &nbsp;·&nbsp; <button type="button" data-open-contact style="background:none;border:none;color:var(--muted);cursor:pointer;font:inherit;padding:0;transition:color 0.2s" onmouseover="this.style.color='#F8F9FA'" onmouseout="this.style.color=''">Contact Us</button></div>
       <div class="footer-links">
         <a href="https://finlyt.net/blog/">Blog</a>
         <button type="button" data-open-contact style="background:none;border:none;color:inherit;font-family:inherit;font-size:inherit;cursor:pointer;padding:0;">Contact Us</button>
@@ -1862,7 +1867,7 @@
         <span aria-hidden="true" style="display:inline-block;width:14px;height:14px;border-radius:50%;background:var(--teal);color:#fff;font-size:9px;line-height:14px;text-align:center;margin-right:8px;vertical-align:middle">✓</span>
         Received. Our team will get back to you within 48 hours.
       </div>
-      <p class="modal-alt">Prefer email? <a href="mailto:founder@finlyt.net">founder@finlyt.net</a></p>
+      <p class="modal-alt">Reaches our team — typically replied within 24 hours (IST).</p>
     </div>
   </div>
 
@@ -2054,6 +2059,18 @@
       if (closeBtn) closeBtn.addEventListener('click', closeModal);
       modal.addEventListener('click', function (e) { if (e.target === modal) closeModal(); });
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeModal(); });
+
+      // Auto-open the contact modal when arriving from another page
+      // (privacy / terms / implementation / in-app pre-login) via
+      // ?contact=1 in the URL. Lets us replace mailto: links across the
+      // site with form-based contact in one consistent flow.
+      try {
+        var params = new URLSearchParams(window.location.search);
+        if (params.get('contact') === '1') {
+          // Small delay so the page paints first.
+          setTimeout(openModal, 300);
+        }
+      } catch (_) { /* URLSearchParams unsupported - silently skip */ }
     }());
   </script>
 

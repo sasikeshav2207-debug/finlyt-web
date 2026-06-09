@@ -311,7 +311,7 @@ footer{background:var(--navy);padding:2.5rem clamp(1.5rem,5vw,4rem);border-top:1
 <!-- ══ FOOTER ══ -->
 <footer>
   <div class="footer-inner">
-    <div class="footer-copy">© 2026 FinLytTech&trade;. Built in India for India. &nbsp;·&nbsp; <a href="mailto:founder@finlyt.net">founder@finlyt.net</a></div>
+    <div class="footer-copy">© 2026 FinLytTech&trade;. Built in India for India. &nbsp;·&nbsp; <a href="https://finlyt.net/?contact=1">Contact Us</a></div>
     <div class="footer-links">
       <a href="https://finlyt.net">Home</a>
       <a href="https://finlyt.net/blog/">Blog</a>
@@ -325,7 +325,7 @@ footer{background:var(--navy);padding:2.5rem clamp(1.5rem,5vw,4rem);border-top:1
 <script>
   // Shared submit handler for both forms — POSTs to the existing enquiry
   // endpoint (same one the site contact modal uses) so the submission lands
-  // in Supabase + emails founder@finlyt.net via the backend. On success we
+  // in Supabase + emails the founder via the backend. On success we
   // flip the card into its submitted state and reveal the success message.
   function wireForm(formId, cardId) {
     var form = document.getElementById(formId);
@@ -350,7 +350,7 @@ footer{background:var(--navy);padding:2.5rem clamp(1.5rem,5vw,4rem);border-top:1
         .then(function () { card.classList.add('submitted'); })
         .catch(function () {
           if (btn) { btn.disabled = false; btn.textContent = btn.getAttribute('data-orig') || 'Send →'; }
-          alert('Sorry — something went wrong sending your enquiry. Please email founder@finlyt.net directly.');
+          alert('Sorry — something went wrong sending your enquiry. Please try again, or use the Contact Us link in the footer.');
         });
     });
   }
