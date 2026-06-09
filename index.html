@@ -1124,7 +1124,8 @@
         <!-- Waitlist form -->
         <div class="reveal d3">
           <form class="waitlist-form" id="hero-waitlist-form"
-            action="https://formspree.io/f/mojbeovg" method="POST">
+            data-endpoint="https://app.finlyt.net/api/enquiry" method="POST">
+            <input type="hidden" name="source" value="Hero waitlist (website)" />
             <input type="email" name="email" placeholder="Your email address" required />
             <button type="submit" class="btn-primary">Get Early Access</button>
           </form>
@@ -1545,10 +1546,11 @@
         <h3>Enquire about CA Partner Programme →</h3>
         <p>No commitment. Just a conversation about the CA Partner Programme.</p>
         <form class="ca-form" id="ca-partner-form"
-          action="https://formspree.io/f/mojbeovg" method="POST">
+          data-endpoint="https://app.finlyt.net/api/enquiry" method="POST">
+          <input type="hidden" name="source" value="CA Partner Programme (website)" />
           <input type="text" name="name" placeholder="Your name" required />
           <input type="email" name="email" placeholder="Your email address" required />
-          <input type="text" name="firm" placeholder="CA firm name (optional)" />
+          <input type="text" name="company" placeholder="CA firm name (optional)" />
           <button type="submit" class="btn-primary">Enquire Now</button>
         </form>
         <div class="form-success" id="ca-success" role="status" aria-live="polite">
@@ -1784,7 +1786,8 @@
         Join now and get 1 month free when we launch.
       </p>
       <form class="cta-form reveal d3" id="cta-waitlist-form"
-        action="https://formspree.io/f/mojbeovg" method="POST">
+        data-endpoint="https://app.finlyt.net/api/enquiry" method="POST">
+        <input type="hidden" name="source" value="Final CTA waitlist (website)" />
         <input type="email" name="email" placeholder="Your email address" required
           style="flex:1;min-width:220px;padding:13px 18px;border-radius:8px;background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);color:#F8F9FA;font-family:var(--sans);font-size:0.9rem;outline:none;" />
         <button type="submit" class="btn-primary">Join the Waitlist</button>
@@ -1944,28 +1947,41 @@
       document.querySelectorAll('[data-count]').forEach(function (el) { io.observe(el); });
     }());
 
-    /* ── 4. FORM SUBMISSIONS (AJAX via Formspree) ─────── */
+    /* ── 4. FORM SUBMISSIONS (all 4 forms now post JSON to our own backend
+           so they land in the admin Enquiries dashboard, with the `source`
+           hidden field carrying which form fired it). ──────────────── */
     (function () {
       function handleForm(formId, successId) {
         var form    = document.getElementById(formId);
         var success = document.getElementById(successId);
         if (!form) return;
+        var endpoint = form.getAttribute('data-endpoint') || form.action;
         form.addEventListener('submit', function (e) {
           e.preventDefault();
-          var data = new FormData(form);
-          fetch(form.action, {
+          // Convert FormData → plain JSON so the backend can parse it.
+          var payload = {};
+          new FormData(form).forEach(function (v, k) { payload[k] = v; });
+          var btn = form.querySelector('button[type="submit"]');
+          var originalText = btn ? btn.textContent : null;
+          if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+          fetch(endpoint, {
             method: 'POST',
-            body: data,
-            headers: { 'Accept': 'application/json' }
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(payload)
           })
           .then(function (res) {
             if (res.ok) {
               form.reset();
               if (success) success.classList.add('show');
+            } else if (btn) {
+              btn.textContent = 'Try again';
             }
           })
           .catch(function () {
-            // Silently fail — user can retry
+            if (btn) btn.textContent = 'Try again';
+          })
+          .finally(function () {
+            if (btn) { btn.disabled = false; if (btn.textContent === 'Sending…') btn.textContent = originalText; }
           });
         });
       }
