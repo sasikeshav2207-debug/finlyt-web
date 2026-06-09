@@ -91,7 +91,19 @@
       { "@type": "Question", "name": "How long does setup take?",
         "acceptedAnswer": { "@type": "Answer", "text": "Under 5 minutes for the basic MIS. For businesses that want segment-wise reporting (branches, projects, verticals), our CA-Assisted Implementation Programme takes about two weeks." } },
       { "@type": "Question", "name": "Is there a free trial?",
-        "acceptedAnswer": { "@type": "Answer", "text": "Yes — 30 days of MIS Essentials (₹999/mo tier), no credit card required. Operations Intelligence (₹3,999/mo) and AI Cash Flow Forecasting (₹5,999/mo) require a paid subscription from day 1; you can preview those tiers' capabilities on the Live Demo before subscribing." } }
+        "acceptedAnswer": { "@type": "Answer", "text": "Yes — 30 days of MIS Essentials (₹999/mo tier), no credit card required. Operations Intelligence (₹3,999/mo) and AI Cash Flow Forecasting (₹5,999/mo) require a paid subscription from day 1; you can preview those tiers' capabilities on the Live Demo before subscribing." } },
+      { "@type": "Question", "name": "How do AI credits work?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Every plan includes a fair monthly allowance of AI credits sized for typical use of that tier. One credit covers one AI-generated narrative, one AI-drafted debtor/creditor email or one scenario analysis run. If you exceed your allowance, you can buy overage packs at tier-appropriate per-credit rates — shown clearly inside the dashboard before you purchase. Unused credits do not roll over." } },
+      { "@type": "Question", "name": "What costs AI credits and what does not?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Credits are consumed only for generative AI operations: AI narrative regeneration, AI risk insights on ageing, AI-drafted debtor and creditor emails, scenario analysis runs and loan-readiness CMA generation. Viewing existing AI output, browsing the dashboard, downloading PDF/Excel exports, deterministic forecasts and predictive alerts use ZERO credits — they are computation, not generation." } },
+      { "@type": "Question", "name": "What happens if I run out of AI credits?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Your dashboard continues to work fully — only the AI-regenerate buttons are disabled until next month's reset OR until you buy an overage pack. No silent overcharge: you opt-in explicitly to each pack. Hard cap, by design. Existing AI output stays visible." } },
+      { "@type": "Question", "name": "How are AI credits handled during the trial?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Your 30-day MIS Essentials trial includes a small sampler of AI credits — enough to evaluate the AI quality end-to-end before subscribing. Exact count is shown inside the dashboard. On conversion to a paid plan your monthly allowance kicks in." } },
+      { "@type": "Question", "name": "Why am I asked to confirm before each AI generation?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Every AI generation shows a one-time confirmation: 'This will use 1 credit. You have N remaining this month. Continue?' This is consent-by-design — your call, every time. You can opt to skip the confirmation for the rest of your session if you prefer fewer prompts." } },
+      { "@type": "Question", "name": "Where is my AI data processed?",
+        "acceptedAnswer": { "@type": "Answer", "text": "AI narratives are generated using Anthropic's Claude API, processed via secured servers in approved regions. Only aggregated MIS figures are sent — no transaction-level personal data, no individual voucher detail. Anthropic does not retain or train on your data per their API terms. Full disclosure in our Privacy Policy." } }
     ]
   }
   </script>
@@ -1428,7 +1440,7 @@
             <li>MoM, QoQ, YoY, YTD comparisons on every statement</li>
             <li>Variance analysis — absolute (₹) and percentage (%)</li>
             <li><span>Key ratios with <span style="white-space:nowrap"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#1D9E75;vertical-align:middle"></span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#f59e0b;margin-left:3px;vertical-align:middle"></span><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#e53935;margin-left:3px;vertical-align:middle"></span></span> health indicators</span></li>
-            <li>Receivables &amp; payables ageing snapshot — bucket totals (0–30 / 31–90 / 91–180 / 181–365 / 365+)</li>
+            <li>Receivables &amp; payables ageing snapshot — standard bucket totals at a glance</li>
             <li>AI narrative — "Revenue grew 23% — here's why"</li>
             <li>Historical anomaly flags — unusual variances, unexpected swings, posting outliers</li>
             <li>13-page PDF + 12-sheet Excel — investor-ready, not spreadsheet-ready</li>
@@ -1450,7 +1462,8 @@
             <li>Segment / branch / project P&amp;L (cost-centre analysis)</li>
             <li>Per-party ageing — risk flags, DSO/DPO tracking, concentration analysis, AI-suggested next actions</li>
             <li>Working capital gap + Cash Conversion Cycle</li>
-            <li>30-day cash projection from bill-wise dues</li>
+            <li>Short-horizon cash projection from bill-wise dues</li>
+            <li><strong>In-app debtor &amp; creditor follow-up emails</strong> — AI drafts personalised reminders with invoice references; you review and send straight from the dashboard. No more switching to Outlook.</li>
             <li>Optional weekly summary email — your latest dashboard state, delivered every Monday</li>
           </ul>
         </div>
@@ -1464,9 +1477,9 @@
           <p class="product-desc">Forward-looking intelligence. Know your cash position 90 days out, model multiple scenarios, walk into a bank meeting with a lender-ready file.</p>
           <ul class="product-features">
             <li>Everything in Operations Intelligence</li>
+            <li><strong>Predictive multi-stage alert ladder</strong> — receivables (collection escalation), payables (working-capital planning) and cash-position events flagged in advance, with escalating urgency. Email + WhatsApp.</li>
             <li>90-day cash flow forecast with confidence intervals — probabilistic ranges, not single-point estimates</li>
             <li>Multi-scenario planning — model "If Client A delays 45 days", "If we win the ₹2 Cr tender", "If interest rates rise 200 bps" side by side</li>
-            <li>Forward-looking working-capital crisis alerts (15 / 30 / 60-day windows) — derived from the forecast, not from historical trends</li>
             <li>Voucher-level audit drill-down — defensible trail from any number to its source posting, the way a banker or auditor expects to verify</li>
             <li>Loan-readiness score + auto-generated CMA data, projection format and ratio justifications for NBFC / bank applications</li>
             <li>Lender-grade reporting layouts — bank, VC, PE-style packs from the same source data</li>
@@ -1474,6 +1487,46 @@
         </div>
 
       </div>
+
+      <!-- ══ T3+ CAPITAL SUITE — COMING SOON TEASER ══════════ -->
+      <div class="reveal" style="margin-top:32px;padding:28px 32px;border:2px dashed rgba(29,158,117,0.4);border-radius:16px;background:linear-gradient(135deg,rgba(29,158,117,0.05),rgba(13,27,42,0.3));position:relative">
+        <span style="position:absolute;top:-12px;left:24px;display:inline-block;padding:4px 14px;background:var(--amber);color:var(--navy);font-size:0.7rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;border-radius:100px">Coming soon · 2026 H2</span>
+        <div style="display:grid;grid-template-columns:1fr 1.6fr;gap:32px;align-items:center;margin-top:6px">
+          <div>
+            <div style="font-size:0.75rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--teal);margin-bottom:8px">Capital Suite</div>
+            <h3 style="font-family:var(--serif);font-size:1.7rem;color:var(--white);line-height:1.15;letter-spacing:-0.01em;margin-bottom:8px">T3 + <em style="font-style:italic;color:var(--teal)">Capital Suite</em></h3>
+            <p style="font-size:0.875rem;color:var(--muted);line-height:1.6;margin-bottom:14px">Working capital, on tap. Direct access to lenders, factoring partners and insurers — pre-qualified using your live FinLytTech data.</p>
+            <button type="button" data-open-contact style="display:inline-flex;align-items:center;gap:8px;padding:9px 18px;border-radius:8px;background:transparent;border:1px solid rgba(29,158,117,0.4);color:var(--teal);font-size:0.8rem;font-weight:600;cursor:pointer;font-family:var(--sans)">
+              Register interest →
+            </button>
+          </div>
+          <div>
+            <ul style="list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:14px">
+              <li style="display:flex;gap:10px;font-size:0.85rem;color:rgba(255,255,255,0.78);line-height:1.55">
+                <span style="color:var(--teal);font-weight:700;flex-shrink:0">→</span>
+                <span><strong style="color:var(--white)">Lender Marketplace</strong><br>Pre-qualified NBFC + bank loan offers based on your live loan-readiness score. Working capital, term, OD.</span>
+              </li>
+              <li style="display:flex;gap:10px;font-size:0.85rem;color:rgba(255,255,255,0.78);line-height:1.55">
+                <span style="color:var(--teal);font-weight:700;flex-shrink:0">→</span>
+                <span><strong style="color:var(--white)">Invoice Financing</strong><br>Sell specific receivables for instant cash via partner factoring platforms. One click from your ageing report.</span>
+              </li>
+              <li style="display:flex;gap:10px;font-size:0.85rem;color:rgba(255,255,255,0.78);line-height:1.55">
+                <span style="color:var(--teal);font-weight:700;flex-shrink:0">→</span>
+                <span><strong style="color:var(--white)">Trade Credit Insurance</strong><br>Hedge concentration risk — insure against debtor default through partner underwriters.</span>
+              </li>
+              <li style="display:flex;gap:10px;font-size:0.85rem;color:rgba(255,255,255,0.78);line-height:1.55">
+                <span style="color:var(--teal);font-weight:700;flex-shrink:0">→</span>
+                <span><strong style="color:var(--white)">One-click Application</strong><br>Pre-fills lender forms with CMA data, projections, ratio justifications. Approval in days, not weeks.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div style="margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.06);font-size:0.78rem;color:var(--muted);line-height:1.6">
+          <strong style="color:rgba(255,255,255,0.85)">Launching after we ship T2 in full.</strong>
+          We earn a referral commission from partner financial institutions — fully disclosed in your application. We never recommend a lender based on commission alone.
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -1722,6 +1775,36 @@
           </summary>
           <div class="faq-a">
             Yes — <strong>30 days of MIS Essentials (₹999/month tier), no credit card required.</strong> Connect your data and generate your first MIS report before paying anything. After the trial, MIS Essentials continues at ₹999/month + GST. <br><br>Operations Intelligence (₹3,999/mo) and AI Cash Flow Forecasting (₹5,999/mo) require a paid subscription from day 1 — you can preview what each tier delivers on the <a href="https://dashboard.finlyt.net/demo" style="color:var(--teal)">Live Demo</a>, then activate directly. Mid-trial upgrades from Essentials are smooth — switch any time and the new tier kicks in immediately.
+          </div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary class="faq-q">
+            <span>How do AI credits work?</span>
+            <span class="faq-q-icon" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-a">
+            Every plan includes a fair monthly allowance of AI credits sized for typical use of that tier. <strong>One credit</strong> covers one AI-generated narrative, one AI-drafted debtor / creditor follow-up email, or one scenario analysis run. Viewing existing output, browsing the dashboard, downloading PDFs / Excel and deterministic forecasts &amp; predictive alerts use <strong>zero credits</strong> — that's computation, not generation. If you ever exceed your allowance, you can buy overage packs at tier-appropriate per-credit rates shown clearly inside the dashboard before purchase. <strong>Unused credits don't roll over. No silent overcharges — hard cap with explicit opt-in, by design.</strong>
+          </div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary class="faq-q">
+            <span>Why do you ask me to confirm before each AI generation?</span>
+            <span class="faq-q-icon" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-a">
+            Consent-by-design. Every AI generation shows a one-time confirmation — "This will use 1 credit. Continue?" — so you stay in control. You can opt to skip this prompt for the rest of your session if you prefer fewer interruptions. There is no auto-regeneration: AI output refreshes only when you click Regenerate, or naturally when you load new books / press F5.
+          </div>
+        </details>
+
+        <details class="faq-item reveal">
+          <summary class="faq-q">
+            <span>Where is my data processed for AI features?</span>
+            <span class="faq-q-icon" aria-hidden="true">+</span>
+          </summary>
+          <div class="faq-a">
+            AI narratives are generated using Anthropic's Claude API over an encrypted connection. <strong>Only aggregated MIS figures</strong> are sent — no transaction-level personal data, no individual voucher detail, no customer / vendor PII. Anthropic does not retain or train on your data per their API terms. Full disclosure in our <a href="/privacy">Privacy Policy</a>.
           </div>
         </details>
 
