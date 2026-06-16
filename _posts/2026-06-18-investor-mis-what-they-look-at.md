@@ -2,7 +2,7 @@
 layout: post
 title: "Your investor asked for MIS. Here is exactly what they are looking at."
 description: "The 7 numbers every investor checks first — and how to make sure yours tell the right story."
-date: 2026-06-18
+date: 2026-06-16
 author: Sasidharan
 categories: [MIS, Investor Relations, Financial Intelligence]
 tags: [MIS, investor reporting, financial reporting, Indian startups, SME finance, working capital, cash flow]
