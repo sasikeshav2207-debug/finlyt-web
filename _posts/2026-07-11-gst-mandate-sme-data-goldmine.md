@@ -6,7 +6,7 @@ date: 2026-07-11 09:00:00 +0530
 author: Sasidharan
 tags: [gst, sme, data, compliance, financial intelligence]
 linkedin: ""
-image: /assets/posts/gst-data-goldmine-cover.png
+image: /assets/posts/W7_Article_Cover.png
 ---
 
 Somewhere between 2017 and today, without most business owners noticing, Indian SMEs went from having almost no structured financial data to sitting on one of the richest transaction-level datasets of any emerging market in the world.
