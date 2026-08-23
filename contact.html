@@ -3,109 +3,141 @@ layout: finlyt
 nav: contact
 permalink: /contact/
 title: Contact — thirty minutes on your books, not a slide deck
-description: Book a demo, start the 30-day trial, request enterprise scoping or join the CA Partner Programme. Usually replied within a day, IST.
+description: Tell us what you need and it reaches the founding team directly. Usually replied within a day, IST.
 ---
 
 <div style="background:var(--paper);padding:56px 40px 0;position:relative">
   <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(13,27,42,.06) 1px,transparent 1.5px);background-size:24px 24px;pointer-events:none"></div>
   <div style="position:relative;max-width:1280px;margin:0 auto">
     <h1 style="font:700 56px/1.05 var(--font-display);letter-spacing:-.034em;color:var(--ink);margin:0 0 20px;max-width:820px">Thirty minutes. <span style="color:#2E9E6B">Your books</span>, not a slide deck.</h1>
-    <p style="font:400 18px/1.6 var(--font-sans);color:var(--fg-2);margin:0 0 52px;max-width:640px">One session on your own numbers, run by the founding team, with slides only if you ask for them.</p>
+    <p style="font:400 18px/1.6 var(--font-sans);color:var(--fg-2);margin:0 0 52px;max-width:640px">One session on your own numbers, run by the founding team. Slides only if you ask for them.</p>
   </div>
 </div>
+
+<!-- Deep-link anchors. Each preselects the enquiry type on the form below,
+     so every existing CTA across the site keeps working. -->
+<span id="demo"></span><span id="early-access"></span><span id="enterprise"></span>
+<span id="erp"></span><span id="api"></span><span id="partner"></span>
+<span id="deck"></span><span id="roadmap"></span>
 
 <div class="section" style="padding-top:0">
   <div class="section-inner">
-    <div class="g2" style="display:grid;grid-template-columns:1fr 1fr;gap:20px">
+    <div class="split" style="display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:start">
 
-      <div id="demo" class="card-hover" style="border:1px solid var(--rule);border-radius:var(--r-xl);padding:30px;background:var(--paper);box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:14px">
-        <div style="font:600 11px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--emerald-600)">Book a demo</div>
-        <div style="font:600 24px/1.2 var(--font-display);letter-spacing:-.018em;color:var(--ink)">See it on your own books</div>
-        <p style="font:400 14px/1.6 var(--font-sans);color:var(--fg-2);margin:0">Bring last month's trial balance. We connect it live and you leave with next month's forecast. Sixty minutes for the ERP walkthrough.</p>
-        <a class="btn-dark" href="mailto:enquiry@finlyt.net?subject=Demo%20request%20%E2%80%94%20FinLytTech&amp;body=Company%3A%0ABook%20system%20(Tally%2FZoho%2Fother)%3A%0APreferred%20time%20(IST)%3A%0A" style="margin-top:auto;text-align:center">Request a demo</a>
-      </div>
+      <!-- ------------------------------------------------------ the form -->
+      <form id="contactForm" novalidate
+            style="border:1px solid var(--rule);border-radius:var(--r-xl);background:var(--paper);box-shadow:var(--shadow-md);padding:32px">
+        <h2 style="font:600 24px/1.2 var(--font-display);letter-spacing:-.018em;color:var(--ink);margin:0 0 6px">Tell us what you need</h2>
+        <p style="font:400 13.5px/1.6 var(--font-sans);color:var(--fg-3);margin:0 0 26px">Goes straight to the founder. No routing, no ticket queue.</p>
 
-      <div id="early-access" class="card-hover" style="border:1.5px solid var(--brand-emerald);border-radius:var(--r-xl);padding:30px;background:rgba(46,158,107,.04);box-shadow:var(--shadow-md);display:flex;flex-direction:column;gap:14px">
-        <div style="font:600 11px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--emerald-700)">Get early access</div>
-        <div style="font:600 24px/1.2 var(--font-display);letter-spacing:-.018em;color:var(--ink)">Start the 30-day trial</div>
-        <p style="font:400 14px/1.6 var(--font-sans);color:var(--fg-2);margin:0">No card, cancel with an email, and an extra month on us for early sign-ups. Live on MIS Essentials within a day of connecting.</p>
-        <a class="btn-green" href="mailto:enquiry@finlyt.net?subject=Early%20access%20%E2%80%94%20FinLytTech%20trial&amp;body=Company%3A%0ABook%20system%20(Tally%2FZoho%2Fother)%3A%0AName%3A%0APhone%3A%0A" style="margin-top:auto;text-align:center">Start the trial</a>
-      </div>
+        <div class="g2" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+          <label style="display:block">
+            <span style="display:block;font:600 11px var(--font-sans);text-transform:uppercase;letter-spacing:.07em;color:var(--fg-3);margin-bottom:7px">Your name *</span>
+            <input name="name" type="text" required autocomplete="name"
+                   style="width:100%;font:400 14px var(--font-sans);color:var(--ink);padding:12px 13px;border:1px solid var(--rule-strong);border-radius:var(--r-md);background:var(--paper)">
+          </label>
+          <label style="display:block">
+            <span style="display:block;font:600 11px var(--font-sans);text-transform:uppercase;letter-spacing:.07em;color:var(--fg-3);margin-bottom:7px">Company *</span>
+            <input name="company" type="text" required autocomplete="organization"
+                   style="width:100%;font:400 14px var(--font-sans);color:var(--ink);padding:12px 13px;border:1px solid var(--rule-strong);border-radius:var(--r-md);background:var(--paper)">
+          </label>
+        </div>
 
-      <div id="enterprise" class="card-hover" style="border:1px solid var(--rule);border-radius:var(--r-xl);padding:30px;background:var(--paper);box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:14px">
-        <div style="font:600 11px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--amber-600)">Enterprise</div>
-        <div style="font:600 24px/1.2 var(--font-display);letter-spacing:-.018em;color:var(--ink)">ERP and custom dashboards</div>
-        <p style="font:400 14px/1.6 var(--font-sans);color:var(--fg-2);margin:0">Ten consoles on one posting table, or the substrate deployed inside your own VPC. A fortnight to scope, eight weeks to pilot.</p>
-        <div id="erp"></div><div id="api"></div>
-        <a class="btn-dark" href="mailto:enterprise@finlyt.net?subject=Enterprise%20scoping%20%E2%80%94%20FinLytTech&amp;body=Company%3A%0AIndustry%3A%0ASystems%20in%20use%3A%0AEntities%2Fsites%3A%0A" style="margin-top:auto;text-align:center">Request a scoping call</a>
-      </div>
+        <div class="g2" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+          <label style="display:block">
+            <span style="display:block;font:600 11px var(--font-sans);text-transform:uppercase;letter-spacing:.07em;color:var(--fg-3);margin-bottom:7px">Email *</span>
+            <input name="email" type="email" required autocomplete="email"
+                   style="width:100%;font:400 14px var(--font-sans);color:var(--ink);padding:12px 13px;border:1px solid var(--rule-strong);border-radius:var(--r-md);background:var(--paper)">
+          </label>
+          <label style="display:block">
+            <span style="display:block;font:600 11px var(--font-sans);text-transform:uppercase;letter-spacing:.07em;color:var(--fg-3);margin-bottom:7px">Phone</span>
+            <input name="phone" type="tel" autocomplete="tel"
+                   style="width:100%;font:400 14px var(--font-sans);color:var(--ink);padding:12px 13px;border:1px solid var(--rule-strong);border-radius:var(--r-md);background:var(--paper)">
+          </label>
+        </div>
 
-      <div id="partner" class="card-hover" style="border:1px solid var(--rule);border-radius:var(--r-xl);padding:30px;background:var(--paper);box-shadow:var(--shadow-sm);display:flex;flex-direction:column;gap:14px">
-        <div style="font:600 11px var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--emerald-600)">For chartered accountants</div>
-        <div style="font:600 24px/1.2 var(--font-display);letter-spacing:-.018em;color:var(--ink)">Join the Partner Programme</div>
-        <p style="font:400 14px/1.6 var(--font-sans);color:var(--fg-2);margin:0">White-label deployments, revenue share on referred clients, and two-week guided onboarding for your first cohort.</p>
-        <a class="btn-dark" href="mailto:enquiry@finlyt.net?subject=CA%20Partner%20Programme%20%E2%80%94%20FinLytTech&amp;body=Firm%3A%0ANumber%20of%20clients%3A%0ACity%3A%0AName%3A%0A" style="margin-top:auto;text-align:center">Apply to the programme</a>
-      </div>
+        <div class="g2" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+          <label style="display:block">
+            <span style="display:block;font:600 11px var(--font-sans);text-transform:uppercase;letter-spacing:.07em;color:var(--fg-3);margin-bottom:7px">What do you need?</span>
+            <select name="intent" id="intentSelect"
+                    style="width:100%;font:400 14px var(--font-sans);color:var(--ink);padding:12px 13px;border:1px solid var(--rule-strong);border-radius:var(--r-md);background:var(--paper)">
+              <option value="Start the 30-day trial">Start the 30-day trial</option>
+              <option value="Book a demo">Book a demo</option>
+              <option value="Enterprise ERP or custom dashboard">Enterprise ERP or custom dashboard</option>
+              <option value="CA Partner Programme">CA Partner Programme</option>
+              <option value="Request the deck">Request the deck</option>
+              <option value="Roadmap request">Something on the roadmap</option>
+              <option value="Something else">Something else</option>
+            </select>
+          </label>
+          <label style="display:block">
+            <span style="display:block;font:600 11px var(--font-sans);text-transform:uppercase;letter-spacing:.07em;color:var(--fg-3);margin-bottom:7px">Which books do you run?</span>
+            <select name="books"
+                    style="width:100%;font:400 14px var(--font-sans);color:var(--ink);padding:12px 13px;border:1px solid var(--rule-strong);border-radius:var(--r-md);background:var(--paper)">
+              <option value="Tally">Tally</option>
+              <option value="Zoho Books">Zoho Books</option>
+              <option value="ERPNext">ERPNext</option>
+              <option value="SAP">SAP</option>
+              <option value="NetSuite">NetSuite</option>
+              <option value="Busy or Marg">Busy or Marg</option>
+              <option value="QuickBooks or Xero">QuickBooks or Xero</option>
+              <option value="Excel only">Excel only</option>
+              <option value="Something else">Something else</option>
+            </select>
+          </label>
+        </div>
 
-    </div>
-  </div>
-</div>
+        <label style="display:block;margin-bottom:22px">
+          <span style="display:block;font:600 11px var(--font-sans);text-transform:uppercase;letter-spacing:.07em;color:var(--fg-3);margin-bottom:7px">Anything else worth knowing?</span>
+          <textarea name="message" rows="4"
+                    style="width:100%;font:400 14px/1.6 var(--font-sans);color:var(--ink);padding:12px 13px;border:1px solid var(--rule-strong);border-radius:var(--r-md);background:var(--paper);resize:vertical"></textarea>
+        </label>
 
-<div style="background:var(--paper-2);padding:76px 40px;margin-top:76px;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)">
-  <div style="max-width:1280px;margin:0 auto">
-    <div class="split" style="display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start">
+        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+          <button type="submit" class="btn-dark" style="border:0;cursor:pointer;font:600 15px var(--font-sans)">Contact us</button>
+          <span id="formNote" style="font:500 12px var(--font-mono);color:var(--fg-3)">Opens your mail app, addressed to the founder</span>
+        </div>
+
+        <p id="formError" role="alert" hidden
+           style="font:500 13px var(--font-sans);color:var(--signal-negative);margin:16px 0 0"></p>
+      </form>
+
+      <!-- ------------------------------------------------- side reference -->
       <div>
-        <h2 style="font:600 34px/1.12 var(--font-display);letter-spacing:-.024em;color:var(--ink);margin:0 0 16px">Reach us directly</h2>
-        <p style="font:400 15.5px/1.65 var(--font-sans);color:var(--fg-2);margin:0 0 26px;max-width:480px">No form routing, no ticket queue. These reach the founding team, and replies usually land the same working day in IST.</p>
-        <div style="display:flex;flex-direction:column;gap:14px">
-          <div style="display:flex;justify-content:space-between;gap:16px;padding-bottom:13px;border-bottom:1px solid var(--rule)">
-            <span style="font:500 13px var(--font-sans);color:var(--fg-3)">General &amp; trials</span>
-            <a href="mailto:enquiry@finlyt.net" style="font:600 13px var(--font-mono)">enquiry@finlyt.net</a>
-          </div>
-          <div style="display:flex;justify-content:space-between;gap:16px;padding-bottom:13px;border-bottom:1px solid var(--rule)">
-            <span style="font:500 13px var(--font-sans);color:var(--fg-3)">Enterprise &amp; ERP</span>
-            <a href="mailto:enterprise@finlyt.net" style="font:600 13px var(--font-mono)">enterprise@finlyt.net</a>
-          </div>
-          <div style="display:flex;justify-content:space-between;gap:16px;padding-bottom:13px;border-bottom:1px solid var(--rule)">
-            <span style="font:500 13px var(--font-sans);color:var(--fg-3)">The founder</span>
-            <a href="mailto:founder@finlyt.net" style="font:600 13px var(--font-mono)">founder@finlyt.net</a>
-          </div>
-          <div style="display:flex;justify-content:space-between;gap:16px">
-            <span style="font:500 13px var(--font-sans);color:var(--fg-3)">Existing customer</span>
-            <a href="https://dashboard.finlyt.net" style="font:600 13px var(--font-mono)">Open the dashboard</a>
-          </div>
+        <div style="border:1px solid var(--rule);border-radius:var(--r-xl);background:var(--paper-2);padding:26px;margin-bottom:20px">
+          <h2 style="font:600 18px var(--font-display);color:var(--ink);margin:0 0 8px">Reach us directly</h2>
+          <p style="font:400 13.5px/1.6 var(--font-sans);color:var(--fg-2);margin:0 0 18px">One address, read by the founder. Replies usually land the same working day, IST.</p>
+          <a href="mailto:founder@finlyt.net" style="font:600 15px var(--font-mono);word-break:break-all">founder@finlyt.net</a>
+        </div>
+
+        <div style="border:1px solid var(--rule);border-radius:var(--r-xl);background:var(--paper);padding:8px 22px">
+          <div style="display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--rule);font:500 12px var(--font-mono);color:var(--fg-3)"><span>MIS trial</span><span style="color:var(--emerald-700);text-align:right">₹999/mo + GST · 30 days · no card</span></div>
+          <div style="display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--rule);font:500 12px var(--font-mono);color:var(--fg-3)"><span>ERP demo</span><span style="color:var(--amber-600);text-align:right">60-min · sample tenant</span></div>
+          <div style="display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--rule);font:500 12px var(--font-mono);color:var(--fg-3)"><span>CED scoping</span><span style="color:var(--ink);text-align:right">Quotation · fortnight to scope</span></div>
+          <div style="display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--rule);font:500 12px var(--font-mono);color:var(--fg-3)"><span>CA Partner</span><span style="color:var(--emerald-700);text-align:right">White-label · revenue share</span></div>
+          <div style="display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--rule);font:500 12px var(--font-mono);color:var(--fg-3)"><span>Existing customer</span><a href="https://dashboard.finlyt.net" style="text-align:right">Open the dashboard</a></div>
+          <div style="display:flex;justify-content:space-between;gap:16px;padding:14px 0;font:500 12px var(--font-mono);color:var(--fg-3)"><span>Where we are</span><span style="color:var(--ink);text-align:right">Chennai · India-hosted</span></div>
         </div>
       </div>
 
-      <div id="deck" style="border:1px solid var(--rule);border-radius:var(--r-xl);background:var(--paper);padding:8px 22px">
-        <div style="display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--rule);font:500 12px var(--font-mono);color:var(--fg-3)"><span>MIS trial</span><span style="color:var(--emerald-700);text-align:right">₹999/mo + GST · 30-day trial · no card</span></div>
-        <div style="display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--rule);font:500 12px var(--font-mono);color:var(--fg-3)"><span>ERP demo</span><span style="color:var(--amber-600);text-align:right">60-min · sample tenant · founding team</span></div>
-        <div style="display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--rule);font:500 12px var(--font-mono);color:var(--fg-3)"><span>CED scoping</span><span style="color:var(--ink);text-align:right">Quotation · your VPC · fortnight to scope</span></div>
-        <div style="display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--rule);font:500 12px var(--font-mono);color:var(--fg-3)"><span>CA Partner</span><span style="color:var(--emerald-700);text-align:right">White-label · revenue share · priority roadmap</span></div>
-        <div style="display:flex;justify-content:space-between;gap:16px;padding:14px 0;border-bottom:1px solid var(--rule);font:500 12px var(--font-mono);color:var(--fg-3)"><span>Investor deck</span><a href="mailto:founder@finlyt.net?subject=Deck%20request%20%E2%80%94%20FinLytTech" style="text-align:right">Request the deck</a></div>
-        <div style="display:flex;justify-content:space-between;gap:16px;padding:14px 0;font:500 12px var(--font-mono);color:var(--fg-3)"><span>Support</span><span style="color:var(--ink);text-align:right">Usually replied within a day (IST)</span></div>
-      </div>
     </div>
   </div>
 </div>
 
 <div class="section" style="padding-bottom:0">
-  <div class="section-inner" id="roadmap">
-    <div class="g3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
-      <div style="border:1px solid var(--rule);border-radius:var(--r-lg);padding:24px;background:var(--paper-2)">
-        <div style="font:600 16px var(--font-display);color:var(--ink);margin-bottom:6px">Want something on the roadmap?</div>
-        <p style="font:400 13.5px/1.6 var(--font-sans);color:var(--fg-2);margin:0 0 14px">Most of what has shipped since launch came from a customer or a CA telling us what was missing. Capital Suite lands in 2026 H2.</p>
-        <a href="mailto:founder@finlyt.net?subject=Roadmap%20request%20%E2%80%94%20FinLytTech" style="font:600 13px var(--font-sans)">Tell us what is missing</a>
+  <div class="section-inner">
+    <div class="g3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px;border-top:1px solid var(--rule);padding-top:44px">
+      <div>
+        <div style="font:600 16px var(--font-display);color:var(--ink);margin-bottom:6px">Bring last month's books</div>
+        <p style="font:400 13.5px/1.6 var(--font-sans);color:var(--fg-2);margin:0">A trial balance is enough. We connect it live on the call and you leave with next month's forecast.</p>
       </div>
-      <div style="border:1px solid var(--rule);border-radius:var(--r-lg);padding:24px;background:var(--paper-2)">
-        <div style="font:600 16px var(--font-display);color:var(--ink);margin-bottom:6px">Where we are</div>
-        <p style="font:400 13.5px/1.6 var(--font-sans);color:var(--fg-2);margin:0 0 14px">Chennai, India. Data hosted in the India region by default, and never anywhere else without you asking for it.</p>
-        <a href="/why/" style="font:600 13px var(--font-sans)">How we handle data</a>
+      <div>
+        <div style="font:600 16px var(--font-display);color:var(--ink);margin-bottom:6px">Nothing is installed to talk</div>
+        <p style="font:400 13.5px/1.6 var(--font-sans);color:var(--fg-2);margin:0">The demo runs on a sample tenant. Connectors only go near your books once you have decided to trial it.</p>
       </div>
-      <div style="border:1px solid var(--rule);border-radius:var(--r-lg);padding:24px;background:var(--paper-2)">
+      <div>
         <div style="font:600 16px var(--font-display);color:var(--ink);margin-bottom:6px">Prefer to read first?</div>
-        <p style="font:400 13.5px/1.6 var(--font-sans);color:var(--fg-2);margin:0 0 14px">The blog covers what Indian finance functions actually run into, most weeks, without the sales layer.</p>
-        <a href="/blog/" style="font:600 13px var(--font-sans)">Read the blog</a>
+        <p style="font:400 13.5px/1.6 var(--font-sans);color:var(--fg-2);margin:0"><a href="/blog/">The blog</a> covers what Indian finance functions actually run into, without the sales layer.</p>
       </div>
     </div>
   </div>

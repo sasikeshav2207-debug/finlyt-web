@@ -241,10 +241,104 @@
     render("mis");
   }
 
+  /* ------------------------------------------------------- contact form */
+  // The site is static on GitHub Pages, so there is no server to POST to.
+  // Submitting composes a fully-populated message to the founder instead —
+  // every field is written into the body, so nothing has to be retyped.
+  var MAILBOX = "founder@finlyt.net";
+
+  // Existing CTAs across the site deep-link to /contact/#demo, #partner and so
+  // on. Those anchors now preselect the enquiry type rather than pointing at
+  // separate cards.
+  var HASH_INTENT = {
+    "demo": "Book a demo",
+    "early-access": "Start the 30-day trial",
+    "enterprise": "Enterprise ERP or custom dashboard",
+    "erp": "Enterprise ERP or custom dashboard",
+    "api": "Enterprise ERP or custom dashboard",
+    "partner": "CA Partner Programme",
+    "deck": "Request the deck",
+    "roadmap": "Roadmap request"
+  };
+
+  function initContactForm() {
+    var form = document.getElementById("contactForm");
+    if (!form) return;
+
+    var select = document.getElementById("intentSelect");
+    var errEl = document.getElementById("formError");
+
+    function applyHash() {
+      if (!select) return;
+      var key = (window.location.hash || "").replace(/^#/, "");
+      var want = HASH_INTENT[key];
+      if (!want) return;
+      for (var i = 0; i < select.options.length; i++) {
+        if (select.options[i].value === want) {
+          select.selectedIndex = i;
+          break;
+        }
+      }
+    }
+    applyHash();
+    window.addEventListener("hashchange", applyHash);
+
+    function val(name) {
+      var el = form.elements[name];
+      return el && el.value ? el.value.trim() : "";
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      var required = [["name", "your name"], ["company", "your company"], ["email", "your email"]];
+      var missing = required.filter(function (p) { return !val(p[0]); });
+      if (missing.length) {
+        if (errEl) {
+          errEl.textContent = "Please add " + missing.map(function (p) { return p[1]; }).join(", ") + ".";
+          errEl.hidden = false;
+        }
+        var first = form.elements[missing[0][0]];
+        if (first) first.focus();
+        return;
+      }
+      var email = val("email");
+      if (email.indexOf("@") < 1 || email.indexOf(".") < 0) {
+        if (errEl) {
+          errEl.textContent = "That email address does not look right.";
+          errEl.hidden = false;
+        }
+        form.elements.email.focus();
+        return;
+      }
+      if (errEl) errEl.hidden = true;
+
+      var intent = val("intent") || "Enquiry";
+      var lines = [
+        "Name:    " + val("name"),
+        "Company: " + val("company"),
+        "Email:   " + email,
+        "Phone:   " + (val("phone") || "-"),
+        "Needs:   " + intent,
+        "Books:   " + (val("books") || "-"),
+        "",
+        "Message:",
+        val("message") || "-",
+        "",
+        "— sent from finlyt.net/contact"
+      ];
+
+      window.location.href = "mailto:" + MAILBOX +
+        "?subject=" + encodeURIComponent(intent + " — " + val("company")) +
+        "&body=" + encodeURIComponent(lines.join("\n"));
+    });
+  }
+
   /* --------------------------------------------------------------- boot */
   function boot() {
     initNav();
     initSelector();
+    initContactForm();
 
     // Mark the FAQ accordion arrows so open/closed reads correctly
     Array.prototype.slice.call(document.querySelectorAll("details.faq")).forEach(function (d) {
