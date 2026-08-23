@@ -157,6 +157,11 @@ a.np-chip:hover{border-color:var(--brand-emerald);color:var(--ink)}
    Responsive — collapses the design's fixed grids.
    Page markup tags each grid with g2 / g3 / g4 / split so these apply.
    ========================================================================== */
+/* Horizontal escape hatch for content that genuinely cannot stack -- numeric
+   tables, comparison grids. Not viewport-scoped: an 800px tablet needs it as
+   much as a 360px phone. */
+.scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
+
 @media (max-width:1180px){
   .nav-links{display:none}
   .nav-burger{display:inline-flex}
@@ -189,7 +194,6 @@ a.np-chip:hover{border-color:var(--brand-emerald);color:var(--ink)}
   h1{font-size:clamp(32px,8.5vw,44px)!important;line-height:1.08!important}
   h2{font-size:clamp(26px,6.5vw,32px)!important;line-height:1.12!important}
   .lede{font-size:15.5px}
-  .scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
 }
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
@@ -217,4 +221,93 @@ a.np-chip:hover{border-color:var(--brand-emerald);color:var(--ink)}
   border-radius: var(--r-pill);
   padding: 6px 13px;
   margin-bottom: 20px;
+}
+
+/* ─── Home hero visual ───────────────────────────────────────────────────
+   Stacks below 1024px. The fixed 300px height is a desktop-only geometry:
+   once the three panes become three rows it has to be released, or every
+   pane gets a third of it. The ledger lane keeps a height of its own so its
+   scroll animation still has something to scroll inside. */
+@media (max-width:1024px){
+  .hero-flow{height:auto!important;min-height:0!important}
+  .hero-flow > *{border-right:0!important}
+  .hero-flow > *:not(:last-child){border-bottom:1px solid var(--rule)}
+  .hero-flow > :first-child{height:210px}
+  .hero-flow > :nth-child(2){min-height:132px;padding:18px 0}
+}
+@media (max-width:760px){
+  .hero-flow > :first-child{height:180px}
+  /* The connector curves are drawn between side-by-side columns. Stacked,
+     they point at nothing. */
+  .hero-flow > :nth-child(2) svg{display:none}
+}
+
+/* ─── Phase timeline ─────────────────────────────────────────────────────
+   Built vertical-first. A horizontal rail of six phases is the obvious
+   desktop drawing, but it is the thing that breaks on a phone — six columns
+   of prose in 360px. A vertical rail reads correctly at every width and
+   simply gets more room to breathe on a wide screen, so there is no
+   breakpoint at which the layout has to be rescued. */
+.tl { position: relative; margin: 0; padding: 0; list-style: none; }
+.tl::before {
+  content: ""; position: absolute; left: 15px; top: 10px; bottom: 10px;
+  width: 2px; background: linear-gradient(180deg, var(--brand-emerald), var(--rule) 78%);
+}
+.tl-item { position: relative; padding: 0 0 34px 52px; }
+.tl-item:last-child { padding-bottom: 0; }
+
+.tl-node {
+  position: absolute; left: 0; top: 2px;
+  width: 32px; height: 32px; border-radius: 999px;
+  display: flex; align-items: center; justify-content: center;
+  font: 700 12px/1 var(--font-mono);
+  background: var(--paper); border: 2px solid var(--rule-strong);
+  color: var(--fg-3);
+}
+.tl-item[data-state="done"]  .tl-node { background: var(--brand-emerald); border-color: var(--brand-emerald); color: #fff; }
+.tl-item[data-state="now"]   .tl-node { background: var(--emerald-50); border-color: var(--brand-emerald); color: var(--emerald-700); }
+
+.tl-head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 10px; margin-bottom: 4px; }
+.tl-title { font: 600 19px/1.25 var(--font-display); letter-spacing: -.018em; color: var(--ink); margin: 0; }
+.tl-meta { font: 500 11.5px var(--font-mono); color: var(--fg-3); }
+
+.tl-state {
+  font: 600 9.5px var(--font-mono); letter-spacing: .09em; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 999px; white-space: nowrap;
+  background: var(--paper-3); border: 1px solid var(--rule-strong); color: var(--fg-3);
+}
+.tl-item[data-state="done"] .tl-state { background: var(--emerald-50); border-color: var(--emerald-200); color: var(--emerald-700); }
+.tl-item[data-state="now"]  .tl-state { background: var(--warning-tint); border-color: var(--amber-200); color: var(--amber-700); }
+
+.tl-body { font: 400 14.5px/1.65 var(--font-sans); color: var(--fg-2); margin: 0 0 12px; max-width: 66ch; }
+.tl-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 7px; }
+.tl-list li {
+  position: relative; padding-left: 17px;
+  font: 400 13.5px/1.6 var(--font-sans); color: var(--fg-2);
+}
+.tl-list li::before {
+  content: ""; position: absolute; left: 2px; top: 8px;
+  width: 5px; height: 5px; border-radius: 999px; background: var(--emerald-300);
+}
+
+/* At-a-glance strip. Wraps rather than scrolls, so it never needs a
+   horizontal gesture on a phone. */
+.phase-strip { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 8px; padding: 0; list-style: none; }
+.phase-strip li {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 7px 13px; border-radius: 999px;
+  border: 1px solid var(--rule); background: var(--paper);
+  font: 500 12px var(--font-sans); color: var(--fg-2); white-space: nowrap;
+}
+.phase-strip li b { font: 700 10.5px var(--font-mono); color: var(--fg-3); }
+.phase-strip li[data-state="done"] { border-color: var(--emerald-200); background: var(--emerald-50); color: var(--emerald-800); }
+.phase-strip li[data-state="done"] b { color: var(--emerald-700); }
+.phase-strip li[data-state="now"] { border-color: var(--amber-200); background: var(--warning-tint); color: var(--amber-700); }
+.phase-strip li[data-state="now"] b { color: var(--amber-700); }
+
+@media (max-width:760px){
+  .tl::before { left: 13px; }
+  .tl-item { padding-left: 44px; padding-bottom: 28px; }
+  .tl-node { width: 28px; height: 28px; font-size: 11px; }
+  .tl-title { font-size: 17px; }
 }
