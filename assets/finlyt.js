@@ -267,21 +267,63 @@
 
     var select = document.getElementById("intentSelect");
     var errEl = document.getElementById("formError");
+    var dialog = document.getElementById("contactDialog");
 
-    function applyHash() {
-      if (!select) return;
+    /* ---- open / close -------------------------------------------------- */
+    function open() {
+      if (!dialog) return;
+      if (typeof dialog.showModal === "function") {
+        if (!dialog.open) dialog.showModal();
+      } else {
+        dialog.setAttribute("open", "");   // very old browsers
+      }
+      var first = form.elements.name;
+      if (first) setTimeout(function () { first.focus(); }, 40);
+    }
+    function close() {
+      if (!dialog) return;
+      if (typeof dialog.close === "function") dialog.close();
+      else dialog.removeAttribute("open");
+    }
+
+    Array.prototype.slice.call(document.querySelectorAll("[data-open-contact]"))
+      .forEach(function (b) {
+        b.addEventListener("click", function (e) { e.preventDefault(); open(); });
+      });
+    Array.prototype.slice.call(document.querySelectorAll("[data-close-contact]"))
+      .forEach(function (b) { b.addEventListener("click", close); });
+
+    // Clicking the backdrop closes. The dialog element itself fills the
+    // backdrop area, so compare against the inner panel's bounds.
+    if (dialog) {
+      dialog.addEventListener("click", function (e) {
+        if (e.target !== dialog) return;
+        var box = dialog.getBoundingClientRect();
+        var inside = e.clientX >= box.left && e.clientX <= box.right &&
+                     e.clientY >= box.top && e.clientY <= box.bottom;
+        if (!inside) close();
+      });
+    }
+
+    /* ---- deep links ---------------------------------------------------- */
+    // Landing on /contact/#demo (or any CTA anchor) preselects the enquiry
+    // type and opens the form, since the visitor already declared intent.
+    function applyHash(autoOpen) {
       var key = (window.location.hash || "").replace(/^#/, "");
       var want = HASH_INTENT[key];
       if (!want) return;
-      for (var i = 0; i < select.options.length; i++) {
-        if (select.options[i].value === want) {
-          select.selectedIndex = i;
-          break;
+      if (select) {
+        for (var i = 0; i < select.options.length; i++) {
+          if (select.options[i].value === want) {
+            select.selectedIndex = i;
+            break;
+          }
         }
       }
+      if (autoOpen) open();
     }
-    applyHash();
-    window.addEventListener("hashchange", applyHash);
+    applyHash(true);
+    window.addEventListener("hashchange", function () { applyHash(true); });
 
     function val(name) {
       var el = form.elements[name];

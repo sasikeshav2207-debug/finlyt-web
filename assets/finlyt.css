@@ -127,6 +127,29 @@ a.np-chip:hover{border-color:var(--brand-emerald);color:var(--ink)}
 .card-hover{transition:border-color .16s,box-shadow .16s,transform .16s}
 .card-hover:hover{border-color:var(--rule-strong);box-shadow:var(--shadow-md);transform:translateY(-2px)}
 
+/* Circular arrow on the product cards — a real link, not decoration */
+.card-arrow{transition:background .15s,border-color .15s,transform .15s}
+.card-arrow:hover{background:var(--brand-navy);border-color:var(--brand-navy);transform:translateX(2px)}
+.card-arrow:hover svg{stroke:#fff}
+
+/* Contact dialog */
+#contactDialog{border:0;padding:0;background:transparent;max-width:640px;width:calc(100% - 32px)}
+#contactDialog::backdrop{background:rgba(13,27,42,.55);backdrop-filter:blur(3px)}
+.dlg{background:var(--paper);border:1px solid var(--rule);border-radius:var(--r-xl);
+  box-shadow:var(--shadow-pop);padding:30px;max-height:88vh;overflow-y:auto}
+.dlg-close{position:absolute;top:16px;right:16px;border:1px solid var(--rule-strong);background:var(--paper);
+  width:32px;height:32px;border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;
+  justify-content:center;color:var(--fg-2);font:400 18px/1 var(--font-sans)}
+.dlg-close:hover{background:var(--paper-3);color:var(--ink)}
+.fld{display:block}
+.fld span{display:block;font:600 11px var(--font-sans);text-transform:uppercase;letter-spacing:.07em;
+  color:var(--fg-3);margin-bottom:7px}
+.fld input,.fld select,.fld textarea{width:100%;font:400 14px var(--font-sans);color:var(--ink);
+  padding:11px 13px;border:1px solid var(--rule-strong);border-radius:var(--r-md);background:var(--paper)}
+.fld textarea{line-height:1.6;resize:vertical}
+.fld input:focus,.fld select:focus,.fld textarea:focus{outline:2px solid var(--brand-emerald);
+  outline-offset:1px;border-color:var(--brand-emerald)}
+
 /* Anchored sections clear the sticky nav */
 [id]{scroll-margin-top:92px}
 
