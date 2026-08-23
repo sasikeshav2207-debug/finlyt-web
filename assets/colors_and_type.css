@@ -1,0 +1,181 @@
+/* ──────────────────────────────────────────────────────────────
+   Finlyt — colors & type
+   Source of truth for all brand colors and typographic tokens.
+   Import in any HTML: <link rel="stylesheet" href="/colors_and_type.css">
+   ────────────────────────────────────────────────────────────── */
+
+/* Fonts: Google Fonts (no local files yet — see README for substitution note) */
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* ── BRAND CORE ─────────────────────────────────────────── */
+  --brand-navy:        #0D1B2A;   /* primary */
+  --brand-emerald:     #1D9E75;   /* accent */
+  --brand-amber:       #EF9F27;   /* highlight, sparing use */
+
+  /* ── NAVY SCALE (cool, slightly desaturated) ───────────── */
+  --navy-50:           #F4F6F8;
+  --navy-100:          #E6EAEF;
+  --navy-200:          #C9D1DB;
+  --navy-300:          #9DA8B7;
+  --navy-400:          #647688;
+  --navy-500:          #3D5163;
+  --navy-600:          #243748;
+  --navy-700:          #142536;
+  --navy-800:          #0D1B2A;   /* brand-navy */
+  --navy-900:          #07101B;
+  --navy-950:          #040810;
+
+  /* ── EMERALD SCALE ─────────────────────────────────────── */
+  --emerald-50:        #ECFAF4;
+  --emerald-100:       #D1F2E4;
+  --emerald-200:       #A3E4CA;
+  --emerald-300:       #6DCFA9;
+  --emerald-400:       #3DB78B;
+  --emerald-500:       #1D9E75;   /* brand-emerald */
+  --emerald-600:       #157E5C;
+  --emerald-700:       #105F46;
+  --emerald-800:       #0C4533;
+  --emerald-900:       #082E22;
+
+  /* ── AMBER SCALE ───────────────────────────────────────── */
+  --amber-50:          #FEF6E7;
+  --amber-100:         #FDE8BD;
+  --amber-200:         #FAD17B;
+  --amber-300:         #F5BA47;
+  --amber-400:         #EF9F27;   /* brand-amber */
+  --amber-500:         #D4831B;
+  --amber-600:         #A66312;
+  --amber-700:         #75450B;
+
+  /* ── NEUTRALS (warm-cool balanced) ─────────────────────── */
+  --paper:             #FFFFFF;
+  --paper-2:           #FAFBFC;   /* app shell, subtle surface */
+  --paper-3:           #F4F6F8;   /* hovers, raised tints */
+  --rule:              #E5E9EE;   /* borders, dividers */
+  --rule-strong:       #CFD6DE;
+  --ink-mute:          #647688;
+  --ink-soft:          #3D5163;
+  --ink:               #0D1B2A;
+
+  /* ── SEMANTIC (signal colors for fintech UI) ───────────── */
+  --signal-positive:   #1D9E75;   /* gains, success, "up" */
+  --signal-negative:   #D7423F;   /* loss, error, "down" */
+  --signal-warning:    #EF9F27;   /* attention, pending */
+  --signal-info:       #2563B0;   /* neutral information */
+
+  --positive-tint:     #ECFAF4;
+  --negative-tint:     #FCEDEC;
+  --warning-tint:      #FEF6E7;
+  --info-tint:         #E8F0FA;
+
+  /* ── ROLES (use these in components) ───────────────────── */
+  --fg-1:              var(--ink);
+  --fg-2:              var(--ink-soft);
+  --fg-3:              var(--ink-mute);
+  --fg-inverse:        var(--paper);
+
+  --bg-app:            var(--paper-2);
+  --bg-surface:        var(--paper);
+  --bg-raised:         var(--paper-3);
+  --bg-inverse:        var(--brand-navy);
+
+  --border:            var(--rule);
+  --border-strong:     var(--rule-strong);
+  --focus-ring:        color-mix(in oklab, var(--brand-emerald) 55%, transparent);
+
+  /* ── ELEVATION (low-key, fintech-restrained) ───────────── */
+  --shadow-xs:         0 1px 0 rgba(13,27,42,0.04);
+  --shadow-sm:         0 1px 2px rgba(13,27,42,0.06), 0 1px 0 rgba(13,27,42,0.03);
+  --shadow-md:         0 4px 10px -2px rgba(13,27,42,0.08), 0 1px 0 rgba(13,27,42,0.04);
+  --shadow-lg:         0 16px 32px -8px rgba(13,27,42,0.14), 0 2px 4px rgba(13,27,42,0.04);
+  --shadow-pop:        0 24px 48px -12px rgba(13,27,42,0.22);
+  --inner-hairline:    inset 0 0 0 1px rgba(13,27,42,0.06);
+
+  /* ── RADII ─────────────────────────────────────────────── */
+  --r-xs:              4px;
+  --r-sm:              6px;
+  --r-md:              8px;
+  --r-lg:              12px;
+  --r-xl:              16px;
+  --r-2xl:             20px;
+  --r-pill:            999px;
+
+  /* ── SPACING (4-pt base) ──────────────────────────────── */
+  --s-0:               0;
+  --s-1:               4px;
+  --s-2:               8px;
+  --s-3:               12px;
+  --s-4:               16px;
+  --s-5:               20px;
+  --s-6:               24px;
+  --s-8:               32px;
+  --s-10:              40px;
+  --s-12:              48px;
+  --s-16:              64px;
+  --s-20:              80px;
+  --s-24:              96px;
+
+  /* ── TYPE FAMILIES ─────────────────────────────────────── */
+  --font-display:      'Manrope', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-sans:         'Plus Jakarta Sans', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono:         'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* ── TYPE SCALE (display = Manrope, body = Jakarta) */
+  --t-display-1:       700 64px/1.05 var(--font-display);
+  --t-display-2:       600 48px/1.08 var(--font-display);
+  --t-h1:              600 36px/1.15 var(--font-display);
+  --t-h2:              600 28px/1.2  var(--font-display);
+  --t-h3:              600 22px/1.3  var(--font-display);
+  --t-h4:              600 18px/1.35 var(--font-display);
+  --t-eyebrow:         600 12px/1.2  var(--font-sans);   /* + uppercase + letter-spacing */
+  --t-body-lg:         400 18px/1.55 var(--font-sans);
+  --t-body:            400 15px/1.55 var(--font-sans);
+  --t-body-sm:         400 13px/1.5  var(--font-sans);
+  --t-label:           500 13px/1.4  var(--font-sans);
+  --t-caption:         400 12px/1.4  var(--font-sans);
+  --t-mono:            500 13px/1.4  var(--font-mono);
+  --t-figure-xl:       600 40px/1.0  var(--font-display);  /* big numbers, tabular */
+  --t-figure-lg:       600 28px/1.0  var(--font-display);
+
+  /* ── MOTION ────────────────────────────────────────────── */
+  --ease-out:          cubic-bezier(.2,.7,.25,1);
+  --ease-in-out:       cubic-bezier(.5,0,.25,1);
+  --dur-fast:          120ms;
+  --dur-base:          180ms;
+  --dur-slow:          280ms;
+}
+
+/* ──────────────────────────────────────────────────────────────
+   Semantic element styles — drop-in defaults
+   ────────────────────────────────────────────────────────────── */
+html, body {
+  font: var(--t-body);
+  color: var(--fg-1);
+  background: var(--bg-app);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "ss01", "cv11";
+}
+
+h1 { font: var(--t-h1); letter-spacing: -0.015em; margin: 0; }
+h2 { font: var(--t-h2); letter-spacing: -0.012em; margin: 0; }
+h3 { font: var(--t-h3); letter-spacing: -0.01em;  margin: 0; }
+h4 { font: var(--t-h4); margin: 0; }
+
+p  { font: var(--t-body); color: var(--fg-2); margin: 0; }
+small { font: var(--t-caption); color: var(--fg-3); }
+code, kbd, pre { font: var(--t-mono); }
+
+.eyebrow {
+  font: var(--t-eyebrow);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--fg-3);
+}
+
+/* Tabular figures — crucial for fintech alignment */
+.tabular,
+.figure { font-variant-numeric: tabular-nums; }
+
+::selection { background: var(--emerald-200); color: var(--ink); }

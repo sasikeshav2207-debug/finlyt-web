@@ -27,10 +27,6 @@ Individually, each of these exists to satisfy a filing requirement. Together, th
 
 > Most businesses generate this data every month as a compliance byproduct and never look at it again once the return is filed. The data sits in the GST portal and the accounting software, doing nothing beyond satisfying the filing deadline.
 
-.
-
-
-
 ## The data most businesses have but have never used analytically
 
 Ask most SME owners what their top five customers contributed to revenue in the last two quarters, and they'll estimate. The GSTR-1 filings already contain the exact answer, sitting unread.

@@ -1,0 +1,175 @@
+/* ==========================================================================
+   FinLytTech — site shell, navigation and responsive layer
+   Pairs with assets/colors_and_type.css (design tokens + web fonts).
+   Page bodies keep the inline styles from the approved design, so the
+   responsive overrides below use !important deliberately — inline styles
+   would otherwise win over every rule here.
+   ========================================================================== */
+
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);
+  font-family:"Plus Jakarta Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+a{color:var(--emerald-600);text-decoration:none}
+a:hover{color:var(--emerald-700)}
+img{max-width:100%}
+details summary::-webkit-details-marker{display:none}
+:focus-visible{outline:2px solid var(--brand-emerald);outline-offset:3px;border-radius:4px}
+
+/* Skip link — keyboard users land past the nav */
+.skip{position:absolute;left:-9999px;top:0;z-index:100;background:var(--brand-navy);color:#fff;
+  padding:12px 18px;border-radius:0 0 8px 0;font:600 13px var(--font-sans)}
+.skip:focus{left:0;color:#fff}
+
+/* ---------- Animations carried over from the design ---------- */
+@keyframes fl-lane{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+@keyframes fl-ring{0%{transform:scale(1);opacity:.5}100%{transform:scale(1.85);opacity:0}}
+@keyframes fl-draw{to{stroke-dashoffset:0}}
+@keyframes fl-arc{from{stroke-dashoffset:301.6}to{stroke-dashoffset:241}}
+@keyframes fl-rise{from{transform:scaleY(.15)}to{transform:scaleY(1)}}
+@keyframes fl-tick{0%,100%{opacity:.3}50%{opacity:1}}
+@keyframes fl-sweep{0%{transform:translateX(-100%)}100%{transform:translateX(300%)}}
+
+/* ==========================================================================
+   Navigation
+   ========================================================================== */
+.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--rule)}
+.nav-bar{min-height:72px;display:flex;align-items:center;gap:10px;padding:10px 28px;
+  max-width:1440px;margin:0 auto;position:relative}
+.nav-logo{display:flex;align-items:center;flex-shrink:0}
+.nav-logo img{height:46px;width:auto;object-fit:contain;display:block}
+.nav-links{display:flex;align-items:center;flex-wrap:wrap;row-gap:2px;margin-left:16px;
+  flex:1 1 auto;min-width:0}
+.nav-link,.nav-trigger{padding:8px 9px;font:500 12.5px var(--font-sans);color:var(--fg-2);
+  white-space:nowrap;border:0;background:transparent;cursor:pointer;display:inline-flex;
+  align-items:center;gap:5px;border-radius:6px;transition:color .15s,background .15s}
+.nav-link:hover,.nav-trigger:hover{color:var(--ink);background:var(--paper-3)}
+.nav-link.is-active,.nav-trigger.is-active{color:var(--ink);font-weight:600}
+.nav-trigger svg{width:13px;height:13px;transition:transform .18s ease}
+.nav-trigger[aria-expanded="true"] svg{transform:rotate(180deg)}
+.nav-trigger[aria-expanded="true"]{color:var(--ink);background:var(--paper-3)}
+.nav-cta{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.nav-signin{font:500 12.5px var(--font-sans);color:var(--fg-2);white-space:nowrap;padding:8px 6px}
+.nav-signin:hover{color:var(--ink)}
+.nav-primary{font:600 12.5px var(--font-sans);color:#fff;background:var(--brand-navy);
+  padding:10px 15px;border-radius:8px;white-space:nowrap;transition:background .15s}
+.nav-primary:hover{background:var(--navy-700);color:#fff}
+
+/* Dropdown panels */
+.nav-panel{display:none;border-top:1px solid var(--rule);background:var(--paper-2);padding:24px 28px 26px}
+.nav-panel.is-open{display:block}
+.nav-panel-inner{max-width:1280px;margin:0 auto;display:grid;gap:36px}
+.nav-panel-products .nav-panel-inner{grid-template-columns:1.1fr 1fr 1fr}
+.nav-panel-cas .nav-panel-inner{grid-template-columns:repeat(3,1fr)}
+.nav-panel h3{font:600 10.5px var(--font-sans);text-transform:uppercase;letter-spacing:.12em;
+  color:var(--fg-3);margin:0 0 14px}
+.np-row{display:flex;justify-content:space-between;gap:16px;padding:4px 6px;border-radius:5px;
+  transition:background .13s;margin:0 -6px}
+.np-row:hover{background:var(--paper-3)}
+.np-name{font:600 13px var(--font-sans);color:var(--ink)}
+.np-name.muted{color:var(--fg-3)}
+.np-meta{font:500 11.5px var(--font-mono);color:var(--fg-3)}
+.np-meta.amber{color:var(--amber-600)}
+.np-item{display:block;padding:5px 6px;border-radius:5px;transition:background .13s;margin:0 -6px}
+.np-item:hover{background:var(--paper-3)}
+.np-item .np-name{display:block}
+.np-desc{font:400 11.5px/1.5 var(--font-sans);color:var(--fg-3);margin-top:2px;display:block}
+.np-stack{display:flex;flex-direction:column;gap:6px}
+.np-chips{display:flex;flex-wrap:wrap;gap:6px}
+.np-chip{font:500 11.5px var(--font-sans);color:var(--fg-2);border:1px solid var(--rule);
+  background:var(--paper);padding:4px 9px;border-radius:999px}
+a.np-chip:hover{border-color:var(--brand-emerald);color:var(--ink)}
+
+/* Mobile toggle — hidden on desktop */
+.nav-burger{display:none;border:1px solid var(--rule-strong);background:var(--paper);
+  border-radius:8px;padding:9px 11px;cursor:pointer;flex-shrink:0;align-items:center;gap:8px;
+  font:600 12px var(--font-sans);color:var(--ink)}
+.nav-burger svg{width:16px;height:16px;display:block}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.footer{background:var(--paper);padding:80px 40px 40px}
+.footer-inner{max-width:1280px;margin:0 auto}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:44px;
+  padding-top:36px;border-top:1px solid var(--rule)}
+.footer-col{display:flex;flex-direction:column;gap:8px}
+.footer-col h4{font:600 11px var(--font-sans);text-transform:uppercase;letter-spacing:.1em;
+  color:var(--ink);margin:0 0 4px}
+.footer-col a{font:400 13px var(--font-sans);color:var(--fg-3)}
+.footer-col a:hover{color:var(--brand-emerald)}
+.footer-note{font:400 13px/1.65 var(--font-sans);color:var(--fg-3);margin:0}
+.footer-base{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:28px;
+  padding-top:22px;border-top:1px solid var(--rule);font:500 11px var(--font-mono);
+  letter-spacing:.06em;text-transform:uppercase;color:var(--fg-3)}
+
+/* ==========================================================================
+   Shared page furniture
+   ========================================================================== */
+.section{padding:76px 40px 0}
+.section-inner{max-width:1280px;margin:0 auto}
+.wrap{max-width:1280px;margin:0 auto}
+.lede{font:400 17px/1.6 var(--font-sans);color:var(--fg-2);margin:0 0 40px;max-width:740px}
+.btn-dark{font:600 15px var(--font-sans);color:#fff;background:var(--brand-navy);
+  padding:14px 22px;border-radius:8px;display:inline-block;transition:background .15s}
+.btn-dark:hover{background:var(--navy-700);color:#fff}
+.btn-green{font:600 15px var(--font-sans);color:#fff;background:var(--brand-emerald);
+  padding:13px 22px;border-radius:8px;display:inline-block;transition:background .15s}
+.btn-green:hover{background:var(--emerald-600);color:#fff}
+.btn-ghost{font:600 15px var(--font-sans);color:var(--ink);border:1px solid var(--rule-strong);
+  padding:14px 22px;border-radius:8px;display:inline-block;background:var(--paper);
+  transition:border-color .15s,background .15s}
+.btn-ghost:hover{border-color:var(--brand-emerald);background:var(--paper-2);color:var(--ink)}
+.btn-row{display:flex;gap:10px;flex-wrap:wrap}
+.card-link{display:block;color:inherit}
+.card-link:hover{color:inherit}
+.card-hover{transition:border-color .16s,box-shadow .16s,transform .16s}
+.card-hover:hover{border-color:var(--rule-strong);box-shadow:var(--shadow-md);transform:translateY(-2px)}
+
+/* Anchored sections clear the sticky nav */
+[id]{scroll-margin-top:92px}
+
+/* ==========================================================================
+   Responsive — collapses the design's fixed grids.
+   Page markup tags each grid with g2 / g3 / g4 / split so these apply.
+   ========================================================================== */
+@media (max-width:1180px){
+  .nav-links{display:none}
+  .nav-burger{display:inline-flex}
+  .nav-bar{padding:10px 20px}
+  .nav-links.is-open{display:flex;position:absolute;left:0;right:0;top:100%;flex-direction:column;
+    align-items:stretch;background:var(--paper);border-bottom:1px solid var(--rule);
+    padding:12px 20px 18px;margin:0;gap:2px;box-shadow:var(--shadow-lg);
+    max-height:calc(100vh - 72px);overflow-y:auto;z-index:60}
+  .nav-links.is-open .nav-link,.nav-links.is-open .nav-trigger{width:100%;
+    justify-content:space-between;padding:13px 10px;font-size:15px;border-radius:8px}
+  .nav-panel-inner{grid-template-columns:1fr!important;gap:26px}
+}
+@media (max-width:1024px){
+  .g4{grid-template-columns:repeat(2,1fr)!important}
+  .g3{grid-template-columns:repeat(2,1fr)!important}
+  .g2,.split{grid-template-columns:1fr!important}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
+  .section{padding:60px 24px 0}
+  .footer{padding:60px 24px 32px}
+}
+@media (max-width:760px){
+  .g2,.g3,.g4,.split{grid-template-columns:1fr!important}
+  .footer-grid{grid-template-columns:1fr}
+  .hide-sm{display:none!important}
+  .stack-sm{flex-direction:column!important;align-items:flex-start!important}
+  .section{padding:48px 18px 0}
+  .footer{padding:48px 18px 28px}
+  .nav-bar{padding:10px 16px}
+  .nav-logo img{height:38px}
+  h1{font-size:clamp(32px,8.5vw,44px)!important;line-height:1.08!important}
+  h2{font-size:clamp(26px,6.5vw,32px)!important;line-height:1.12!important}
+  .lede{font-size:15.5px}
+  .scroll-x{overflow-x:auto;-webkit-overflow-scrolling:touch}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;
+    transition-duration:.001ms!important}
+}

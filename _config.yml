@@ -45,6 +45,9 @@ plugins:
 # Build artefacts + tooling that should never ship to /.
 exclude:
   - deploy.bat
+  - vercel.json
+  - render.yaml
+  - LANDING_CHANGES_2026_06_07.md
   - README.md
   - BLOG_POSTING_GUIDE.md
   - Gemfile

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0D1B2A">
+{% seo %}
+<link rel="icon" href="/assets/finlyttech-favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/assets/finlyttech-app-icon.png">
+<link rel="stylesheet" href="/assets/colors_and_type.css">
+<link rel="stylesheet" href="/assets/finlyt.css">
+<link rel="stylesheet" href="/assets/blog.css">
+<link rel="canonical" href="{{ page.url | absolute_url }}">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="nav-bar">
+    <a class="nav-logo" href="/" aria-label="FinLytTech — home">
+      <img src="/assets/finlyttech-lockup-light.png" alt="FinLytTech">
+    </a>
+
+    <nav class="nav-links" id="navLinks" aria-label="Primary">
+      <a class="nav-link{% if page.nav == 'condition' %} is-active{% endif %}" href="/condition/">The Condition</a>
+
+      <button type="button" class="nav-trigger{% if page.nav == 'products' %} is-active{% endif %}"
+              data-panel="products" aria-expanded="false" aria-controls="panelProducts">
+        Products
+        <svg viewBox="0 0 24 24" fill="none" stroke="#2E9E6B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+
+      <a class="nav-link{% if page.nav == 'pricing' %} is-active{% endif %}" href="/pricing/">Pricing</a>
+
+      <button type="button" class="nav-trigger{% if page.nav == 'for-cas' %} is-active{% endif %}"
+              data-panel="cas" aria-expanded="false" aria-controls="panelCas">
+        For CAs
+        <svg viewBox="0 0 24 24" fill="none" stroke="#647688" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+
+      <a class="nav-link{% if page.nav == 'why' %} is-active{% endif %}" href="/why/">Why FinLytTech</a>
+      <a class="nav-link{% if page.nav == 'founder' %} is-active{% endif %}" href="/founder/">Founder</a>
+      <a class="nav-link{% if page.nav == 'faq' %} is-active{% endif %}" href="/faq/">FAQ</a>
+      <a class="nav-link{% if page.nav == 'blog' %} is-active{% endif %}" href="/blog/">Blog</a>
+      <a class="nav-link{% if page.nav == 'contact' %} is-active{% endif %}" href="/contact/">Contact</a>
+    </nav>
+
+    <div class="nav-cta">
+      <a class="nav-signin hide-sm" href="https://dashboard.finlyt.net">Sign in</a>
+      <a class="nav-primary" href="/contact/#early-access">Get early access</a>
+      <button type="button" class="nav-burger" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        Menu
+      </button>
+    </div>
+  </div>
+
+  <!-- Products dropdown -->
+  <div class="nav-panel nav-panel-products" data-panel="products" id="panelProducts">
+    <div class="nav-panel-inner">
+      <div>
+        <h3>MIS · four tiers</h3>
+        <div class="np-stack">
+          <a class="np-row" href="/products/#mis-essentials"><span class="np-name">MIS Essentials</span><span class="np-meta">₹999</span></a>
+          <a class="np-row" href="/products/#fin-ops"><span class="np-name">Fin Ops Intelligence</span><span class="np-meta">₹3,999</span></a>
+          <a class="np-row" href="/products/#forecasting"><span class="np-name">AI Cash Flow Forecasting</span><span class="np-meta">₹5,999</span></a>
+          <a class="np-row" href="/products/#capital-suite"><span class="np-name muted">Capital Suite</span><span class="np-meta amber">2026 H2</span></a>
+        </div>
+      </div>
+      <div>
+        <h3>Enterprise</h3>
+        <div class="np-stack">
+          <a class="np-item" href="/products/#erp"><span class="np-name">Enterprise ERP</span><span class="np-desc">Ten consoles, one posting table</span></a>
+          <a class="np-item" href="/products/#ced"><span class="np-name">Custom Enterprise Dashboard</span><span class="np-desc">Your industry's shape, in your cloud</span></a>
+          <a class="np-item" href="/products/#api"><span class="np-name">Any ERP via API</span><span class="np-desc">Generic REST adapter, read-only by default</span></a>
+        </div>
+      </div>
+      <div>
+        <h3>Sources read natively</h3>
+        <div class="np-chips">
+          <a class="np-chip" href="/products/#sources">Tally</a>
+          <a class="np-chip" href="/products/#sources">Zoho</a>
+          <a class="np-chip" href="/products/#sources">ERPNext</a>
+          <a class="np-chip" href="/products/#sources">SAP</a>
+          <a class="np-chip" href="/products/#sources">NetSuite</a>
+          <a class="np-chip" href="/products/#sources">Dynamics</a>
+          <a class="np-chip" href="/products/#sources">Busy</a>
+          <a class="np-chip" href="/products/#sources">Marg</a>
+          <a class="np-chip" href="/products/#sources">Sage</a>
+          <a class="np-chip" href="/products/#sources">QuickBooks</a>
+          <a class="np-chip" href="/products/#sources">Xero</a>
+          <a class="np-chip" href="/products/#sources">Excel</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- For CAs dropdown -->
+  <div class="nav-panel nav-panel-cas" data-panel="cas" id="panelCas">
+    <div class="nav-panel-inner">
+      <a class="np-item" href="/for-cas/#partner"><span class="np-name">CA Partner Programme</span><span class="np-desc">White-label deployments, revenue share, tiered economics</span></a>
+      <a class="np-item" href="/for-cas/#implementation"><span class="np-name">CA-Assisted Implementation</span><span class="np-desc">Two-week guided onboarding for your first cohort</span></a>
+      <a class="np-item" href="/for-cas/#economics"><span class="np-name">Practice economics</span><span class="np-desc">Ten times the MIS throughput, three times the clients</span></a>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+{{ content }}
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+      <div>
+        <a href="/" style="display:inline-flex;align-items:center;margin-bottom:12px">
+          <img src="/assets/finlyttech-lockup-light.png" alt="FinLytTech" style="height:30px;width:auto;display:block">
+        </a>
+        <p class="footer-note">Built in India, for India.<br>Chennai · India-hosted by design.<br>Encrypted, DPDP-native, single-tenant per company.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Products</h4>
+        <a href="/products/#mis-essentials">MIS Essentials · ₹999</a>
+        <a href="/products/#fin-ops">Fin Ops Intelligence · ₹3,999</a>
+        <a href="/products/#forecasting">AI Cash Flow Forecasting · ₹5,999</a>
+        <a href="/products/#capital-suite">Capital Suite (2026 H2)</a>
+        <a href="/products/#erp">Enterprise ERP</a>
+        <a href="/products/#ced">Custom Enterprise Dashboard</a>
+        <a href="/products/#api">Any ERP via API</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="/condition/">The Condition</a>
+        <a href="/for-cas/">For Chartered Accountants</a>
+        <a href="/for-cas/#implementation">CA-Assisted Implementation</a>
+        <a href="/why/">Why FinLytTech</a>
+        <a href="/founder/">Know the Founder</a>
+        <a href="/faq/">FAQ</a>
+        <a href="/blog/">Blog</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contact &amp; legal</h4>
+        <a href="mailto:enquiry@finlyt.net">enquiry@finlyt.net</a>
+        <a href="mailto:enterprise@finlyt.net">enterprise@finlyt.net</a>
+        <a href="https://dashboard.finlyt.net">Open Dashboard</a>
+        <a href="/contact/#demo">Live Demo</a>
+        <a href="/contact/">Help</a>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
+      </div>
+    </div>
+
+    <div class="footer-base">
+      <span>© {{ site.time | date: "%Y" }} FinLytTech · Built in India for India.</span>
+      <span>Usually replied within a day · IST</span>
+    </div>
+  </div>
+</footer>
+
+<script src="/assets/finlyt.js"></script>
+</body>
+</html>
