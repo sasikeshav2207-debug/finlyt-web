@@ -196,3 +196,25 @@ a.np-chip:hover{border-color:var(--brand-emerald);color:var(--ink)}
   *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;
     transition-duration:.001ms!important}
 }
+
+/* ─── Brand tagline ──────────────────────────────────────────────────────
+   Sits under the lockup in the footer and in the home hero eyebrow. It is
+   deliberately NOT part of the logo artwork — the lockup travels alone. */
+.footer-tagline {
+  font: 600 13px/1.5 var(--font-display);
+  letter-spacing: -0.01em;
+  color: var(--emerald-300);
+  margin: 0 0 10px;
+}
+.hero-tagline {
+  display: inline-block;
+  font: 600 11.5px/1 var(--font-mono);
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--emerald-700);
+  background: var(--emerald-50);
+  border: 1px solid var(--emerald-200);
+  border-radius: var(--r-pill);
+  padding: 6px 13px;
+  margin-bottom: 20px;
+}

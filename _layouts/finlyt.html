@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#0D1B2A">
-{% seo %}
+{% seo title=false %}
+<title>{% if page.url == '/' %}{{ site.title }} — {{ site.tagline }}{% else %}{{ page.title }} · {{ site.title }}{% endif %}</title>
 <link rel="icon" href="/assets/finlyttech-favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/finlyttech-app-icon.png">
 <link rel="stylesheet" href="/assets/colors_and_type.css">
@@ -116,6 +117,7 @@
         <a href="/" style="display:inline-flex;align-items:center;margin-bottom:12px">
           <img src="/assets/finlyttech-logo-light.png" alt="FinLytTech" style="height:26px;width:auto;display:block">
         </a>
+        <p class="footer-tagline">Delivering Excellence through FinTelligence</p>
         <p class="footer-note">Built in India, for India.<br>Chennai · India-hosted by design.<br>Encrypted, DPDP-native, single-tenant per company.</p>
       </div>
 
