@@ -45,6 +45,9 @@ plugins:
 # Build artefacts + tooling that should never ship to /.
 exclude:
   - deploy.bat
+  - deploy.sh
+  - CLAUDE.md
+  - tools
   - vercel.json
   - render.yaml
   - LANDING_CHANGES_2026_06_07.md
