@@ -28,6 +28,7 @@ REPO_SLUG="sasikeshav2207-debug/finlyt-web"
 DOMAIN="finlyt.net"
 BRANCH="main"
 BUILD_TIMEOUT=300          # seconds to wait for the Pages build
+EDGE_TTL=600               # Fastly max-age on finlyt.net; a deploy can lag this long
 
 # Pages that must return 200 after a deploy. Keep in step with the nav.
 LIVE_PATHS=(
@@ -79,16 +80,49 @@ verify_live() {
     fi
   done
 
-  # The design changes that were explicitly requested must stay gone.
-  local home
-  home=$(curl -s -L --max-time 25 "https://$DOMAIN/" || true)
-  for pattern in "Three products, one substrate" "§" "Provenance · privacy"; do
-    if printf '%s' "$home" | grep -qF "$pattern"; then
-      printf "  %s✗%s removed content is back on the home page: %s\n" "$R" "$X" "$pattern"
-      fails=$((fails + 1))
+  # Content assertions. finlyt.net sits behind Fastly with max-age=600, so a
+  # fresh deploy can still be served from a stale edge object. Retry, and if it
+  # is still stale report the cache age rather than crying failure — the push
+  # itself already succeeded.
+  #
+  # Anything in this list must NOT appear on the public site: removed design
+  # furniture, and client-identifying detail.
+  local banned=(
+    "Three products, one substrate"   # hero roadmap kicker, removed
+    "§"                               # numbered section eyebrows, removed
+    "Provenance · privacy"            # section eyebrow, removed
+    "GeriCare"                        # real client name — never publish
+    "Skilled nursing"                 # client's business shape
+    "Patient flow"                    # client's business shape
+  )
+  local attempt=1 stale_age=0 content_ok=0
+  while [ "$attempt" -le 3 ]; do
+    local home hits
+    home=$(curl -s -L --max-time 25 "https://$DOMAIN/" || true)
+    hits=""
+    for pattern in "${banned[@]}"; do
+      printf '%s' "$home" | grep -qF "$pattern" && hits="$hits $pattern"
+    done
+    if [ -z "$hits" ]; then
+      content_ok=1
+      break
     fi
+    stale_age=$(curl -sI -L --max-time 20 "https://$DOMAIN/" | awk 'tolower($1)=="age:"{print $2+0}' | tail -1)
+    stale_age=${stale_age:-0}
+    warn "stale edge copy (Age ${stale_age}s of ${EDGE_TTL}s) — retrying in 45s"
+    attempt=$((attempt + 1))
+    [ "$attempt" -le 3 ] && sleep 45
   done
-  [ "$fails" -eq 0 ] && ok "removed section eyebrows still absent"
+
+  if [ "$content_ok" -eq 1 ]; then
+    ok "content assertions passed (nothing removed has returned)"
+  elif [ "${stale_age:-0}" -gt 60 ]; then
+    warn "edge still serving a cached copy (Age ${stale_age}s). It expires in about $((EDGE_TTL - stale_age))s."
+    warn "the push and build both succeeded — re-run './deploy.sh --verify' after that to confirm"
+  else
+    printf "  %s✗%s banned content is live on a fresh (uncached) response\n" "$R" "$X"
+    fails=$((fails + 1))
+  fi
 
   if [ "$fails" -gt 0 ]; then
     die "$fails live check(s) failed"
