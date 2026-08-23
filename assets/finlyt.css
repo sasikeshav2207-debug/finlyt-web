@@ -242,72 +242,140 @@ a.np-chip:hover{border-color:var(--brand-emerald);color:var(--ink)}
   .hero-flow > :nth-child(2) svg{display:none}
 }
 
-/* ─── Phase timeline ─────────────────────────────────────────────────────
-   Built vertical-first. A horizontal rail of six phases is the obvious
-   desktop drawing, but it is the thing that breaks on a phone — six columns
-   of prose in 360px. A vertical rail reads correctly at every width and
-   simply gets more room to breathe on a wide screen, so there is no
-   breakpoint at which the layout has to be rescued. */
-.tl { position: relative; margin: 0; padding: 0; list-style: none; }
-.tl::before {
-  content: ""; position: absolute; left: 15px; top: 10px; bottom: 10px;
-  width: 2px; background: linear-gradient(180deg, var(--brand-emerald), var(--rule) 78%);
-}
-.tl-item { position: relative; padding: 0 0 34px 52px; }
-.tl-item:last-child { padding-bottom: 0; }
+/* ═══════════════════════════════════════════════════════════════════════
+   PHASE TIMELINE — serpentine road
+   ═══════════════════════════════════════════════════════════════════════
+   A winding track that reads left-to-right, turns, and comes back. Built
+   from a CSS grid rather than one big SVG so the nodes stay real text:
+   selectable, translatable, and readable by a screen reader in order.
 
-.tl-node {
-  position: absolute; left: 0; top: 2px;
-  width: 32px; height: 32px; border-radius: 999px;
-  display: flex; align-items: center; justify-content: center;
-  font: 700 12px/1 var(--font-mono);
-  background: var(--paper); border: 2px solid var(--rule-strong);
-  color: var(--fg-3);
-}
-.tl-item[data-state="done"]  .tl-node { background: var(--brand-emerald); border-color: var(--brand-emerald); color: #fff; }
-.tl-item[data-state="now"]   .tl-node { background: var(--emerald-50); border-color: var(--brand-emerald); color: var(--emerald-700); }
+   The road is drawn per row — a horizontal spine behind the nodes, plus a
+   U-turn cap at the row end that carries the eye down to the next row. Rows
+   alternate direction, so the turn is on the right of odd rows and the left
+   of even ones.
 
-.tl-head { display: flex; align-items: baseline; flex-wrap: wrap; gap: 10px; margin-bottom: 4px; }
-.tl-title { font: 600 19px/1.25 var(--font-display); letter-spacing: -.018em; color: var(--ink); margin: 0; }
-.tl-meta { font: 500 11.5px var(--font-mono); color: var(--fg-3); }
-
-.tl-state {
-  font: 600 9.5px var(--font-mono); letter-spacing: .09em; text-transform: uppercase;
-  padding: 3px 9px; border-radius: 999px; white-space: nowrap;
-  background: var(--paper-3); border: 1px solid var(--rule-strong); color: var(--fg-3);
+   Below 900px the whole thing becomes a plain vertical rail. A serpentine
+   is a wide-screen idea; on a phone it is just a broken one.
+   ═══════════════════════════════════════════════════════════════════════ */
+.road {
+  --road: 4px;                 /* track thickness */
+  --road-col: var(--navy-600);
+  --road-lit: var(--brand-amber);
+  background: linear-gradient(180deg, var(--navy-800), var(--navy-900));
+  border-radius: var(--r-2xl);
+  padding: 54px 46px 46px;
+  position: relative;
+  overflow: hidden;
 }
-.tl-item[data-state="done"] .tl-state { background: var(--emerald-50); border-color: var(--emerald-200); color: var(--emerald-700); }
-.tl-item[data-state="now"]  .tl-state { background: var(--warning-tint); border-color: var(--amber-200); color: var(--amber-700); }
-
-.tl-body { font: 400 14.5px/1.65 var(--font-sans); color: var(--fg-2); margin: 0 0 12px; max-width: 66ch; }
-.tl-list { margin: 0; padding: 0; list-style: none; display: grid; gap: 7px; }
-.tl-list li {
-  position: relative; padding-left: 17px;
-  font: 400 13.5px/1.6 var(--font-sans); color: var(--fg-2);
-}
-.tl-list li::before {
-  content: ""; position: absolute; left: 2px; top: 8px;
-  width: 5px; height: 5px; border-radius: 999px; background: var(--emerald-300);
+/* Faint dot field, the same device the light sections use. */
+.road::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(circle, rgba(255,255,255,.05) 1px, transparent 1.5px);
+  background-size: 26px 26px;
 }
 
-/* At-a-glance strip. Wraps rather than scrolls, so it never needs a
-   horizontal gesture on a phone. */
-.phase-strip { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 8px; padding: 0; list-style: none; }
+.road-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(var(--n, 4), 1fr);
+  gap: 26px;
+  padding-bottom: 68px;
+}
+.road-row:last-child { padding-bottom: 0; }
+.road-row.is-rev { direction: rtl; }
+.road-row.is-rev > * { direction: ltr; }
+
+/* The spine, threaded behind the nodes at the height of the phase badge. */
+.road-row::before {
+  content: ""; position: absolute; z-index: 0;
+  left: 6%; right: 6%; top: 26px; height: var(--road);
+  background: var(--road-col);
+  border-radius: var(--r-pill);
+}
+/* The U-turn. A three-sided rounded box hanging off the end of the row,
+   reaching down to meet the next row's spine. */
+.road-row:not(:last-child)::after {
+  content: ""; position: absolute; z-index: 0;
+  top: 26px; height: 68px; width: 54px;
+  border: var(--road) solid var(--road-col);
+}
+.road-row:not(.is-rev):not(:last-child)::after {
+  right: 6%; transform: translateX(50%);
+  border-left: 0;
+  border-radius: 0 999px 999px 0;
+}
+.road-row.is-rev:not(:last-child)::after {
+  left: 6%; transform: translateX(-50%);
+  border-right: 0;
+  border-radius: 999px 0 0 999px;
+}
+
+.stop { position: relative; z-index: 1; }
+
+.stop-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 54px; height: 34px; padding: 0 12px;
+  border-radius: var(--r-sm);
+  font: 700 13px/1 var(--font-mono); letter-spacing: .04em;
+  background: var(--road-lit); color: var(--navy-900);
+  box-shadow: 0 0 0 5px var(--navy-800);
+  margin-bottom: 16px;
+}
+.stop[data-built] .stop-badge { background: var(--brand-emerald); color: #fff; }
+
+.stop-word {
+  font: 700 26px/1 var(--font-display); letter-spacing: -.022em;
+  color: #fff; margin: 0 0 7px;
+}
+.stop[data-built] .stop-word { color: var(--emerald-300); }
+
+.stop-name { font: 600 13px/1.4 var(--font-sans); color: var(--navy-200); margin: 0 0 9px; }
+
+.stop-meta {
+  font: 500 11px/1.45 var(--font-mono); color: var(--navy-300);
+  display: block;
+}
+.stop-tag {
+  display: inline-block; margin-top: 9px;
+  font: 600 9px var(--font-mono); letter-spacing: .1em; text-transform: uppercase;
+  padding: 3px 8px; border-radius: var(--r-pill);
+  border: 1px solid var(--navy-600); color: var(--navy-300);
+}
+.stop[data-built] .stop-tag {
+  border-color: var(--emerald-700); color: var(--emerald-300);
+  background: rgba(29,158,117,.12);
+}
+
+@media (max-width:1180px){
+  .road-row { --n: 2 !important; }
+}
+@media (max-width:900px){
+  .road { padding: 34px 22px; }
+  /* Vertical rail. The serpentine turns and alternating rows do not survive
+     a narrow column, so they are dropped rather than squeezed. */
+  .road-row { --n: 1 !important; gap: 0; padding-bottom: 0; direction: ltr; }
+  .road-row::before, .road-row::after { display: none; }
+  .road-row > * { padding: 0 0 30px 46px; }
+  .road-row > *:last-child { padding-bottom: 0; }
+  .stop::before {
+    content: ""; position: absolute; left: 16px; top: 8px; bottom: -8px;
+    width: var(--road); background: var(--road-col);
+  }
+  .road-row:last-child .stop:last-child::before { display: none; }
+  .stop-badge { position: absolute; left: 0; top: 0; min-width: 36px; height: 26px;
+    padding: 0 7px; font-size: 11px; margin: 0; box-shadow: 0 0 0 4px var(--navy-800); }
+  .stop-word { font-size: 21px; }
+}
+
+/* At-a-glance phase chips, used in the home hero above the fold. Wraps
+   rather than scrolls, so it never asks for a horizontal gesture. */
+.phase-strip { display: flex; flex-wrap: wrap; gap: 7px; margin: 0 0 10px; padding: 0; list-style: none; }
 .phase-strip li {
-  display: inline-flex; align-items: center; gap: 7px;
-  padding: 7px 13px; border-radius: 999px;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 6px 12px; border-radius: var(--r-pill);
   border: 1px solid var(--rule); background: var(--paper);
-  font: 500 12px var(--font-sans); color: var(--fg-2); white-space: nowrap;
+  font: 500 11.5px var(--font-sans); color: var(--fg-2); white-space: nowrap;
 }
-.phase-strip li b { font: 700 10.5px var(--font-mono); color: var(--fg-3); }
-.phase-strip li[data-state="done"] { border-color: var(--emerald-200); background: var(--emerald-50); color: var(--emerald-800); }
-.phase-strip li[data-state="done"] b { color: var(--emerald-700); }
-.phase-strip li[data-state="now"] { border-color: var(--amber-200); background: var(--warning-tint); color: var(--amber-700); }
-.phase-strip li[data-state="now"] b { color: var(--amber-700); }
-
-@media (max-width:760px){
-  .tl::before { left: 13px; }
-  .tl-item { padding-left: 44px; padding-bottom: 28px; }
-  .tl-node { width: 28px; height: 28px; font-size: 11px; }
-  .tl-title { font-size: 17px; }
-}
+.phase-strip li b { font: 700 10px var(--font-mono); color: var(--fg-3); }
+.phase-strip li[data-built] { border-color: var(--emerald-200); background: var(--emerald-50); color: var(--emerald-800); }
+.phase-strip li[data-built] b { color: var(--emerald-700); }
