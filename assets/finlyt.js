@@ -242,10 +242,14 @@
   }
 
   /* ------------------------------------------------------- contact form */
-  // The site is static on GitHub Pages, so there is no server to POST to.
-  // Submitting composes a fully-populated message to the founder instead —
-  // every field is written into the body, so nothing has to be retyped.
-  var MAILBOX = "founder@finlyt.net";
+  // Submissions POST to the FinLytTech backend and land in the admin console
+  // under Enquiries (dashboard.finlyt.net/admin/enquiries), which is where
+  // website leads are already worked. The backend emails a notification and
+  // an acknowledgement; this page only has to hand over the fields.
+  //
+  // CORS on that endpoint already allows https://finlyt.net.
+  var ENQUIRY_URL = "https://app.finlyt.net/api/enquiry";
+  var MAILBOX = "founder@finlyt.net";   // fallback only, if the POST fails
 
   // Existing CTAs across the site deep-link to /contact/#demo, #partner and so
   // on. Those anchors now preselect the enquiry type rather than pointing at
@@ -356,24 +360,71 @@
       if (errEl) errEl.hidden = true;
 
       var intent = val("intent") || "Enquiry";
-      var lines = [
-        "Name:    " + val("name"),
-        "Company: " + val("company"),
-        "Email:   " + email,
-        "Phone:   " + (val("phone") || "-"),
-        "Needs:   " + intent,
-        "Books:   " + (val("books") || "-"),
+      var body = [
+        "Needs: " + intent,
+        "Books: " + (val("books") || "not stated"),
         "",
-        "Message:",
-        val("message") || "-",
-        "",
-        "— sent from finlyt.net/contact"
-      ];
+        val("message") || "(no message)"
+      ].join(String.fromCharCode(10));
 
-      window.location.href = "mailto:" + MAILBOX +
-        "?subject=" + encodeURIComponent(intent + " — " + val("company")) +
-        "&body=" + encodeURIComponent(lines.join("\n"));
+      // Honeypot: real people never fill this.
+      if (val("website")) { close(); return; }
+
+      var submitBtn = form.querySelector('button[type="submit"]');
+      var restore = submitBtn ? submitBtn.textContent : "";
+      if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = "Sending…"; }
+
+      function fail() {
+        if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = restore; }
+        if (errEl) {
+          errEl.innerHTML = 'That did not send. <a href="mailto:' + MAILBOX + '">Email us instead</a>.';
+          errEl.hidden = false;
+        }
+      }
+
+      if (!window.fetch) { fail(); return; }
+
+      window.fetch(ENQUIRY_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: val("name"),
+          email: email,
+          company: val("company"),
+          phone: val("phone"),
+          message: body,
+          source: "Contact Us (website)"
+        })
+      }).then(function (res) {
+        if (!res.ok) throw new Error("status " + res.status);
+        showSent(intent);
+      })["catch"](fail);
     });
+
+    /* ---- success state ------------------------------------------------- */
+    function showSent(intent) {
+      var title = document.getElementById("contactDialogTitle");
+      if (title) title.textContent = "Thank you — that has reached us";
+      var lede = document.getElementById("contactDialogLede");
+      if (lede) lede.remove();
+      form.innerHTML =
+        '<div style="padding:4px 0">' +
+          '<div style="width:46px;height:46px;border-radius:999px;background:var(--emerald-50);' +
+          'display:inline-flex;align-items:center;justify-content:center;margin-bottom:16px">' +
+            '<svg viewBox="0 0 24 24" style="width:22px;height:22px" fill="none" stroke="#157E5C" ' +
+            'stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
+            '<path d="M20 6 9 17l-5-5"></path></svg>' +
+          '</div>' +
+          '<p style="font:400 15px/1.65 var(--font-sans);color:var(--fg-2);margin:0 0 20px">' +
+            'We have your note about <b style="color:var(--ink)">' + intent.toLowerCase() +
+            '</b>, and a confirmation is on its way to your inbox. The founding team usually ' +
+            'replies the same working day, IST.</p>' +
+          '<button type="button" class="btn-dark" data-close-sent ' +
+          'style="border:0;cursor:pointer;font:600 15px var(--font-sans)">Close</button>' +
+        '</div>';
+      var btn = form.querySelector("[data-close-sent]");
+      if (btn) btn.addEventListener("click", close);
+    }
   }
 
   /* --------------------------------------------------------------- boot */
