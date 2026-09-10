@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cash Flow — Model 2 · Profit vs Cash</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0D1B2A; --ink-soft:#3D5163; --ink-mute:#647688;
+  --em:#1D9E75; --em-50:#ECFAF4; --em-200:#A3E4CA; --em-700:#105F46;
+  --am:#EF9F27; --am-50:#FEF6E7; --am-200:#FAD17B; --am-700:#75450B;
+  --ng:#D7423F; --ng-50:#FCEDEC; --ng-200:#F2B8B6;
+  --paper:#fff; --paper-2:#FAFBFC; --paper-3:#F4F6F8;
+  --rule:#E5E9EE; --rule-2:#CFD6DE;
+  --disp:'Manrope',system-ui,sans-serif; --sans:'Plus Jakarta Sans',system-ui,sans-serif; --mono:'JetBrains Mono',monospace;
+  --r:10px;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--paper-2);color:var(--ink-soft);font-family:var(--sans);font-size:14.5px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:32px 24px 80px}
+h1,h2,h3{font-family:var(--disp);color:var(--ink);margin:0;letter-spacing:-.02em}
+.eyebrow{font:600 10.5px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--em-700)}
+.sub{color:var(--ink-mute);margin:6px 0 0}
+.card{background:var(--paper);border:1px solid var(--rule);border-radius:var(--r);padding:22px}
+.muted{color:var(--ink-mute)}
+.modelbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px}
+.modelbar a{font:600 12px var(--sans);text-decoration:none;padding:7px 13px;border-radius:99px;border:1px solid var(--rule);background:var(--paper);color:var(--ink-mute)}
+.modelbar a b{font-weight:700;opacity:.55;font-size:11px}
+.modelbar a.on b{opacity:.75}
+.modelbar a.on{background:var(--ink);border-color:var(--ink);color:#fff}
+header{margin-bottom:24px}
+header h1{font-size:30px;margin-top:8px}
+
+/* the question */
+.q{background:var(--ink);color:#fff;border-radius:var(--r);padding:28px 30px;margin-top:22px}
+.q .two{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px}
+@media(max-width:760px){.q .two{grid-template-columns:1fr;gap:14px}}
+.q .lbl{font:600 10.5px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#7E93A8}
+.q .big{font-family:var(--disp);font-size:40px;font-weight:700;letter-spacing:-.03em;margin-top:4px;color:#fff}
+.q .vs{font-family:var(--mono);font-size:12px;color:#7E93A8;text-align:center}
+.q .gapline{margin-top:22px;padding-top:20px;border-top:1px solid #20344A;display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap}
+.q .gapline .t{font-size:14.5px;color:#B8C4D0;max-width:56ch}
+.q .gapline .g{font-family:var(--disp);font-size:30px;font-weight:700;color:var(--am-200);white-space:nowrap}
+
+/* the trail */
+.trail{margin-top:22px}
+.trail h2{font-size:19px;margin-bottom:4px}
+.trail .lede{color:var(--ink-mute);margin:0 0 16px}
+.item{background:var(--paper);border:1px solid var(--rule);border-radius:var(--r);margin-bottom:12px;overflow:hidden}
+.item .head{display:grid;grid-template-columns:auto 1fr auto;gap:16px;align-items:center;padding:18px 20px;cursor:pointer}
+.item .head:hover{background:var(--paper-2)}
+.chip{width:44px;height:44px;border-radius:9px;display:flex;align-items:center;justify-content:center;font:700 15px var(--mono);flex-shrink:0}
+.chip.out{background:var(--ng-50);color:var(--ng)}
+.chip.in{background:var(--em-50);color:var(--em-700)}
+.item .t{font-family:var(--disp);font-weight:600;font-size:16px;color:var(--ink)}
+.item .s{font-size:13px;color:var(--ink-mute);margin-top:2px}
+.item .a{font-family:var(--mono);font-size:19px;font-weight:600;white-space:nowrap;text-align:right}
+.item .a.out{color:var(--ng)} .item .a.in{color:var(--em-700)}
+.item .a small{display:block;font-size:11px;font-weight:500;color:var(--ink-mute);margin-top:3px}
+.body{display:none;padding:0 20px 20px;border-top:1px solid var(--rule)}
+.item.open .body{display:block}
+.body .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:16px 0}
+.body .g{background:var(--paper-3);border-radius:8px;padding:12px 14px}
+.body .g span{font:600 9.5px var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-mute);display:block}
+.body .g b{font-family:var(--mono);font-size:17px;color:var(--ink);display:block;margin-top:3px}
+.act{border:1px solid var(--em-200);background:var(--em-50);border-radius:8px;padding:14px 16px;font-size:13.5px}
+.act .k{font:600 9.5px var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--em-700);display:block;margin-bottom:5px}
+.act b{color:var(--ink)}
+.act.none{border-color:var(--rule-2);background:var(--paper-3)}
+.act.none .k{color:var(--ink-mute)}
+
+/* recoverable */
+.rec{margin-top:22px;border:1px solid var(--rule);border-left:4px solid var(--am);background:var(--am-50);border-radius:0 var(--r) var(--r) 0;padding:22px 24px}
+.rec .k{font:600 10px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--am-700)}
+.rec h3{font-size:18px;margin:6px 0 8px}
+.rec .split{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+@media(max-width:700px){.rec .split{grid-template-columns:1fr}}
+.rec .b{background:var(--paper);border:1px solid var(--am-200);border-radius:8px;padding:15px 16px}
+.rec .b span{font:600 9.5px var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-mute);display:block}
+.rec .b b{font-family:var(--disp);font-size:22px;color:var(--ink);display:block;margin:3px 0 5px}
+.rec .b p{margin:0;font-size:12.5px;color:var(--ink-soft)}
+
+/* accounting */
+.acct{margin-top:26px}
+.toggle{display:inline-flex;align-items:center;gap:9px;background:var(--paper);border:1px solid var(--rule-2);border-radius:99px;padding:9px 16px;font:600 12.5px var(--sans);color:var(--ink);cursor:pointer}
+.toggle:hover{border-color:var(--ink)}
+.toggle .chev{transition:transform .18s}
+.toggle[aria-expanded="true"] .chev{transform:rotate(90deg)}
+#acctPanel{display:none;margin-top:14px}
+#acctPanel.show{display:block}
+table{width:100%;border-collapse:collapse;font-size:13.5px;background:var(--paper)}
+th{background:var(--ink);color:#fff;font:600 10px var(--mono);letter-spacing:.1em;text-transform:uppercase;padding:11px 14px;text-align:right}
+th:first-child{text-align:left}
+td{padding:10px 14px;border-bottom:1px solid var(--rule);text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums}
+td:first-child{text-align:left;font-family:var(--sans)}
+tr.sec td{background:var(--paper-3);font-weight:700;font-family:var(--sans);color:var(--ink);text-align:left}
+tr.tot td{border-top:2px solid var(--ink);border-bottom:0;font-weight:700;color:var(--ink)}
+tr.hl td{background:var(--am-50)}
+td.pos{color:var(--em-700)} td.neg{color:var(--ng)}
+.foot{margin-top:30px;padding-top:18px;border-top:1px solid var(--rule);font-size:12px;color:var(--ink-mute)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="modelbar">
+  <a class="on" href="model-2-profit-vs-cash.html">Profit vs cash <b>&middot; default</b></a>
+  <a  href="model-1-cash-in-cash-out.html">Cash in, cash out</a>
+  <a  href="model-3-what-can-i-spend.html">What can I spend</a>
+</div>
+
+<header>
+  <div class="eyebrow">Cash flow · FY 2021-22 vs FY 2020-21</div>
+  <h1>You made ₹69.25L. Only ₹51.60L reached the bank.</h1>
+  <p class="sub">Five places it went. One of them matters.</p>
+</header>
+
+<div class="q">
+  <div class="two">
+    <div>
+      <div class="lbl">Profit you earned</div>
+      <div class="big">₹69.25L</div>
+    </div>
+    <div class="vs">but only</div>
+    <div>
+      <div class="lbl">Cash you actually banked</div>
+      <div class="big">₹51.60L</div>
+    </div>
+  </div>
+  <div class="gapline">
+    <div class="t">The difference is not lost. It is money you have earned that is sitting somewhere other than your bank account — and most of it is recoverable.</div>
+    <div class="g">₹17.65L</div>
+  </div>
+</div>
+
+<div class="trail">
+  <h2>Where the ₹17.65L went</h2>
+  <p class="lede">Click any line to see the working and what you can do about it.</p>
+
+  <div class="item">
+    <div class="head" data-t>
+      <div class="chip out">1</div>
+      <div>
+        <div class="t">Sitting with customers who have not paid</div>
+        <div class="s">Invoices raised and earned, cash not received</div>
+      </div>
+      <div class="a out">−₹16.82L<small>95% of the gap</small></div>
+    </div>
+    <div class="body">
+      <div class="grid">
+        <div class="g"><span>Total owed to you</span><b>₹55.08L</b></div>
+        <div class="g"><span>Past 30 days</span><b>₹34.38L</b></div>
+        <div class="g"><span>Debtor days</span><b>129</b></div>
+        <div class="g"><span>One group's share</span><b>64.8%</b></div>
+      </div>
+      <p>Nearly the whole gap is this one line. You are owed ₹55.08L, of which ₹34.38L has already been outstanding more than a month, and 64.8% of the book sits with a single customer group across CBE, TPR and Kochi.</p>
+      <div class="act">
+        <span class="k">Do this</span>
+        <b>Issue formal demand notices to CBE (₹25.41L) and TPR (₹6.51L) with a 30-day cure period.</b> Cap further credit to the group at 50% of current outstanding until the overdue clears. Collecting even half of the ₹34.38L overdue would put ₹17L into the bank — more than the entire profit-to-cash gap.
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="head" data-t>
+      <div class="chip out">2</div>
+      <div>
+        <div class="t">Sitting on the shelf as stock</div>
+        <div class="s">Bought and paid for, not yet sold</div>
+      </div>
+      <div class="a out">−₹3.04L<small>17% of the gap</small></div>
+    </div>
+    <div class="body">
+      <div class="grid">
+        <div class="g"><span>Closing stock</span><b>₹5.71L</b></div>
+        <div class="g"><span>Stock turns</span><b>8.7×</b></div>
+        <div class="g"><span>Days of cover</span><b>42</b></div>
+        <div class="g"><span>Stock as % of revenue</span><b>3.7%</b></div>
+      </div>
+      <p>Stock grew ₹3.04L to fund a business that tripled in size. At 8.7 turns and 42 days of cover this is a reasonable level, not a problem. It is working capital doing its job.</p>
+      <div class="act none">
+        <span class="k">No action needed</span>
+        Stock is proportionate to the growth. Worth watching if turns fall below 6, but nothing to do this quarter.
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="head" data-t>
+      <div class="chip in">3</div>
+      <div>
+        <div class="t">Held back from suppliers</div>
+        <div class="s">Bought on credit, not yet paid — this helps you</div>
+      </div>
+      <div class="a in">+₹2.93L<small>reduces the gap</small></div>
+    </div>
+    <div class="body">
+      <div class="grid">
+        <div class="g"><span>Owed to suppliers</span><b>₹4.33L</b></div>
+        <div class="g"><span>Creditor days</span><b>43</b></div>
+        <div class="g"><span>One supplier's share</span><b>98.7%</b></div>
+        <div class="g"><span>Change on last year</span><b>−20 days</b></div>
+      </div>
+      <p>Supplier credit put ₹2.93L back in your pocket. But note the shape of it: you pay in 43 days and collect in 129. You are funding your customers for 86 days out of your own bank balance.</p>
+      <div class="act">
+        <span class="k">Do this</span>
+        <b>Look at the 86-day gap before you look at anything else.</b> Northwell Pharma is 98.7% of your payables — a single relationship. Ask them for 60-day terms rather than 43. That alone releases roughly ₹2L, and it costs you nothing but the conversation.
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="head" data-t>
+      <div class="chip out">4</div>
+      <div>
+        <div class="t">Other dues settled during the year</div>
+        <div class="s">Statutory and miscellaneous balances paid down</div>
+      </div>
+      <div class="a out">−₹78,397<small>4% of the gap</small></div>
+    </div>
+    <div class="body">
+      <p>Small balances carried from last year that were cleared this year. Nothing structural.</p>
+      <div class="act none">
+        <span class="k">No action needed</span>
+        Routine settlement of prior-year balances.
+      </div>
+    </div>
+  </div>
+
+  <div class="item">
+    <div class="head" data-t>
+      <div class="chip in">5</div>
+      <div>
+        <div class="t">Depreciation added back</div>
+        <div class="s">A cost in the P&amp;L that never left the bank</div>
+      </div>
+      <div class="a in">+₹6,400<small>negligible</small></div>
+    </div>
+    <div class="body">
+      <p>Your entire fixed asset base is ₹9,600 of computer software against ₹1.55Cr of revenue. Depreciation is therefore almost nothing, and the profit-to-cash gap has essentially no non-cash element.</p>
+      <div class="act">
+        <span class="k">Worth thinking about</span>
+        A business turning over ₹1.55Cr with ₹9,600 of assets owns nothing — no warehouse, no vehicles, no equipment. That is why packing and freight together cost ₹6L, or 3.9% of revenue. A small central facility might pay for itself, and it is worth pricing.
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="rec">
+  <div class="k">The point of all this</div>
+  <h3>₹16.82L of the ₹17.65L gap is one problem, and it is collectable</h3>
+  <p>Stock is fine. Supplier credit is helping. Depreciation is irrelevant. Strip those away and the profit-to-cash gap is almost entirely money your customers are holding.</p>
+  <div class="split">
+    <div class="b">
+      <span>If nothing changes</span>
+      <b>₹17.65L</b>
+      <p>stays out of the bank, and grows with revenue. At this year's rate a doubling of sales locks up another ₹17L.</p>
+    </div>
+    <div class="b">
+      <span>If you collect the overdue half</span>
+      <b>+₹17.19L</b>
+      <p>lands in the bank within the cure period, which closes the entire gap and needs no change to how you trade.</p>
+    </div>
+  </div>
+</div>
+
+<div class="acct">
+  <button class="toggle" id="tg" aria-expanded="false" aria-controls="acctPanel">
+    <span class="chev">&#9656;</span> Show the accounting view — current year, prior year and movement
+  </button>
+  <div id="acctPanel">
+    <div class="card" style="padding:0;overflow:hidden;margin-top:14px">
+      <table>
+        <thead><tr><th>Particulars</th><th>FY 2021-22</th><th>FY 2020-21</th><th>Movement</th></tr></thead>
+        <tbody>
+          <tr class="sec"><td colspan="4">Operating activities — indirect method</td></tr>
+          <tr><td>Net profit</td><td>₹69.25L</td><td>₹31.89L</td><td class="pos">₹37.35L</td></tr>
+          <tr><td>Add: depreciation</td><td>₹6,400</td><td>₹4,000</td><td class="pos">₹2,400</td></tr>
+          <tr class="hl"><td>(Increase) in receivables</td><td>-₹16.82L</td><td>₹0</td><td class="neg">-₹16.82L</td></tr>
+          <tr><td>(Increase) in inventory</td><td>-₹3.04L</td><td>-₹2.67L</td><td class="neg">-₹37,127</td></tr>
+          <tr><td>Increase in payables</td><td>₹2.93L</td><td>-₹30,077</td><td class="pos">₹3.23L</td></tr>
+          <tr><td>(Decrease) in other current liabilities</td><td>-₹78,397</td><td>₹30,077</td><td class="neg">-₹1.08L</td></tr>
+          <tr class="tot"><td>Net cash from operating activities</td><td>₹51.60L</td><td>₹29.26L</td><td class="pos">₹22.33L</td></tr>
+          <tr class="sec"><td colspan="4">Investing and financing</td></tr>
+          <tr><td>Purchase of fixed assets</td><td>₹0</td><td>-₹4,000</td><td class="pos">₹4,000</td></tr>
+          <tr><td>Capital introduced / (withdrawn)</td><td>₹0</td><td>-₹31.89L</td><td class="pos">₹31.89L</td></tr>
+          <tr class="tot"><td>Net increase in cash</td><td>₹51.60L</td><td>-₹2.67L</td><td class="pos">₹54.27L</td></tr>
+          <tr><td>Opening cash and bank</td><td>₹7.50L</td><td>₹7.50L</td><td>₹0</td></tr>
+          <tr class="tot"><td>Closing cash and bank</td><td>₹59.09L</td><td>₹7.50L</td><td class="pos">₹51.60L</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="font-size:12.5px;margin-top:12px">
+      The highlighted row is the one that matters. Everything above reorders these same lines by how much of the gap each explains, and attaches an action to each.
+      No figure is restated.
+    </p>
+  </div>
+</div>
+
+<p class="foot">
+  Model 2 of 3 · Interactive prototype for the FinLytTech cash flow redesign. Figures from the FY 2021-22 MIS report.
+</p>
+
+</div>
+<script>
+document.querySelectorAll('[data-t]').forEach(function(h){
+  h.addEventListener('click', function(){ h.parentElement.classList.toggle('open'); });
+});
+var tg = document.getElementById('tg'), pn = document.getElementById('acctPanel');
+tg.addEventListener('click', function(){
+  var open = pn.classList.toggle('show');
+  tg.setAttribute('aria-expanded', open ? 'true' : 'false');
+});
+</script>
+</body>
+</html>

@@ -96,6 +96,8 @@ verify_live() {
     "Patient flow"                    # client's business shape
     "enquiry@finlyt.net"              # never existed — do not publish
     "enterprise@finlyt.net"           # never existed — do not publish
+    "Eye Foundation"                  # real client name — never publish
+    "Senses Pharmaceuticals"          # real client's supplier — never publish
   )
   local attempt=1 stale_age=0 content_ok=0
   while [ "$attempt" -le 3 ]; do

@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en-IN">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cash Flow — Model 3 · What can I actually spend</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0D1B2A; --ink-soft:#3D5163; --ink-mute:#647688;
+  --em:#1D9E75; --em-50:#ECFAF4; --em-200:#A3E4CA; --em-700:#105F46;
+  --am:#EF9F27; --am-50:#FEF6E7; --am-200:#FAD17B; --am-700:#75450B;
+  --ng:#D7423F; --ng-50:#FCEDEC; --ng-200:#F2B8B6;
+  --paper:#fff; --paper-2:#FAFBFC; --paper-3:#F4F6F8;
+  --rule:#E5E9EE; --rule-2:#CFD6DE;
+  --disp:'Manrope',system-ui,sans-serif; --sans:'Plus Jakarta Sans',system-ui,sans-serif; --mono:'JetBrains Mono',monospace;
+  --r:10px;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--paper-2);color:var(--ink-soft);font-family:var(--sans);font-size:14.5px;line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:32px 24px 80px}
+h1,h2,h3{font-family:var(--disp);color:var(--ink);margin:0;letter-spacing:-.02em}
+.eyebrow{font:600 10.5px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--em-700)}
+.sub{color:var(--ink-mute);margin:6px 0 0}
+.card{background:var(--paper);border:1px solid var(--rule);border-radius:var(--r);padding:22px}
+.muted{color:var(--ink-mute)}
+.modelbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px}
+.modelbar a{font:600 12px var(--sans);text-decoration:none;padding:7px 13px;border-radius:99px;border:1px solid var(--rule);background:var(--paper);color:var(--ink-mute)}
+.modelbar a b{font-weight:700;opacity:.55;font-size:11px}
+.modelbar a.on b{opacity:.75}
+.modelbar a.on{background:var(--ink);border-color:var(--ink);color:#fff}
+header{margin-bottom:22px}
+header h1{font-size:30px;margin-top:8px}
+
+/* headline claim */
+.claim{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+@media(max-width:720px){.claim{grid-template-columns:1fr}}
+.claim .c{border-radius:var(--r);padding:22px 24px;border:1px solid var(--rule);background:var(--paper)}
+.claim .c.dim{background:var(--paper-3)}
+.claim .c.hero{background:var(--ink);border-color:var(--ink)}
+.claim .lbl{font:600 10.5px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute)}
+.claim .hero .lbl{color:var(--em-200)}
+.claim .v{font-family:var(--disp);font-size:38px;font-weight:700;letter-spacing:-.03em;color:var(--ink);margin-top:4px}
+.claim .hero .v{color:#fff}
+.claim p{margin:8px 0 0;font-size:13.5px}
+.claim .hero p{color:#9FB4C6}
+
+/* the bar */
+.barwrap{margin-top:22px}
+.barwrap h2{font-size:19px;margin-bottom:3px}
+.barwrap .lede{color:var(--ink-mute);margin:0 0 16px}
+.bar{display:flex;height:58px;border-radius:8px;overflow:hidden;border:1px solid var(--rule)}
+.bar div{display:flex;align-items:center;justify-content:center;font:600 12.5px var(--sans);color:#fff;cursor:pointer;transition:filter .15s;position:relative}
+.bar div:hover{filter:brightness(1.08)}
+.bar .b1{background:var(--ng);flex:39.98}
+.bar .b2{background:var(--am);flex:4.81}
+.bar .b3{background:var(--em);flex:14.30}
+.bar div span{padding:0 6px;text-align:center;line-height:1.25}
+.legend{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+@media(max-width:720px){.legend{grid-template-columns:1fr}}
+.legend .l{border:1px solid var(--rule);border-radius:8px;padding:14px 16px;background:var(--paper);border-left-width:4px}
+.legend .l.a{border-left-color:var(--ng)}
+.legend .l.b{border-left-color:var(--am)}
+.legend .l.c{border-left-color:var(--em)}
+.legend .l span{font:600 9.5px var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-mute);display:block}
+.legend .l b{font-family:var(--disp);font-size:21px;color:var(--ink);display:block;margin:3px 0 4px}
+.legend .l p{margin:0;font-size:12.5px}
+
+/* runway */
+.runway{margin-top:22px;border:1px solid var(--rule);border-left:4px solid var(--am);background:var(--am-50);border-radius:0 var(--r) var(--r) 0;padding:22px 24px}
+.runway .k{font:600 10px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--am-700)}
+.runway h3{font-size:18px;margin:6px 0 8px}
+.runway .mm{display:flex;gap:24px;flex-wrap:wrap;margin-top:14px}
+.runway .mm div{background:var(--paper);border:1px solid var(--am-200);border-radius:8px;padding:12px 16px}
+.runway .mm span{font:600 9.5px var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-mute);display:block}
+.runway .mm b{font-family:var(--mono);font-size:19px;color:var(--ink);display:block;margin-top:2px}
+
+/* owed to you */
+.owed{margin-top:22px}
+.owed h2{font-size:19px;margin-bottom:3px}
+.owed .lede{color:var(--ink-mute);margin:0 0 16px}
+.buckets{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:720px){.buckets{grid-template-columns:1fr}}
+.bk{border:1px solid var(--rule);border-radius:var(--r);background:var(--paper);padding:18px 20px}
+.bk .t{font-family:var(--disp);font-weight:600;color:var(--ink);font-size:15px;display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.bk .t em{font-family:var(--mono);font-style:normal;font-size:19px;font-weight:600}
+.bk.ok .t em{color:var(--em-700)} .bk.late .t em{color:var(--ng)}
+.bk p{margin:8px 0 0;font-size:13px}
+.bk .who{margin-top:12px;border-top:1px solid var(--rule);padding-top:11px}
+.bk .who div{display:flex;justify-content:space-between;padding:5px 0;font-size:12.5px;font-family:var(--mono)}
+.bk .who div span{font-family:var(--sans);color:var(--ink-soft)}
+.bk .who div b{color:var(--ink)}
+
+/* action */
+.act{margin-top:22px;border:1px solid var(--rule);border-left:4px solid var(--em);background:var(--em-50);border-radius:0 var(--r) var(--r) 0;padding:22px 24px}
+.act .k{font:600 10px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--em-700)}
+.act h3{font-size:18px;margin:6px 0 8px}
+.act .two{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:16px}
+@media(max-width:700px){.act .two{grid-template-columns:1fr}}
+.act .two div{background:var(--paper);border:1px solid var(--em-200);border-radius:8px;padding:15px 16px}
+.act .two span{font:600 9.5px var(--mono);letter-spacing:.11em;text-transform:uppercase;color:var(--ink-mute);display:block}
+.act .two b{font-family:var(--disp);font-size:22px;color:var(--ink);display:block;margin:3px 0 5px}
+.act .two p{margin:0;font-size:12.5px}
+
+/* flag */
+.flag{margin-top:22px;border:1px solid var(--rule-2);background:var(--paper-3);border-radius:var(--r);padding:18px 20px;font-size:13.5px}
+.flag .k{font:600 10px var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute);display:block;margin-bottom:6px}
+.flag b{color:var(--ink)}
+
+/* accounting */
+.acct{margin-top:26px}
+.toggle{display:inline-flex;align-items:center;gap:9px;background:var(--paper);border:1px solid var(--rule-2);border-radius:99px;padding:9px 16px;font:600 12.5px var(--sans);color:var(--ink);cursor:pointer}
+.toggle:hover{border-color:var(--ink)}
+.toggle .chev{transition:transform .18s}
+.toggle[aria-expanded="true"] .chev{transform:rotate(90deg)}
+#acctPanel{display:none;margin-top:14px}
+#acctPanel.show{display:block}
+table{width:100%;border-collapse:collapse;font-size:13.5px;background:var(--paper)}
+th{background:var(--ink);color:#fff;font:600 10px var(--mono);letter-spacing:.1em;text-transform:uppercase;padding:11px 14px;text-align:right}
+th:first-child{text-align:left}
+td{padding:10px 14px;border-bottom:1px solid var(--rule);text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums}
+td:first-child{text-align:left;font-family:var(--sans)}
+tr.sec td{background:var(--paper-3);font-weight:700;font-family:var(--sans);color:var(--ink);text-align:left}
+tr.tot td{border-top:2px solid var(--ink);border-bottom:0;font-weight:700;color:var(--ink)}
+td.pos{color:var(--em-700)} td.neg{color:var(--ng)}
+.foot{margin-top:30px;padding-top:18px;border-top:1px solid var(--rule);font-size:12px;color:var(--ink-mute)}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="modelbar">
+  <a  href="model-2-profit-vs-cash.html">Profit vs cash <b>&middot; default</b></a>
+  <a  href="model-1-cash-in-cash-out.html">Cash in, cash out</a>
+  <a class="on" href="model-3-what-can-i-spend.html">What can I spend</a>
+</div>
+
+<header>
+  <div class="eyebrow">Cash flow · position as at 31 March 2022</div>
+  <h1>You have ₹59.09L in the bank. You can spend ₹14.30L of it.</h1>
+  <p class="sub">A cash flow statement tells you how the balance got there. It does not tell you how much of it is already promised to someone else. This does.</p>
+</header>
+
+<div class="claim">
+  <div class="c dim">
+    <div class="lbl">What the bank statement says</div>
+    <div class="v">₹59.09L</div>
+    <p class="muted">Up from ₹7.50L. An eightfold increase, and the number everyone quotes.</p>
+  </div>
+  <div class="c hero">
+    <div class="lbl">What is genuinely yours to deploy</div>
+    <div class="v">₹14.30L</div>
+    <p>After tax already provided for, suppliers already invoiced, and GST already collected on someone else's behalf.</p>
+  </div>
+</div>
+
+<div class="barwrap">
+  <h2>Every rupee in the account</h2>
+  <p class="lede">Hover or tap a segment. The widths are to scale.</p>
+  <div class="bar">
+    <div class="b1" title="Tax provided for: ₹39.98L"><span>Tax ₹39.98L</span></div>
+    <div class="b2" title="Suppliers and GST: ₹4.81L"><span>Dues ₹4.81L</span></div>
+    <div class="b3" title="Free: ₹14.30L"><span>Free ₹14.30L</span></div>
+  </div>
+  <div class="legend">
+    <div class="l a">
+      <span>Already provided for</span><b>₹39.98L</b>
+      <p>Income tax for the year, sitting as a provision on the balance sheet. It is not a question of whether, only when.</p>
+    </div>
+    <div class="l b">
+      <span>Owed and invoiced</span><b>₹4.81L</b>
+      <p>₹4.33L to suppliers, ₹48,281 of GST collected from customers that belongs to the government.</p>
+    </div>
+    <div class="l c">
+      <span>Genuinely uncommitted</span><b>₹14.30L</b>
+      <p>What is left after every known claim. This is the number to plan with.</p>
+    </div>
+  </div>
+</div>
+
+<div class="runway">
+  <div class="k">What that buys you</div>
+  <h3>About 15 weeks of running the business</h3>
+  <p>Your cash operating costs — paying suppliers and covering packing, freight and everything else — run at roughly ₹3.76L a month. ₹14.30L of uncommitted cash covers about 3.8 months of that.</p>
+  <p>That is comfortable, not abundant. And it holds only if customers keep paying at the current pace.</p>
+  <div class="mm">
+    <div><span>Monthly cash outgoings</span><b>₹3.76L</b></div>
+    <div><span>Uncommitted cash</span><b>₹14.30L</b></div>
+    <div><span>Cover</span><b>3.8 months</b></div>
+    <div><span>Last year's cover</span><b>0.9 months</b></div>
+  </div>
+</div>
+
+<div class="owed">
+  <h2>And ₹55.08L that is yours but not here yet</h2>
+  <p class="lede">Money you have earned and invoiced, sitting with customers. This is the difference between comfortable and tight.</p>
+  <div class="buckets">
+    <div class="bk ok">
+      <div class="t"><span>Within terms — 0 to 30 days</span><em>₹20.69L</em></div>
+      <p>Normal trading. Expect this in the ordinary course.</p>
+    </div>
+    <div class="bk late">
+      <div class="t"><span>Overdue — 31 to 90 days</span><em>₹34.38L</em></div>
+      <p>62% of everything you are owed is already late. Nothing is beyond 90 days, so it is recoverable — but it is not arriving on its own.</p>
+      <div class="who">
+        <div><span>Meridian Health Group — Coimbatore</span><b>₹15.62L</b></div>
+        <div><span>Meridian Health Group — Tirupur</span><b>₹4.15L</b></div>
+        <div><span>Everyone else</span><b>₹14.61L</b></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="act">
+  <div class="k">Do this</div>
+  <h3>Collect the overdue and your position roughly triples</h3>
+  <p>You are owed ₹34.38L that is already past terms, and 64.8% of the whole receivable book sits with one customer group. Issue formal demand notices to CBE (₹25.41L total) and TPR (₹6.51L total) with a 30-day cure period, and cap further credit to the group at 50% of current outstanding until it clears.</p>
+  <div class="two">
+    <div>
+      <span>If nothing changes</span>
+      <b>₹14.30L</b>
+      <p>3.8 months of cover, and a single delayed payment from one customer group can move that materially.</p>
+    </div>
+    <div>
+      <span>If half the overdue is collected</span>
+      <b>₹31.49L</b>
+      <p>Over 8 months of cover, from money already earned. No new sales required, no new terms, no borrowing.</p>
+    </div>
+  </div>
+</div>
+
+<div class="flag">
+  <span class="k">One thing to check in Tally</span>
+  <b>The current liabilities schedule does not agree with the balance sheet.</b>
+  Schedule 6 totals ₹75.80L but the balance sheet shows ₹13.80L — a difference of ₹62L, which looks like the ₹31L advance tax being carried as a liability rather than an asset, alongside the tax provision.
+  The free-cash figure above uses the balance sheet position. If the advance tax has in fact been paid, your genuinely uncommitted cash is higher than ₹14.30L and the tax provision is partly settled already. Worth resolving before this number is used for a decision.
+</div>
+
+<div class="acct">
+  <button class="toggle" id="tg" aria-expanded="false" aria-controls="acctPanel">
+    <span class="chev">&#9656;</span> Show the accounting view — current year, prior year and movement
+  </button>
+  <div id="acctPanel">
+    <div class="card" style="padding:0;overflow:hidden;margin-top:14px">
+      <table>
+        <thead><tr><th>Particulars</th><th>FY 2021-22</th><th>FY 2020-21</th><th>Movement</th></tr></thead>
+        <tbody>
+          <tr class="sec"><td colspan="4">Operating activities — indirect method</td></tr>
+          <tr><td>Net profit</td><td>₹69.25L</td><td>₹31.89L</td><td class="pos">₹37.35L</td></tr>
+          <tr><td>Add: depreciation</td><td>₹6,400</td><td>₹4,000</td><td class="pos">₹2,400</td></tr>
+          <tr><td>(Increase) in receivables</td><td>-₹16.82L</td><td>₹0</td><td class="neg">-₹16.82L</td></tr>
+          <tr><td>(Increase) in inventory</td><td>-₹3.04L</td><td>-₹2.67L</td><td class="neg">-₹37,127</td></tr>
+          <tr><td>Increase in payables</td><td>₹2.93L</td><td>-₹30,077</td><td class="pos">₹3.23L</td></tr>
+          <tr><td>(Decrease) in other current liabilities</td><td>-₹78,397</td><td>₹30,077</td><td class="neg">-₹1.08L</td></tr>
+          <tr class="tot"><td>Net cash from operating activities</td><td>₹51.60L</td><td>₹29.26L</td><td class="pos">₹22.33L</td></tr>
+          <tr class="sec"><td colspan="4">Investing and financing</td></tr>
+          <tr><td>Purchase of fixed assets</td><td>₹0</td><td>-₹4,000</td><td class="pos">₹4,000</td></tr>
+          <tr><td>Capital introduced / (withdrawn)</td><td>₹0</td><td>-₹31.89L</td><td class="pos">₹31.89L</td></tr>
+          <tr class="tot"><td>Net increase in cash</td><td>₹51.60L</td><td>-₹2.67L</td><td class="pos">₹54.27L</td></tr>
+          <tr><td>Opening cash and bank</td><td>₹7.50L</td><td>₹7.50L</td><td>₹0</td></tr>
+          <tr class="tot"><td>Closing cash and bank</td><td>₹59.09L</td><td>₹7.50L</td><td class="pos">₹51.60L</td></tr>
+          <tr class="sec"><td colspan="4">Claims against the closing balance</td></tr>
+          <tr><td>Provision for income tax</td><td>₹39.98L</td><td>₹9.95L</td><td class="neg">₹30.03L</td></tr>
+          <tr><td>Trade payables</td><td>₹4.33L</td><td>₹1.37L</td><td class="neg">₹2.96L</td></tr>
+          <tr><td>GST payable</td><td>₹48,281</td><td>₹27,377</td><td class="neg">₹20,904</td></tr>
+          <tr class="tot"><td>Uncommitted cash</td><td>₹14.30L</td><td>-₹4.09L</td><td class="pos">₹18.39L</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="muted" style="font-size:12.5px;margin-top:12px">
+      The first two sections are the statement exactly as issued. The third is not part of the cash flow statement — it reads the claims off the balance sheet and nets them against the closing balance, which is the step an owner does in their head and usually gets wrong.
+    </p>
+  </div>
+</div>
+
+<p class="foot">
+  Model 3 of 3 · Interactive prototype for the FinLytTech cash flow redesign. Figures from the FY 2021-22 MIS report.
+</p>
+
+</div>
+<script>
+var tg = document.getElementById('tg'), pn = document.getElementById('acctPanel');
+tg.addEventListener('click', function(){
+  var open = pn.classList.toggle('show');
+  tg.setAttribute('aria-expanded', open ? 'true' : 'false');
+});
+</script>
+</body>
+</html>
