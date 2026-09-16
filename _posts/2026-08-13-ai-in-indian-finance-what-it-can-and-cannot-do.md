@@ -6,7 +6,7 @@ date: 2026-08-13
 author: Sasidharan
 tags: [ai, ca, financial-intelligence]
 linkedin: ""
-image: /assets/posts/ai-in-indian-finance-what-it-can-and-cannot-do-cover.png
+image: /assets/posts/ai-in-indian-finance-what-it-can-and-cannot-do-cover.svg
 ---
 
 # AI in Indian finance: what it can do, what it cannot, and why a CA still matters
