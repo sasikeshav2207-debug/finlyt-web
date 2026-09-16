@@ -6,7 +6,7 @@ date: 2026-09-01
 author: Sasidharan
 tags: [month-end-close, mis, gst, sme, tally]
 linkedin: ""
-image: /assets/posts/monthly-close-15-days-to-5-days-indian-sme-cover.png
+image: /assets/posts/monthly-close-15-days-to-5-days-indian-sme-cover.svg
 ---
 
 # The monthly close: how a 15-day close becomes a 5-day close for an Indian SME
