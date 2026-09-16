@@ -6,7 +6,7 @@ date: 2026-06-29
 author: Sasidharan
 categories: [MIS, Investor Relations, Financial Intelligence]
 tags: [MIS, investor reporting, financial reporting, Indian startups, SME finance, working capital, cash flow]
-image: /assets/images/W4_Article_Cover.png
+image: /assets/W4_Article_Cover.png
 ---
 
 The message arrives on a Tuesday evening: "Can you share your last three months' MIS before our call on Thursday?"
