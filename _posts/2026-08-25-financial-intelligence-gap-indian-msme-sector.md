@@ -6,7 +6,7 @@ date: 2026-08-25
 author: Sasidharan
 tags: [msme, financial-intelligence, tally, ca-channel, india]
 linkedin: ""
-image: /assets/posts/financial-intelligence-gap-indian-msme-sector-cover.png
+image: /assets/posts/financial-intelligence-gap-indian-msme-sector-cover.svg
 ---
 
 # The financial intelligence gap in India's 7.3 crore MSME sector - and who is closing it
