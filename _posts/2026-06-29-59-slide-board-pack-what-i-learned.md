@@ -5,6 +5,7 @@ description: "Six weeks. 20 hospitals. Three accounting systems. What manually b
 date: 2026-06-29 09:00:00 +0530
 author: Sasidharan
 tags: [mis, board pack, financial reporting, automation, hospital, sme finance]
+image: /assets/posts/59-slide-board-pack-what-i-learned-cover.svg
 linkedin: ""
 ---
 
