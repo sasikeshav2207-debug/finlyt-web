@@ -6,7 +6,7 @@ date: 2026-09-16
 author: Sasidharan
 tags: [receivables-financing, invoice-discounting, treds, working-capital, sme]
 linkedin: ""
-image: /assets/posts/receivables-financing-india-invoice-discounting-cost-cover.png
+image: /assets/posts/receivables-financing-india-invoice-discounting-cost-cover.svg
 ---
 
 # Receivables financing in India: what invoice discounting really costs an SME
