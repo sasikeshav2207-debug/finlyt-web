@@ -6,7 +6,7 @@ date: 2026-08-18
 author: Sasidharan
 tags: [working-capital, cash-flow, sme, tally]
 linkedin: ""
-image: /assets/posts/working-capital-management-indian-sme-founder-cover.png
+image: /assets/posts/working-capital-management-indian-sme-founder-cover.svg
 ---
 
 # Working capital management: the one course that should be mandatory for every Indian SME founder
