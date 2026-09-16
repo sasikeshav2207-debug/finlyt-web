@@ -3,6 +3,7 @@ title: "Your Accounting system knows everything. Your board pack knows nothing. 
 description: "Why fewer than 2% of Indian businesses produce structured financial reports — and how the last mile of MIS is finally being automated."
 date: 2026-05-28 09:00:00 +0530
 tags: [mis, tally, sme, investor-reporting, financial-intelligence]
+image: /assets/posts/tally-mis-last-mile-cover.svg
 linkedin: "https://www.linkedin.com/pulse/your-tally-knows-everything-board-pack-nothing-here-why-how-sagkf/"
 ---
 
