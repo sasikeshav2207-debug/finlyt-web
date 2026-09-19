@@ -113,7 +113,7 @@ for name, txt in link_sources:
         path, _, frag = href.partition("#")
         if not path:
             continue
-        if path.endswith((".css", ".js", ".svg", ".png", ".jpg", ".xml", ".ico")):
+        if path.endswith((".css", ".js", ".svg", ".png", ".jpg", ".xml", ".ico", ".pdf")):
             fs = os.path.join(ROOT, path.lstrip("/"))
             if not os.path.exists(fs):
                 errors.append("%s: asset not found -> %s" % (name, href))
