@@ -26,14 +26,14 @@
     <nav class="nav-links" id="navLinks" aria-label="Primary">
       <a class="nav-link{% if page.nav == 'condition' %} is-active{% endif %}" href="/condition/">The Condition</a>
 
-      <button type="button" class="nav-trigger{% if page.nav == 'products' %} is-active{% endif %}"
+      <button type="button" class="nav-trigger{% if page.nav == 'products' or page.nav == 'pricing' %} is-active{% endif %}"
               data-panel="products" aria-expanded="false" aria-controls="panelProducts">
-        Solutions
+        Solutions &amp; pricing
         <svg viewBox="0 0 24 24" fill="none" stroke="#2E9E6B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
       </button>
 
       <a class="nav-link nav-link-new{% if page.nav == 'clock' %} is-active{% endif %}" href="/month-end-clock/">Month-End Clock<span class="nav-new" aria-label="new">New</span></a>
-      <a class="nav-link{% if page.nav == 'pricing' %} is-active{% endif %}" href="/pricing/">Pricing</a>
+
 
       <button type="button" class="nav-trigger{% if page.nav == 'for-cas' %} is-active{% endif %}"
               data-panel="cas" aria-expanded="false" aria-controls="panelCas">
