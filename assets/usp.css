@@ -144,13 +144,9 @@ input[type=range].usp-row-input, .usp-slider input[type=range] { -webkit-appeara
   display:flex; flex-direction:column; align-items:center; gap:2px }
 .usp-cell.is-blank { border:0; background:transparent }
 .usp-cell-d { font:500 10.5px var(--font-mono); color:var(--fg-3) }
-.usp-cell.has-due { cursor:pointer; background:var(--amber-50); border-color:var(--amber-200) }
-.usp-cell.has-due .usp-cell-d { color:var(--amber-700); font-weight:600 }
-.usp-cell.has-due:hover { border-color:var(--brand-amber) }
 .usp-cell.is-today { box-shadow:inset 0 0 0 1px var(--brand-navy) }
 .usp-cell.is-sel { border-color:var(--brand-navy); box-shadow:0 0 0 1px var(--brand-navy) }
 .usp-cell-dots { display:flex; gap:2px }
-.usp-cell-dots i { width:4px; height:4px; border-radius:50%; background:var(--brand-amber) }
 
 .usp-ladder { border:1px solid var(--rule); border-radius:var(--r-md); background:var(--paper); overflow:hidden }
 .usp-ladder-head { font:600 11px var(--font-mono); letter-spacing:.06em; text-transform:uppercase;
@@ -190,3 +186,23 @@ input[type=range].usp-row-input, .usp-slider input[type=range] { -webkit-appeara
   .usp-cell { height:38px }
   .usp-year-grid { grid-template-columns:repeat(4,1fr) }
 }
+
+/* ---- spectrum keys, surplus line, and the in/out/filing calendar ---------- */
+.usp-cal-legend { margin-left:auto; display:inline-flex; align-items:center; gap:5px;
+  font:500 10.5px var(--font-mono); color:var(--fg-3) }
+.usp-cal-legend i { width:8px; height:8px; border-radius:2px; display:inline-block; margin-left:7px }
+i.k-in { background:#1B7A4E } i.k-out { background:#B42318 } i.k-file { background:#946200 }
+.usp-ladder-name i { width:8px; height:8px; border-radius:2px; display:inline-block; margin-right:8px }
+
+.usp-cell.is-in { background:rgba(27,122,78,.08); border-color:rgba(27,122,78,.35); cursor:pointer }
+.usp-cell.is-in .usp-cell-d { color:#1B7A4E; font-weight:600 }
+.usp-cell.is-out { background:rgba(180,35,24,.07); border-color:rgba(180,35,24,.32); cursor:pointer }
+.usp-cell.is-out .usp-cell-d { color:#B42318; font-weight:600 }
+.usp-cell.is-file { background:rgba(148,98,0,.07); border-color:rgba(148,98,0,.3); cursor:pointer }
+.usp-cell.is-file .usp-cell-d { color:#946200; font-weight:600 }
+.usp-cell-dots i { width:4px; height:4px; border-radius:50%; display:inline-block }
+
+.usp-free { display:flex; align-items:center; justify-content:space-between; gap:12px;
+  padding:11px 14px; border-top:1px solid var(--rule); background:rgba(27,122,78,.06) }
+.usp-free span { font:500 11.5px var(--font-sans); color:var(--fg-2) }
+.usp-free b { font:600 12px var(--font-mono); color:#1B7A4E }
