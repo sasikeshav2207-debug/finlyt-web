@@ -2,21 +2,23 @@
 layout: finlyt
 nav: faq
 permalink: /faq/
-title: FAQ — the questions that actually get asked
-description: How FinLytTech reads your accounting data, where it is hosted, how long setup takes, what the trial covers, and what changes for a chartered accountant firm.
+title: FAQ · the questions that actually get asked
+description: What FinLytTech is, how the three Solutions are priced per login, how it reads your books, where your data lives, what changes if you switch systems, and how CA firms use it.
 ---
 
 <div style="background:var(--paper);padding:56px 40px 0;position:relative">
   <div style="position:absolute;inset:0;background-image:radial-gradient(circle,rgba(13,27,42,.06) 1px,transparent 1.5px);background-size:24px 24px;pointer-events:none"></div>
   <div style="position:relative;max-width:1280px;margin:0 auto">
     <h1 style="font:700 56px/1.05 var(--font-display);letter-spacing:-.034em;color:var(--ink);margin:0 0 20px;max-width:760px">The questions that <span style="color:#2E9E6B">actually</span> get asked.</h1>
-    <p style="font:400 18px/1.6 var(--font-sans);color:var(--fg-2);margin:0 0 20px;max-width:640px">Taken from first calls, near enough word for word. If yours is not here, <a href="/contact/">ask us directly</a> — replies usually land the same working day.</p>
+    <p style="font:400 18px/1.6 var(--font-sans);color:var(--fg-2);margin:0 0 20px;max-width:640px">Taken from first calls, near enough word for word. If yours is not here, <a href="/contact/">ask us directly</a>. Replies usually land the same working day.</p>
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:52px">
+      <a class="np-chip" href="#what">What it is</a>
       <a class="np-chip" href="#connecting">Connecting your books</a>
       <a class="np-chip" href="#security">Security &amp; data</a>
-      <a class="np-chip" href="#setup">Setup &amp; migration</a>
-      <a class="np-chip" href="#commercials">Trial &amp; commercials</a>
+      <a class="np-chip" href="#setup">Setup &amp; switching</a>
+      <a class="np-chip" href="#commercials">Pricing</a>
       <a class="np-chip" href="#cas">For CA firms</a>
+      <a class="np-chip" href="#capital">Capital Access &amp; health score</a>
     </div>
   </div>
 </div>
@@ -35,54 +37,78 @@ description: How FinLytTech reads your accounting data, where it is hosted, how 
       </div>
 
       <div>
-        <h2 id="connecting" style="font:600 26px var(--font-display);letter-spacing:-.02em;color:var(--ink);margin:0 0 8px">Connecting your books</h2>
+        <h2 id="what" style="font:600 26px var(--font-display);letter-spacing:-.02em;color:var(--ink);margin:0 0 8px">What it is</h2>
         <details class="faq" open style="border-top:1px solid var(--rule);padding:20px 0">
-          <summary style="list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;font:600 17px var(--font-display);color:var(--ink)">How does FinLytTech access my accounting data?<span data-sign aria-hidden="true" style="font:300 22px var(--font-sans);color:var(--brand-emerald)">+</span></summary>
-          <p style="font:400 15px/1.65 var(--font-sans);color:var(--fg-2);margin:14px 0 0">A small TDL file inside Tally, standard APIs for Zoho and ERPNext, and a generic REST adapter for anything else. Every connector runs read-only unless you explicitly opt in to write-back.</p>
+          <summary style="list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;font:600 17px var(--font-display);color:var(--ink)">What is FinLytTech?<span data-sign aria-hidden="true" style="font:300 22px var(--font-sans);color:var(--brand-emerald)">+</span></summary>
+          <p style="font:400 15px/1.65 var(--font-sans);color:var(--fg-2);margin:14px 0 0">A management decision-making platform for Indian businesses. It reads the books you already keep, finds the money they have lost track of, and says how to get it back. If you cannot say where your cash went, who owes you, who you owe, how long you survive and what is due this week, it is built for you, whatever the size of the business.</p>
         </details>
         <details class="faq" style="border-top:1px solid var(--rule);padding:20px 0">
-          <summary style="list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;font:600 17px var(--font-display);color:var(--ink)">Do I need to switch from my current accounting system?<span data-sign aria-hidden="true" style="font:300 22px var(--font-sans);color:var(--brand-emerald)">+</span></summary>
-          <p style="font:400 15px/1.65 var(--font-sans);color:var(--fg-2);margin:14px 0 0">No. It sits alongside whatever you already run, and moving to the FinLytTech ERP later is a load rather than a re-implementation.</p>
+          <summary style="list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;font:600 17px var(--font-display);color:var(--ink)">What are the three Solutions?<span data-sign aria-hidden="true" style="font:300 22px var(--font-sans);color:var(--brand-emerald)">+</span></summary>
+          <p style="font:400 15px/1.65 var(--font-sans);color:var(--fg-2);margin:14px 0 0"><a href="/products/#cashflow-analytics">Cashflow Analytics</a> shows where cash came from, where it went, who owes you, who you owe and how long the business survives. <a href="/products/#business-decisions">Business Decisions</a> adds P&amp;L analytics, customer concentration, vendor analytics and an eight-week cash projection, shown as a risk position that moves from red to green with the action items attached. <a href="/products/#capital-access">Capital Access</a> connects you to credit, insurance and, when there is spare cash, to advisors you deal with directly.</p>
+        </details>
+        <details class="faq" style="border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:20px 0">
+          <summary style="list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;font:600 17px var(--font-display);color:var(--ink)">Where does each number come from?<span data-sign aria-hidden="true" style="font:300 22px var(--font-sans);color:var(--brand-emerald)">+</span></summary>
+          <p style="font:400 15px/1.65 var(--font-sans);color:var(--fg-2);margin:14px 0 0">From a posted voucher in your own books. The platform computes every figure, the model writes the sentence around it, and any sentence carrying a figure the platform did not compute is discarded before you see it.</p>
+        </details>
+
+        <h2 id="connecting" style="font:600 26px var(--font-display);letter-spacing:-.02em;color:var(--ink);margin:44px 0 8px">Connecting your books</h2>
+        <details class="faq" style="border-top:1px solid var(--rule);padding:20px 0">
+          <summary style="list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;font:600 17px var(--font-display);color:var(--ink)">How does FinLytTech access my accounting data?<span data-sign aria-hidden="true" style="font:300 22px var(--font-sans);color:var(--brand-emerald)">+</span></summary>
+          <p style="font:400 15px/1.65 var(--font-sans);color:var(--fg-2);margin:14px 0 0">A small TDL file inside Tally, standard APIs for Zoho and ERPNext, and a generic REST adapter for anything else. An Excel drop zone covers books kept in spreadsheets. Every connector runs read-only unless you explicitly opt in to write-back.</p>
         </details>
         <details class="faq" style="border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:20px 0">
           <summary style="list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;font:600 17px var(--font-display);color:var(--ink)">My system is not on your list. Now what?<span data-sign aria-hidden="true" style="font:300 22px var(--font-sans);color:var(--brand-emerald)">+</span></summary>
-          <p style="font:400 15px/1.65 var(--font-sans);color:var(--fg-2);margin:14px 0 0">If it speaks REST, the <a href="/products/#api">generic adapter</a> handles it. Map the fields once and the journal fills itself from that night onwards. If it only exports files, we can read those on a schedule instead.</p>
+          <p style="font:400 15px/1.65 var(--font-sans);color:var(--fg-2);margin:14px 0 0">If it speaks REST, the <a href="/products/#api">API adapter</a> handles it. That is the route for SAP, NetSuite, Dynamics, Busy, Marg, Sage, QuickBooks and Xero. Map the fields once and the journal fills itself from then on. If it only exports files, the Excel drop zone reads those instead. See <a href="/products/#sources">every source</a>.</p>
         </details>
 
         <h2 id="security" style="font:600 26px var(--font-display);letter-spacing:-.02em;color:var(--ink);margin:44px 0 8px">Security &amp; data</h2>
         <details class="faq" style="border-top:1px solid var(--rule);padding:20px 0">
           <summary style="list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;font:600 17px var(--font-display);color:var(--ink)">Is my financial data safe?<span data-sign aria-hidden="true" style="font:300 22px var(--font-sans);color:var(--brand-emerald)">+</span></summary>
-          <p style="font:400 15px/1.65 var(--font-sans);color:var(--fg-2);margin:14px 0 0">Encrypted in transit and at rest on India-hosted servers, never used to train third-party models, and deletable on request. Each company sits in its own tenant rather than behind a filter on a shared table.</p>
+          <p style="font:400 15px/1.65 var(--font-sans);color:var(--fg-2);margin:14px 0 0">Encrypted in transit and at rest on India-hosted servers, built to the DPDP Act from the start, and deletable on request. Each company sits in its own tenant. Nothing is shared through a filter on a common table.</p>
         </details>
         <details class="faq" style="border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:20px 0">
           <summary style="list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;font:600 17px var(--font-display);color:var(--ink)">What exactly does the AI see?<span data-sign aria-hidden="true" style="font:300 22px var(--font-sans);color:var(--brand-emerald)">+</span></summary>
-          <p style="font:400 15px/1.65 var(--font-sans);color:var(--fg-2);margin:14px 0 0">Only what is needed to write commentary on a variance you asked about, only when you ask, and the provider is contractually barred from retaining or training on it. Every generation is logged against the user who triggered it.</p>
+          <p style="font:400 15px/1.65 var(--font-sans);color:var(--fg-2);margin:14px 0 0">Only what is needed to write the commentary, only with your explicit consent, and the provider is contractually barred from training on it. Every generation is logged against the user who triggered it.</p>
         </details>
 
-        <h2 id="setup" style="font:600 26px var(--font-display);letter-spacing:-.02em;color:var(--ink);margin:44px 0 8px">Setup &amp; migration</h2>
+        <h2 id="setup" style="font:600 26px var(--font-display);letter-spacing:-.02em;color:var(--ink);margin:44px 0 8px">Setup &amp; switching</h2>
         <details class="faq" style="border-top:1px solid var(--rule);padding:20px 0">
-          <summary style="list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;font:600 17px var(--font-display);color:var(--ink)">How long does setup take?<span data-sign aria-hidden="true" style="font:300 22px var(--font-sans);color:var(--brand-emerald)">+</span></summary>
-          <p style="font:400 15px/1.65 var(--font-sans);color:var(--fg-2);margin:14px 0 0">A day for MIS Essentials. Two weeks with <a href="/for-cas/#implementation">CA-Assisted Implementation</a> if the books need cleaning first. Six to eight weeks for the ERP, pilot-first.</p>
+          <summary style="list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;font:600 17px var(--font-display);color:var(--ink)">Do I need to switch from my current accounting system?<span data-sign aria-hidden="true" style="font:300 22px var(--font-sans);color:var(--brand-emerald)">+</span></summary>
+          <p style="font:400 15px/1.65 var(--font-sans);color:var(--fg-2);margin:14px 0 0">No. The Solutions sit on top of whatever you already run. If you later move to the <a href="/products/#erp">FinLytTech ERP</a>, that move is a load onto the same substrate. There is nothing to migrate between the Solutions, the ERP and a custom deployment.</p>
         </details>
         <details class="faq" style="border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:20px 0">
-          <summary style="list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;font:600 17px var(--font-display);color:var(--ink)">What happens to my historical data?<span data-sign aria-hidden="true" style="font:300 22px var(--font-sans);color:var(--brand-emerald)">+</span></summary>
-          <p style="font:400 15px/1.65 var(--font-sans);color:var(--fg-2);margin:14px 0 0">Two years of history comes across in the first sync, which is what makes the forecast meaningful from day one rather than after a year of accumulation. Longer histories are a migration template away.</p>
+          <summary style="list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;font:600 17px var(--font-display);color:var(--ink)">How does setup work?<span data-sign aria-hidden="true" style="font:300 22px var(--font-sans);color:var(--brand-emerald)">+</span></summary>
+          <p style="font:400 15px/1.65 var(--font-sans);color:var(--fg-2);margin:14px 0 0">For the Solutions, connect the source and let the first sync run. If the ledgers need grouping and mapping first, <a href="/for-cas/#implementation">CA-Assisted Implementation</a> covers that with your accountant. The ERP runs pilot-first over six to eight weeks. A <a href="/products/#ced">Custom Enterprise Dashboard</a> is scoped and quoted per engagement.</p>
         </details>
 
-        <h2 id="commercials" style="font:600 26px var(--font-display);letter-spacing:-.02em;color:var(--ink);margin:44px 0 8px">Trial &amp; commercials</h2>
+        <h2 id="commercials" style="font:600 26px var(--font-display);letter-spacing:-.02em;color:var(--ink);margin:44px 0 8px">Pricing</h2>
         <details class="faq" style="border-top:1px solid var(--rule);padding:20px 0">
-          <summary style="list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;font:600 17px var(--font-display);color:var(--ink)">Is there a free trial?<span data-sign aria-hidden="true" style="font:300 22px var(--font-sans);color:var(--brand-emerald)">+</span></summary>
-          <p style="font:400 15px/1.65 var(--font-sans);color:var(--fg-2);margin:14px 0 0">Thirty days free on MIS Essentials with no card, and an extra month for early sign-ups. Nothing charges automatically at the end because there is no card on file.</p>
+          <summary style="list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;font:600 17px var(--font-display);color:var(--ink)">How is it priced?<span data-sign aria-hidden="true" style="font:300 22px var(--font-sans);color:var(--brand-emerald)">+</span></summary>
+          <p style="font:400 15px/1.65 var(--font-sans);color:var(--fg-2);margin:14px 0 0">Per named user login, per month. Cashflow Analytics is ₹1,000, Business Decisions ₹5,000 and Capital Access ₹10,000. The ERP and Custom Enterprise Dashboard are quoted. See <a href="/pricing/#solutions">pricing</a> for the full comparison.</p>
         </details>
         <details class="faq" style="border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:20px 0">
-          <summary style="list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;font:600 17px var(--font-display);color:var(--ink)">Is pricing per user?<span data-sign aria-hidden="true" style="font:300 22px var(--font-sans);color:var(--brand-emerald)">+</span></summary>
-          <p style="font:400 15px/1.65 var(--font-sans);color:var(--fg-2);margin:14px 0 0">Per company. Add your whole team and your CA without the price moving. See <a href="/pricing/">pricing</a> for the full comparison.</p>
+          <summary style="list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;font:600 17px var(--font-display);color:var(--ink)">How do I try it?<span data-sign aria-hidden="true" style="font:300 22px var(--font-sans);color:var(--brand-emerald)">+</span></summary>
+          <p style="font:400 15px/1.65 var(--font-sans);color:var(--fg-2);margin:14px 0 0">Start with a demo on your own books. <a href="/contact/#demo">Book thirty minutes</a> with the founding team and bring a trial balance.</p>
         </details>
 
         <h2 id="cas" style="font:600 26px var(--font-display);letter-spacing:-.02em;color:var(--ink);margin:44px 0 8px">For CA firms</h2>
+        <details class="faq" style="border-top:1px solid var(--rule);padding:20px 0">
+          <summary style="list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;font:600 17px var(--font-display);color:var(--ink)">How does a chartered accountant firm with many clients use it?<span data-sign aria-hidden="true" style="font:300 22px var(--font-sans);color:var(--brand-emerald)">+</span></summary>
+          <p style="font:400 15px/1.65 var(--font-sans);color:var(--fg-2);margin:14px 0 0">The firm buys <a href="/for-cas/#seats">seats inside the practice</a>, one per named login, and works across every client book from one console. Your staff stop rebuilding the monthly pack by hand, and your clients log in to see their own position.</p>
+        </details>
         <details class="faq" style="border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:20px 0">
-          <summary style="list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;font:600 17px var(--font-display);color:var(--ink)">What if I am a chartered accountant firm with many clients?<span data-sign aria-hidden="true" style="font:300 22px var(--font-sans);color:var(--brand-emerald)">+</span></summary>
-          <p style="font:400 15px/1.65 var(--font-sans);color:var(--fg-2);margin:14px 0 0">The <a href="/for-cas/#partner">CA Partner Programme</a> gives you white-label deployments, revenue share on referred clients and two-week onboarding for your first cohort.</p>
+          <summary style="list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;font:600 17px var(--font-display);color:var(--ink)">What is the CA Partner Programme?<span data-sign aria-hidden="true" style="font:300 22px var(--font-sans);color:var(--brand-emerald)">+</span></summary>
+          <p style="font:400 15px/1.65 var(--font-sans);color:var(--fg-2);margin:14px 0 0">The <a href="/for-cas/#partner">Partner Programme</a> puts your firm's identity on client-facing dashboards, shares subscription revenue on clients you bring, and includes guided onboarding for your first cohort.</p>
+        </details>
+
+        <h2 id="capital" style="font:600 26px var(--font-display);letter-spacing:-.02em;color:var(--ink);margin:44px 0 8px">Capital Access &amp; health score</h2>
+        <details class="faq" style="border-top:1px solid var(--rule);padding:20px 0">
+          <summary style="list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;font:600 17px var(--font-display);color:var(--ink)">Does FinLytTech give investment advice?<span data-sign aria-hidden="true" style="font:300 22px var(--font-sans);color:var(--brand-emerald)">+</span></summary>
+          <p style="font:400 15px/1.65 var(--font-sans);color:var(--fg-2);margin:14px 0 0">No. When the platform finds cash sitting above your working-capital need, Capital Access lets you connect with investment advisors, mutual fund distributors, asset managers and wealth managers and deal with them directly. It is a neutral directory, with no ranking, no yields and no return or performance claims. The advice comes from the advisor you choose.</p>
+        </details>
+        <details class="faq" style="border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:20px 0">
+          <summary style="list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;font:600 17px var(--font-display);color:var(--ink)">What is the financial health score? <span style="font:600 10.5px var(--font-mono);color:var(--amber-600);border:1px solid currentColor;border-radius:999px;padding:2px 8px;margin-left:8px;white-space:nowrap">In build</span><span data-sign aria-hidden="true" style="font:300 22px var(--font-sans);color:var(--brand-emerald);margin-left:auto">+</span></summary>
+          <p style="font:400 15px/1.65 var(--font-sans);color:var(--fg-2);margin:14px 0 0">A score shaped like a credit score: a black box you cannot game, which still shows what raises it and what lowers it. It is in build and not yet available.</p>
         </details>
       </div>
     </div>

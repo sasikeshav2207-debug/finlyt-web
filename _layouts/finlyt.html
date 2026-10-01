@@ -5,12 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#0D1B2A">
 {% seo title=false %}
-<title>{% if page.url == '/' %}{{ site.title }} — {{ site.tagline }}{% else %}{{ page.title }} · {{ site.title }}{% endif %}</title>
+<title>{% if page.url == '/' %}{{ site.title }} · {{ site.tagline }}{% else %}{{ page.title }} · {{ site.title }}{% endif %}</title>
 <link rel="icon" href="/assets/finlyttech-favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/finlyttech-app-icon.png">
 <link rel="stylesheet" href="/assets/colors_and_type.css">
 <link rel="stylesheet" href="/assets/finlyt.css">
 <link rel="stylesheet" href="/assets/blog.css">
+{% if page.mec %}<link rel="stylesheet" href="/assets/month-end-clock.css">{% endif %}
 <link rel="canonical" href="{{ page.url | absolute_url }}">
 </head>
 <body>
@@ -18,7 +19,7 @@
 
 <header class="nav">
   <div class="nav-bar">
-    <a class="nav-logo" href="/" aria-label="FinLytTech — home">
+    <a class="nav-logo" href="/" aria-label="FinLytTech home">
       <img src="/assets/finlyttech-logo-light.png" alt="FinLytTech">
     </a>
 
@@ -27,11 +28,11 @@
 
       <button type="button" class="nav-trigger{% if page.nav == 'products' %} is-active{% endif %}"
               data-panel="products" aria-expanded="false" aria-controls="panelProducts">
-        Products
+        Solutions
         <svg viewBox="0 0 24 24" fill="none" stroke="#2E9E6B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
       </button>
 
-      <a class="nav-link{% if page.nav == 'roadmap' %} is-active{% endif %}" href="/roadmap/">Roadmap</a>
+      <a class="nav-link nav-link-new{% if page.nav == 'clock' %} is-active{% endif %}" href="/month-end-clock/">Month-End Clock<span class="nav-new" aria-label="new">New</span></a>
       <a class="nav-link{% if page.nav == 'pricing' %} is-active{% endif %}" href="/pricing/">Pricing</a>
 
       <button type="button" class="nav-trigger{% if page.nav == 'for-cas' %} is-active{% endif %}"
@@ -49,7 +50,7 @@
 
     <div class="nav-cta">
       <a class="nav-signin hide-sm" href="https://dashboard.finlyt.net">Sign in</a>
-      <a class="nav-primary" href="/contact/#early-access">Get early access</a>
+      <a class="nav-primary" href="/contact/#demo">Book a demo</a>
       <button type="button" class="nav-burger" aria-expanded="false" aria-controls="navLinks" aria-label="Toggle navigation menu">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
         Menu
@@ -61,12 +62,12 @@
   <div class="nav-panel nav-panel-products" data-panel="products" id="panelProducts">
     <div class="nav-panel-inner">
       <div>
-        <h3>MIS · four tiers</h3>
+        <h3>The Solutions · per login / month</h3>
         <div class="np-stack">
-          <a class="np-row" href="/products/#mis-essentials"><span class="np-name">MIS Essentials</span><span class="np-meta">₹999</span></a>
-          <a class="np-row" href="/products/#fin-ops"><span class="np-name">Fin Ops Intelligence</span><span class="np-meta">₹3,999</span></a>
-          <a class="np-row" href="/products/#forecasting"><span class="np-name">AI Cash Flow Forecasting</span><span class="np-meta">₹5,999</span></a>
-          <a class="np-row" href="/products/#capital-suite"><span class="np-name muted">Capital Suite</span><span class="np-meta amber">2026 H2</span></a>
+          <a class="np-row" href="/products/#cashflow-analytics"><span class="np-name">Cashflow Analytics</span><span class="np-meta">₹1,000</span></a>
+          <a class="np-row" href="/products/#business-decisions"><span class="np-name">Business Decisions</span><span class="np-meta">₹5,000</span></a>
+          <a class="np-row" href="/products/#capital-access"><span class="np-name">Capital Access</span><span class="np-meta">₹10,000</span></a>
+          <a class="np-row" href="/products/#finance-calendar"><span class="np-name">Finance Calendar · green cash</span><span class="np-meta">in every Solution</span></a>
         </div>
       </div>
       <div>
@@ -78,21 +79,15 @@
         </div>
       </div>
       <div>
-        <h3>Sources read natively</h3>
+        <h3>Reads the books you keep</h3>
         <div class="np-chips">
           <a class="np-chip" href="/products/#sources">Tally</a>
           <a class="np-chip" href="/products/#sources">Zoho</a>
           <a class="np-chip" href="/products/#sources">ERPNext</a>
-          <a class="np-chip" href="/products/#sources">SAP</a>
-          <a class="np-chip" href="/products/#sources">NetSuite</a>
-          <a class="np-chip" href="/products/#sources">Dynamics</a>
-          <a class="np-chip" href="/products/#sources">Busy</a>
-          <a class="np-chip" href="/products/#sources">Marg</a>
-          <a class="np-chip" href="/products/#sources">Sage</a>
-          <a class="np-chip" href="/products/#sources">QuickBooks</a>
-          <a class="np-chip" href="/products/#sources">Xero</a>
-          <a class="np-chip" href="/products/#sources">Excel</a>
+          <a class="np-chip" href="/products/#sources">Excel drop zone</a>
+          <a class="np-chip" href="/products/#api">Any ERP via API</a>
         </div>
+        <a class="np-item" href="/month-end-clock/" style="margin-top:14px"><span class="np-name">Month-End Clock</span><span class="np-desc">What your month-end pack costs in senior time</span></a>
       </div>
     </div>
   </div>
@@ -100,9 +95,10 @@
   <!-- For CAs dropdown -->
   <div class="nav-panel nav-panel-cas" data-panel="cas" id="panelCas">
     <div class="nav-panel-inner">
-      <a class="np-item" href="/for-cas/#partner"><span class="np-name">CA Partner Programme</span><span class="np-desc">White-label deployments, revenue share, tiered economics</span></a>
-      <a class="np-item" href="/for-cas/#implementation"><span class="np-name">CA-Assisted Implementation</span><span class="np-desc">Two-week guided onboarding for your first cohort</span></a>
-      <a class="np-item" href="/for-cas/#economics"><span class="np-name">Practice economics</span><span class="np-desc">Ten times the MIS throughput, three times the clients</span></a>
+      <a class="np-item" href="/for-cas/#seats"><span class="np-name">Seats inside your firm</span><span class="np-desc">Per-login pricing for the people who build client packs</span></a>
+      <a class="np-item" href="/for-cas/#partner"><span class="np-name">CA Partner Programme</span><span class="np-desc">White-label deployments and revenue share</span></a>
+      <a class="np-item" href="/for-cas/#implementation"><span class="np-name">CA-Assisted Implementation</span><span class="np-desc">A guided plan for your first client cohort</span></a>
+      <a class="np-item" href="/month-end-clock/#ca"><span class="np-name">What client MIS costs your practice</span><span class="np-desc">The Month-End Clock, CA firm view</span></a>
     </div>
   </div>
 </header>
@@ -119,7 +115,7 @@
           <img src="/assets/finlyttech-logo-light.png" alt="FinLytTech" style="height:26px;width:auto;display:block">
         </a>
         <p class="footer-tagline">Delivering Excellence through FinTelligence</p>
-        <p class="footer-note">Built in India, for India.<br>Chennai · India-hosted by design.<br>Encrypted, DPDP-native, single-tenant per company.</p>
+        <p class="footer-note">A management decision-making platform for Indian businesses.<br>India-hosted by design.<br>Encrypted, DPDP-native, single-tenant per company.</p>
         <!-- DPIIT recognition: text only. The national emblem and government
              logos are deliberately not used. The link opens DPIIT's own
              verification page for the certificate. -->
@@ -133,20 +129,21 @@
       </div>
 
       <div class="footer-col">
-        <h4>Products</h4>
-        <a href="/products/#mis-essentials">MIS Essentials · ₹999</a>
-        <a href="/products/#fin-ops">Fin Ops Intelligence · ₹3,999</a>
-        <a href="/products/#forecasting">AI Cash Flow Forecasting · ₹5,999</a>
-        <a href="/products/#capital-suite">Capital Suite (2026 H2)</a>
+        <h4>Solutions</h4>
+        <a href="/products/#cashflow-analytics">Cashflow Analytics · ₹1,000</a>
+        <a href="/products/#business-decisions">Business Decisions · ₹5,000</a>
+        <a href="/products/#capital-access">Capital Access · ₹10,000</a>
+        <a href="/products/#finance-calendar">Finance Calendar</a>
         <a href="/products/#erp">Enterprise ERP</a>
         <a href="/products/#ced">Custom Enterprise Dashboard</a>
         <a href="/products/#api">Any ERP via API</a>
-        <a href="/roadmap/">Roadmap · phase 1 to 6</a>
+        <a href="/month-end-clock/">Month-End Clock</a>
       </div>
 
       <div class="footer-col">
         <h4>Company</h4>
         <a href="/condition/">The Condition</a>
+        <a href="/roadmap/">Roadmap</a>
         <a href="/for-cas/">For Chartered Accountants</a>
         <a href="/for-cas/#implementation">CA-Assisted Implementation</a>
         <a href="/why/">Why FinLytTech</a>
@@ -175,5 +172,6 @@
 </footer>
 
 <script src="/assets/finlyt.js"></script>
+{% if page.mec %}<script src="/assets/month-end-clock.js"></script>{% endif %}
 </body>
 </html>

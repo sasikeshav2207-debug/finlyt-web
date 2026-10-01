@@ -82,9 +82,10 @@ _layouts/post.html       individual article
 
 index.html        /              Home
 condition.html    /condition/    The Condition
-products.html     /products/     MIS tiers · ERP · CED · API · sources
+products.html     /products/     the three Solutions · Finance Calendar · provenance · ERP · CED · API · sources
+month-end-clock.html /month-end-clock/ the Month-End Clock calculator (assets/month-end-clock.css/.js, loaded when front matter has `mec: true`)
 pricing.html      /pricing/
-for-cas.html      /for-cas/      Partner programme · implementation · economics
+for-cas.html      /for-cas/      seats · partner programme · implementation
 why.html          /why/
 founder.html      /founder/
 faq.html          /faq/
@@ -94,15 +95,17 @@ privacy.html  terms.html  implementation.html   standalone, no front matter
 
 assets/colors_and_type.css   design tokens + Google Fonts (source of truth)
 assets/finlyt.css            shell, nav, buttons, responsive layer
-assets/finlyt.js             nav dropdowns, mobile menu, home selector
+assets/finlyt.js             nav dropdowns, mobile menu, home selector, contact form
+assets/month-end-clock.*     the Month-End Clock (full page + home-page mini version)
 assets/blog.css              article + list typography
 tools/validate_site.py       pre-push checker
 ```
 
 **Anchors are contracts.** The nav dropdowns deep-link into
-`/products/#mis-essentials`, `#fin-ops`, `#forecasting`, `#capital-suite`,
-`#erp`, `#ced`, `#api`, `#sources` and `/for-cas/#partner`, `#implementation`,
-`#economics`. `/contact/` owns `#demo`, `#early-access`, `#enterprise`, `#erp`,
+`/products/#cashflow-analytics`, `#business-decisions`, `#capital-access`,
+`#finance-calendar`, `#provenance`, `#erp`, `#ced`, `#api`, `#sources`,
+`/pricing/#solutions`, `#enterprise`, `#ca-seats`, `/month-end-clock/#ca` and
+`/for-cas/#seats`, `#partner`, `#implementation` (`#economics` kept as an alias). `/contact/` owns `#demo`, `#early-access`, `#enterprise`, `#erp`,
 `#api`, `#partner`, `#deck`, `#roadmap`. Renaming any of these breaks the nav —
 the validator will catch it.
 
@@ -175,10 +178,15 @@ before starting work here** — `deploy.sh` does this for you.
 - **ACETRILLYTICS FINLYTTECH LLP** — LLPIN `ADA-4802`, PAN `ACPFA3922N`,
   TAN `PNEA62180G`, incorporated 2026-07-27. Use for real company data, never
   for demo tenants.
-- Founder: **V. Sasidharan** — MBA, IIM Ahmedabad; 15+ years in corporate
-  finance and FP&A; M&A and private equity; ex-Apollo, Garware, Ashok Leyland.
+- Founder: **V. Sasidharan**, Senior Finance Professional, IIM Ahmedabad (BPGP);
+  15+ years in capital markets, M&A, private equity and FP&A; FP&A and diligence
+  work across Apollo, Garware, Ashok Leyland. Never describe him as a CA or as
+  holding a completed MBA.
 - Based in Chennai. Data hosted in the India region by default.
-- Pricing: MIS Essentials ₹999, Fin Ops Intelligence ₹3,999, AI Cash Flow
-  Forecasting ₹5,999 (all per month + GST, per company not per seat). Capital
-  Suite is 2026 H2. ERP and CED are quoted.
-- Trial: 30 days, no card, extra month for early sign-ups.
+- Positioning (Sep 2026): a management decision-making platform for Indian
+  businesses. Never "MIS software", never tiers, never "for startups and SMEs".
+- Pricing: per named login per month. Cashflow Analytics ₹1,000, Business
+  Decisions ₹5,000, Capital Access ₹10,000. CA firms buy seats inside the firm.
+  Enterprise ERP by conversation (pilot-first); CED by quotation.
+- Trial: not advertised on the marketing pages since the Sep 2026 refresh;
+  terms.html still carries the 30-day trial clause pending a founder decision.

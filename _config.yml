@@ -7,16 +7,16 @@
 title: FinLytTech
 tagline: Delivering Excellence through FinTelligence
 description: >-
-  AI-powered MIS, cash flow forecasting and real-time insights for Indian
-  startups, SMEs and chartered accountants — built in India for India.
+  A management decision-making platform for Indian businesses. FinLytTech
+  finds the money the books have lost track of, and says how to get it back.
 url: https://finlyt.net
 # Repo-wide branding used by the SEO plugin + post layouts.
 author:
-  name: Finlyt
+  name: FinLytTech
   email: founder@finlyt.net
   twitter: ""
 social:
-  name: Finlyt
+  name: FinLytTech
   links:
     - https://www.linkedin.com/company/finlyt-tech
 logo: /assets/founder.jpg   # placeholder until a logo file is added
@@ -72,4 +72,4 @@ defaults:
       type: posts
     values:
       layout: post
-      author: Finlyt
+      author: FinLytTech

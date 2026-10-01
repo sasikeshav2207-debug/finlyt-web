@@ -1,5 +1,5 @@
 /* ==========================================================================
-   FinLytTech — site behaviour
+   FinLytTech · site behaviour
    1. Navigation: dropdown panels, mobile menu
    2. Home page "Start where you are" selector (ported from the design's
       React logic to dependency-free vanilla JS)
@@ -69,74 +69,80 @@
 
   /* ----------------------------------------------------- home selector */
   var SEL = {
-    mis: {
-      tag: "MIS · reporting, to capital-readiness",
-      head: "The reports your investors ask for, without a finance team.",
-      body: "Investor-grade statements, operating analytics and forward-looking cash forecasts, all from the books you already run.",
+    solutions: {
+      tag: "The Solutions · on the books you already keep",
+      head: "Where did the cash go, who owes you, and how long do you last?",
+      body: "Cashflow Analytics and Business Decisions read Tally, Zoho, ERPNext, any ERP via API or an Excel drop zone, and put money on dates in the Finance Calendar.",
       points: [
-        "Board pack in five minutes, not fifteen days",
-        "Cash runway forecast to six months out",
-        "Scales into a full capital suite when you raise"
+        "Green cash: the spare money, and how long it stays spare",
+        "Company risk position moving red to green, with the action attached",
+        "Every figure traced back to a posted voucher"
       ],
-      cta: "Start with MIS",
-      ctaHref: "/products/#mis-essentials",
-      price: "From ₹999 / month + GST",
-      screenTitle: "MIS · Aug 2026",
-      screenMeta: "Tally · synced 4 min ago",
-      kpis: [["Revenue MTD", "₹1.86 Cr"], ["Burn", "₹34.2 L"], ["Runway", "11 mo"], ["EBITDA", "14.2 %"]]
+      cta: "See the Solutions",
+      ctaHref: "/products/#cashflow-analytics",
+      price: "From ₹1,000 per login / month",
+      screenTitle: "Finance Calendar · this week",
+      screenMeta: "Illustration · your figures appear here",
+      kpis: [["Green cash", "₹ ●●,●●,●●●"], ["Stays spare", "●● weeks"], ["Owed to you", "₹ ●●,●●,●●●"], ["Due this week", "₹ ●●,●●,●●●"]]
     },
     ced: {
       tag: "CED · your industry's shape, in your cloud",
-      head: "Five systems, one number everyone agrees on.",
-      body: "HRMS, ops, billing and your ERP feed one dashboard shaped to your industry, deployed inside your own VPC.",
+      head: "When your industry's data fits no template.",
+      body: "The same substrate deployed into your own cloud, India region, adapted to how your business actually runs, and operated by FinLytTech.",
       points: [
         "Built to your industry's operating shape",
-        "Runs in your VPC. You keep the data",
-        "Fortnight to scope, eight weeks to pilot"
+        "Runs in your VPC. You keep the data and the KPI definitions",
+        "First deployment live in a customer's own cloud"
       ],
       cta: "Request a scoping call",
       ctaHref: "/contact/#enterprise",
       price: "By quotation",
-      screenTitle: "Group dashboard · 4 plants",
-      screenMeta: "6 sources · live",
-      kpis: [["Sources", "6 live"], ["OEE", "78.4 %"], ["Headcount", "1,284"], ["Order book", "₹92 Cr"]]
+      screenTitle: "Group view · several business lines",
+      screenMeta: "Illustration · schematic",
+      kpis: [["Business lines", "●"], ["Consoles", "●●"], ["Role views", "●●"], ["Data", "Your VPC"]]
     },
     erp: {
-      tag: "ERP · a universal journal, ten consoles above it",
-      head: "Everything Tally has outgrown, on one posting table.",
-      body: "The books, the payroll, the sales pipeline, the compliance calendar. Every function wired to the same posting table.",
+      tag: "Enterprise ERP · a universal journal, ten consoles above it",
+      head: "Outgrown Tally, and SAP is a twelve-month project?",
+      body: "Finance, HRMS, revenue, supply chain and statutory work wired to one universal journal, so every report is a live view. Live at erp.finlyt.net.",
       points: [
-        "IGAAP and Ind AS books side by side",
-        "GST, TDS and MCA calendars built in",
-        "Migration is a load, not a re-implementation"
+        "IGAAP and Ind AS books in parallel",
+        "Prepares GSTR-1 and 3B; a person still files on GSTN",
+        "Moving from the Solutions is a load, with nothing to migrate"
       ],
-      cta: "Talk to sales",
+      cta: "Talk to us about the ERP",
       ctaHref: "/contact/#erp",
-      price: "Pilot-first onboarding, six to eight weeks",
+      price: "Pilot-first, six to eight weeks",
       screenTitle: "ERP · consoles",
-      screenMeta: "10 live end-to-end",
-      kpis: [["Consoles", "10"], ["Vouchers MTD", "1,842"], ["Close day", "D+3"], ["Books", "2"]]
+      screenMeta: "erp.finlyt.net",
+      kpis: [["Consoles", "10"], ["Journal", "1"], ["Books", "IGAAP + Ind AS"], ["Close", "Continuous"]]
     }
   };
 
   var VISUALS = {
-    mis:
-      '<div style="display:flex;flex-direction:column;gap:10px">' +
+    solutions: (function () {
+      var days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      var inH = [34, 12, 0, 46, 20, 8], outH = [10, 30, 44, 6, 26, 0];
+      var cols = days.map(function (d, i) {
+        var x = 18 + i * 74;
+        return '<text x="' + (x + 22) + '" y="150" text-anchor="middle" style="font:500 10.5px var(--font-mono);fill:#647688">' + d + '</text>' +
+          (inH[i] ? '<rect x="' + (x + 8) + '" y="' + (70 - inH[i]) + '" width="28" height="' + inH[i] + '" rx="4" fill="#1D9E75"/>' : "") +
+          (outH[i] ? '<rect x="' + (x + 8) + '" y="76" width="28" height="' + outH[i] + '" rx="4" fill="' + (i === 2 ? "#EF9F27" : "#9DA8B7") + '"/>' : "");
+      }).join("");
+      return '<div style="display:flex;flex-direction:column;gap:10px">' +
         '<div style="display:flex;justify-content:space-between;font:600 12.5px var(--font-sans);color:var(--ink)">' +
-          "<span>Cash flow, actual and forecast</span><span style=\"color:var(--fg-3);font-weight:500\">12 months</span></div>" +
-        '<svg viewBox="0 0 460 140" style="width:100%;height:140px" role="img" aria-label="Cash flow actual and forecast over twelve months, trending upward">' +
-          '<g stroke="#E5E9EE" stroke-width="1"><line x1="0" y1="35" x2="460" y2="35"/><line x1="0" y1="70" x2="460" y2="70"/><line x1="0" y1="105" x2="460" y2="105"/></g>' +
-          '<path d="M0,110 L57,102 L115,106 L172,88 L230,80 L287,62 L345,54 L402,38 L460,26 L460,140 L0,140 Z" fill="rgba(29,158,117,.10)"/>' +
-          '<polyline points="0,110 57,102 115,106 172,88 230,80 287,62 345,54 402,38 460,26" fill="none" stroke="#1D9E75" stroke-width="2.4"/>' +
-          '<polyline points="230,80 287,76 345,66 402,58 460,48" fill="none" stroke="#647688" stroke-width="1.8" stroke-dasharray="5 5"/>' +
+          '<span>Money on dates</span><span style="color:var(--fg-3);font-weight:500">in above the line · out below</span></div>' +
+        '<svg viewBox="0 0 460 160" style="width:100%;height:150px" role="img" aria-label="Schematic Finance Calendar week: inflows above the line, outflows and a statutory due below it">' +
+          '<line x1="10" y1="73" x2="450" y2="73" stroke="#CFD6DE" stroke-width="1.4"/>' + cols +
         "</svg>" +
         '<div style="display:flex;gap:10px;align-items:flex-start;padding:12px;background:var(--paper-2);border:1px solid var(--rule);border-radius:8px">' +
           '<img src="/assets/finlyttech-app-icon.png" alt="" style="width:24px;height:24px;border-radius:6px;flex-shrink:0;display:block">' +
-          '<div style="font:400 11.5px/1.45 var(--font-sans);color:var(--fg-2)"><b style="color:var(--ink)">Runway extends to 11 months</b> if the October collection lands on time.</div>' +
-        "</div></div>",
+          '<div style="font:400 11.5px/1.45 var(--font-sans);color:var(--fg-2)"><b style="color:var(--ink)">Wednesday carries a statutory due.</b> Schematic illustration; on your books every bar is a posted voucher.</div>' +
+        "</div></div>";
+    })(),
     ced:
       '<div style="display:flex;flex-direction:column;gap:12px">' +
-        '<div style="font:600 12.5px var(--font-sans);color:var(--ink)">Six sources, one view</div>' +
+        '<div style="font:600 12.5px var(--font-sans);color:var(--ink)">Several systems, one group view</div>' +
         '<svg viewBox="0 0 460 150" style="width:100%;height:150px" role="img" aria-label="Five source systems converging into one group dashboard">' +
           '<g stroke="#CFD6DE" stroke-width="1.4" fill="none">' +
             '<path d="M96,25 C170,25 170,75 208,75"/><path d="M96,50 C170,50 170,75 208,75"/>' +
@@ -145,7 +151,7 @@
           '<rect x="4" y="39" width="92" height="22" rx="6" fill="#fff" stroke="#CFD6DE"/><text x="50" y="54" text-anchor="middle" style="font:500 11px var(--font-sans);fill:#3D5163">Ops</text>' +
           '<rect x="4" y="64" width="92" height="22" rx="6" fill="#fff" stroke="#CFD6DE"/><text x="50" y="79" text-anchor="middle" style="font:500 11px var(--font-sans);fill:#3D5163">ERP</text>' +
           '<rect x="4" y="89" width="92" height="22" rx="6" fill="#fff" stroke="#CFD6DE"/><text x="50" y="104" text-anchor="middle" style="font:500 11px var(--font-sans);fill:#3D5163">Billing</text>' +
-          '<rect x="4" y="114" width="92" height="22" rx="6" fill="#fff" stroke="#CFD6DE"/><text x="50" y="129" text-anchor="middle" style="font:500 11px var(--font-sans);fill:#3D5163">CRM</text></g>' +
+          '<rect x="4" y="114" width="92" height="22" rx="6" fill="#fff" stroke="#CFD6DE"/><text x="50" y="129" text-anchor="middle" style="font:500 11px var(--font-sans);fill:#3D5163">Field ops</text></g>' +
           '<rect x="208" y="57" width="36" height="36" rx="10" fill="#0D1B2A"/>' +
           '<path d="M232 68 L240 61 L240 65 L236 69 Z" fill="#1D9E75"/>' +
           '<line x1="244" y1="75" x2="300" y2="75" stroke="#CFD6DE" stroke-width="1.4"/>' +
@@ -154,12 +160,12 @@
           '<text x="378" y="82" text-anchor="middle" style="font:400 11px var(--font-sans);fill:#3D5163">Your VPC · your industry shape</text>' +
         "</svg>" +
         '<div class="g3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px">' +
-          '<div style="border:1px solid var(--rule);border-radius:8px;padding:9px 11px"><div style="font:500 10.5px var(--font-sans);color:var(--fg-3)">Plant 1</div><div style="font:600 15px var(--font-display);color:var(--ink);font-variant-numeric:tabular-nums">82.1 %</div></div>' +
-          '<div style="border:1px solid var(--rule);border-radius:8px;padding:9px 11px"><div style="font:500 10.5px var(--font-sans);color:var(--fg-3)">Plant 2</div><div style="font:600 15px var(--font-display);color:var(--ink);font-variant-numeric:tabular-nums">76.4 %</div></div>' +
-          '<div style="border:1px solid var(--rule);border-radius:8px;padding:9px 11px"><div style="font:500 10.5px var(--font-sans);color:var(--fg-3)">Plant 3</div><div style="font:600 15px var(--font-display);color:var(--ink);font-variant-numeric:tabular-nums">71.0 %</div></div>' +
+          '<div style="border:1px solid var(--rule);border-radius:8px;padding:9px 11px"><div style="font:500 10.5px var(--font-sans);color:var(--fg-3)">Line A</div><div style="font:600 15px var(--font-mono);color:var(--fg-3)">●● %</div></div>' +
+          '<div style="border:1px solid var(--rule);border-radius:8px;padding:9px 11px"><div style="font:500 10.5px var(--font-sans);color:var(--fg-3)">Line B</div><div style="font:600 15px var(--font-mono);color:var(--fg-3)">●● %</div></div>' +
+          '<div style="border:1px solid var(--rule);border-radius:8px;padding:9px 11px"><div style="font:500 10.5px var(--font-sans);color:var(--fg-3)">Line C</div><div style="font:600 15px var(--font-mono);color:var(--fg-3)">●● %</div></div>' +
         "</div></div>",
     erp: (function () {
-      var mods = ["Books", "Payroll", "Sales", "Purchase", "Inventory", "Compliance", "Fixed assets", "Banking", "Projects", "MIS"];
+      var mods = ["Finance", "HRMS", "Revenue", "Marketing", "SCM", "Inter-Company", "SGA", "Capex", "Statutory", "Admin"];
       var cells = mods.map(function (m, i) {
         var hot = i % 4 === 2;
         return '<div style="padding:12px 9px;border-radius:8px;text-align:center;font:500 11.5px var(--font-sans);' +
@@ -238,7 +244,7 @@
       });
     });
 
-    render("mis");
+    render("solutions");
   }
 
   /* ------------------------------------------------------- contact form */
@@ -256,7 +262,7 @@
   // separate cards.
   var HASH_INTENT = {
     "demo": "Book a demo",
-    "early-access": "Start the 30-day trial",
+    "early-access": "Book a demo",
     "enterprise": "Enterprise ERP or custom dashboard",
     "erp": "Enterprise ERP or custom dashboard",
     "api": "Enterprise ERP or custom dashboard",
@@ -404,7 +410,7 @@
     /* ---- success state ------------------------------------------------- */
     function showSent(intent) {
       var title = document.getElementById("contactDialogTitle");
-      if (title) title.textContent = "Thank you — that has reached us";
+      if (title) title.textContent = "Thank you, that has reached us";
       var lede = document.getElementById("contactDialogLede");
       if (lede) lede.remove();
       form.innerHTML =

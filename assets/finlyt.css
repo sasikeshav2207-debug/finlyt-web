@@ -379,3 +379,6 @@ a.np-chip:hover{border-color:var(--brand-emerald);color:var(--ink)}
 .phase-strip li b { font: 700 10px var(--font-mono); color: var(--fg-3); }
 .phase-strip li[data-built] { border-color: var(--emerald-200); background: var(--emerald-50); color: var(--emerald-800); }
 .phase-strip li[data-built] b { color: var(--emerald-700); }
+
+/* Month-End Clock nav badge (Sep 2026) */
+.nav-new{display:inline-block;margin-left:6px;padding:1px 6px;border-radius:999px;background:var(--emerald-50,#ECFAF4);color:var(--emerald-700,#105F46);font:600 9.5px/1.5 var(--font-mono);letter-spacing:.04em;text-transform:uppercase;vertical-align:1px}
