@@ -14,10 +14,20 @@
   the first thing on the screen is a date with a rupee figure attached to it,
   counting down.
 
-  Every figure below is one the product actually computed on the development
-  book (FY 2021-22, revenue ₹1.55 Cr) and was verified on localhost. Nothing
-  is invented for the mockup. If a figure here cannot be reproduced on a real
-  book, it does not belong on the real hero either.
+  Two rules hold this page together.
+
+  One: nothing above the fold unless it scales. Days, percentages, ratios and
+  statutory rates mean the same thing to a 5 crore business and a 5,000 crore
+  one. An absolute rupee figure does not - 3.30 lakh is frightening to one and
+  rounding to the other - so no headline carries one.
+
+  Two: every absolute figure belongs to a named book whose size is stated next
+  to it, because it is that company's number and not the reader's. Each one is
+  paired with what it is a share of.
+
+  All of it was computed by the product on the development book and verified on
+  localhost. Nothing is invented. A figure that cannot be reproduced on a real
+  book has no business on a real hero.
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -147,10 +157,10 @@
 <div class="clock-strip">
   <div class="wrap clock-inner">
     <span class="pulse" aria-hidden="true"></span>
-    <span>Next dated item on this book: <b>advance tax, 75% instalment</b></span>
+    <span>Next statutory date: <b>advance tax, 75% instalment</b></span>
     <span class="countdown" id="cd">loading</span>
-    <span><b>₹94,004</b> of interest if it slips</span>
-    <a class="clock-more" href="#">See all 176 dated items</a>
+    <span>Miss it and <b>section 234C runs at 1% a month</b>, whatever your size</span>
+    <a class="clock-more" href="#">The dates your books already know</a>
   </div>
 </div>
 
@@ -172,11 +182,12 @@
   <div class="wrap">
     <div class="hero-top">
     <span class="eyebrow">Read from your books, ranked by what it costs</span>
-    <h1>₹3.30 lakh of this year is sitting on dates <em>nobody is watching</em>.</h1>
+    <h1>Every rupee that leaks has a date on it. <em>Yours are in Tally, unread</em>.</h1>
     <p class="lede">
-      FinLytTech reads the books you already keep in Tally, Zoho or ERPNext and ranks what is costing you,
-      in rupees, with the date it falls due. Every figure opens into the voucher behind it, so your CA can
-      check it before you act on it.
+      Advance tax, 43B(h), the 180-day input-credit rule, a customer drifting past your credit terms: each one is
+      a date with a price, and your ledger already holds all of them. FinLytTech reads the books you keep in
+      Tally, Zoho or ERPNext and ranks what is costing you, in your own figures, with the date it falls due.
+      Every number opens into the voucher behind it, so your CA can check it before you act.
     </p>
     <div class="hero-cta">
       <a class="btn btn-dark" href="#">Book a demo on your own books</a>
@@ -194,7 +205,7 @@
       <div class="list">
         <div class="list-head">
           <h2>What needs your attention</h2>
-          <span>8 signals from FY 2021-22, highest cost first</span>
+          <span>One real book &middot; &#8377;1.55 Cr of revenue &middot; 8 signals, highest cost first</span>
         </div>
 
         <div class="row">
@@ -203,7 +214,7 @@
             <div class="fact">One customer is 44.06% of revenue.</div>
             <div class="act">Geographic and customer mix is thinner than the headline suggests. Sign a written supply agreement this quarter.</div>
           </div>
-          <div class="money">₹68.45 L<small>revenue exposed</small></div>
+          <div class="money">44.1%<small>of revenue &middot; &#8377;68.45 L</small></div>
         </div>
 
         <div class="row">
@@ -221,7 +232,7 @@
             <div class="fact">Debtor days are 129.4 against a 90-day norm.</div>
             <div class="act">Start with invoices past 60 days: call the three oldest accounts this week.</div>
           </div>
-          <div class="money">₹55.08 L<small>tied up in the book</small></div>
+          <div class="money">35.4%<small>of revenue tied up &middot; &#8377;55.08 L</small></div>
         </div>
 
         <div class="row">
@@ -230,11 +241,11 @@
             <div class="fact">Tax of ₹41.78 L is booked as a lump, not spread across instalments.</div>
             <div class="act">Split the remainder across the next two advance-tax dates so operations are not hit on payment day.</div>
           </div>
-          <div class="money">₹41.78 L<small>at risk</small></div>
+          <div class="money">26.9%<small>of revenue &middot; &#8377;41.78 L</small></div>
         </div>
 
         <div class="list-foot">
-          <span>Every figure traces to a posted voucher.</span>
+          <span>Every figure traces to a posted voucher, and is shown as a share of this book&rsquo;s revenue.</span>
           <span>3 signals carry no rupee figure, and say so rather than inventing one.</span>
         </div>
       </div>
@@ -244,9 +255,9 @@
     <div>
       <div class="board">
         <div class="tile dark span2">
-          <div class="t-label">Free to spend today</div>
-          <div class="t-fig" style="color:#6FE3B4">₹45.74 L</div>
-          <div class="t-note">of ₹59.09 L in the bank. ₹9.08 L is held as buffer, and ₹12.23 L stays spare right through the year.</div>
+          <div class="t-label">Free to spend today, on this book</div>
+          <div class="t-fig" style="color:#6FE3B4">77<span style="font-size:17px;font-weight:600">% of the bank</span></div>
+          <div class="t-note">&#8377;45.74 L of the &#8377;59.09 L held. A buffer of four weeks&rsquo; payments stays back, and a fifth of the balance stays spare right through the year.</div>
           <div class="spark">
             <svg viewBox="0 0 300 54" preserveAspectRatio="none" style="width:100%;height:54px;display:block" aria-hidden="true">
               <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
@@ -278,19 +289,19 @@
         </div>
 
         <div class="tile">
-          <div class="t-label">Next 8 weeks</div>
-          <div class="t-fig" style="color:var(--amber)">−₹26.50 L</div>
-          <div class="t-note">₹23.84 L due in, ₹50.34 L due out. Two advance-tax dates do most of it.</div>
+          <div class="t-label">Next 8 weeks, on dated bills only</div>
+          <div class="t-fig" style="color:var(--amber)">−45<span style="font-size:17px;font-weight:600">% of cash</span></div>
+          <div class="t-note">Due out runs at twice due in, on bills already raised. Two advance-tax dates do most of it. &#8377;26.50 L on this book.</div>
         </div>
 
         <div class="tile span2" style="background:var(--paper-2)">
-          <div class="t-label">The month ahead, from your own dated bills</div>
+          <div class="t-label">The dates ahead, each one priced on this book</div>
           <div style="display:flex;gap:7px;margin-top:11px;flex-wrap:wrap">
             <span class="chip" style="background:#FDF2E7;border-color:#F3D7AE">15 Dec · advance tax · ₹94,004</span>
             <span class="chip" style="background:#FDF2E7;border-color:#F3D7AE">27 Sep · supplier bill hits 180 days · ₹65,135</span>
             <span class="chip">3 May · ₹4,679 receivable ageing</span>
           </div>
-          <div class="t-note" style="margin-top:10px">176 dated items across the year, each priced. 87 days carry movement; the rest are quiet.</div>
+          <div class="t-note" style="margin-top:10px">176 dated items across the year, together about 2% of revenue. 87 days carry movement; the rest are quiet.</div>
         </div>
       </div>
     </div>
@@ -312,18 +323,18 @@
     <div class="cards">
       <div class="card">
         <h3>Where did the cash go?</h3>
-        <p>Every payment grouped by what it was for, not by accounting category. On this book, tax took 56% of everything that went out.</p>
-        <span class="fig">₹54.15 L tax · ₹41.04 L suppliers</span>
+        <p>Every payment grouped by what it was for, not by accounting category. Shown as a share of what left the bank, so it reads the same at any size.</p>
+        <span class="fig">56% tax &middot; 42% suppliers, on this book</span>
       </div>
       <div class="card">
         <h3>What is free to spend?</h3>
         <p>The projected balance from the way your book behaves, less the buffer it needs. Green cash, by date, for a year ahead.</p>
-        <span class="fig">₹45.74 L today · ₹12.23 L all year</span>
+        <span class="fig">77% of the bank today &middot; a fifth all year</span>
       </div>
       <div class="card">
         <h3>What falls due, and what does it cost?</h3>
         <p>Advance tax, 43B(h), the 180-day input-credit rule and ageing receivables, each with a rupee figure and a date.</p>
-        <span class="fig">176 items · ₹3.30 L a year</span>
+        <span class="fig">176 items &middot; about 2% of revenue</span>
       </div>
       <div class="card">
         <h3>Am I normal for a business like mine?</h3>
