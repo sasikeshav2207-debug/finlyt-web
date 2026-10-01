@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hero mockup · what is costing you, with the date on it</title>
+<meta name="robots" content="noindex, nofollow">
+<!--
+  A hero mockup, not a deployed page. Nothing here is linked from the site.
+
+  The brief was urgency. The current hero asks five questions and shows an
+  illustration; nothing on it is at stake. A reference landing page put the
+  ranked list in the hero, which is the right instinct, so this goes further:
+  the first thing on the screen is a date with a rupee figure attached to it,
+  counting down.
+
+  Every figure below is one the product actually computed on the development
+  book (FY 2021-22, revenue ₹1.55 Cr) and was verified on localhost. Nothing
+  is invented for the mockup. If a figure here cannot be reproduced on a real
+  book, it does not belong on the real hero either.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --navy:#0D1B2A; --navy-2:#132436; --emerald:#1D9E75; --emerald-dk:#157A5A;
+    --amber:#EF9F27; --red:#D7423F; --violet:#8B6BB8;
+    --paper:#FFFFFF; --paper-2:#FAFBFB; --paper-3:#F2F5F4;
+    --rule:#E5E9EE; --ink:#0D1B2A; --fg-2:#4A5A6A; --fg-3:#73818F;
+    --display:'Manrope',system-ui,sans-serif; --sans:'Plus Jakarta Sans',system-ui,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,monospace;
+    --r:14px; --r-lg:18px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:1280px;margin:0 auto;padding:0 40px}
+  @media(max-width:760px){.wrap{padding:0 20px}}
+
+  /* ── The strip that makes it urgent: a real date, a real cost ─────── */
+  .clock-strip{background:var(--navy);color:#fff}
+  .clock-inner{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding:11px 0;font-size:13.5px}
+  .pulse{width:7px;height:7px;border-radius:999px;background:var(--amber);flex:none;
+    box-shadow:0 0 0 0 rgba(239,159,39,.7);animation:pulse 2.4s infinite}
+  @keyframes pulse{70%{box-shadow:0 0 0 9px rgba(239,159,39,0)}100%{box-shadow:0 0 0 0 rgba(239,159,39,0)}}
+  .clock-strip b{font-weight:600}
+  .countdown{font-family:var(--mono);font-size:13px;background:rgba(255,255,255,.1);
+    padding:3px 9px;border-radius:7px;letter-spacing:.02em}
+  .clock-more{margin-left:auto;color:#9FB4C6;border-bottom:1px solid rgba(255,255,255,.25);padding-bottom:1px}
+  .clock-more:hover{color:#fff}
+  @media(max-width:860px){.clock-more{display:none}}
+
+  /* ── Nav ──────────────────────────────────────────────────────────── */
+  nav{border-bottom:1px solid var(--rule);background:rgba(255,255,255,.88);backdrop-filter:blur(8px);
+    position:sticky;top:0;z-index:40}
+  .nav-inner{display:flex;align-items:center;gap:26px;height:62px}
+  .logo{font-family:var(--display);font-weight:800;font-size:20px;letter-spacing:-.02em}
+  .logo span{color:var(--emerald)}
+  .nav-links{display:flex;gap:4px;margin-left:12px}
+  .nav-links a{padding:8px 10px;border-radius:8px;font-size:13px;color:var(--fg-2);font-weight:500}
+  .nav-links a:hover{background:var(--paper-3);color:var(--ink)}
+  .nav-cta{margin-left:auto;display:flex;align-items:center;gap:14px}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:10px;
+    font-weight:600;font-size:14px;padding:12px 18px;border:1px solid transparent;cursor:pointer;white-space:nowrap}
+  .btn-dark{background:var(--navy);color:#fff}
+  .btn-dark:hover{background:#17293c}
+  .btn-ghost{border-color:var(--rule);background:var(--paper);color:var(--ink)}
+  .btn-ghost:hover{border-color:#C9D2DB;background:var(--paper-2)}
+  .btn-sm{padding:9px 14px;font-size:13px}
+  @media(max-width:1000px){.nav-links{display:none}}
+
+  /* ── Hero ─────────────────────────────────────────────────────────── */
+  .hero{padding:52px 0 18px;position:relative;overflow:hidden}
+  .hero:before{content:'';position:absolute;inset:0 0 auto;height:460px;pointer-events:none;
+    background-image:radial-gradient(circle,rgba(13,27,42,.055) 1px,transparent 1.5px);background-size:24px 24px}
+  .hero-top{position:relative;max-width:1000px;margin-bottom:34px}
+  .hero-grid{position:relative;display:grid;grid-template-columns:1.04fr .96fr;gap:28px;align-items:start}
+  @media(max-width:1060px){.hero-grid{grid-template-columns:1fr;gap:28px}}
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:600;color:var(--emerald-dk);
+    background:rgba(29,158,117,.09);border:1px solid rgba(29,158,117,.22);padding:6px 12px;border-radius:999px}
+  h1{font-family:var(--display);font-weight:800;font-size:clamp(34px,4.6vw,58px);line-height:1.04;
+    letter-spacing:-.034em;margin:18px 0 16px}
+  h1 em{font-style:normal;color:var(--emerald)}
+  .lede{font-size:17.5px;line-height:1.55;color:var(--fg-2);margin:0 0 26px;max-width:58ch}
+  .hero-cta{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:22px}
+  .reassure{font-size:13px;color:var(--fg-3);display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+  .reassure b{color:var(--fg-2);font-weight:600}
+
+  /* ── The ranked list: the product's own first screen ──────────────── */
+  .list{border:1px solid var(--rule);border-radius:var(--r-lg);background:var(--paper);overflow:hidden;
+    box-shadow:0 1px 2px rgba(13,27,42,.04),0 12px 32px rgba(13,27,42,.06)}
+  .list-head{display:flex;align-items:baseline;gap:10px;padding:14px 18px;border-bottom:1px solid var(--rule);
+    background:var(--paper-2);flex-wrap:wrap}
+  .list-head h2{margin:0;font-family:var(--display);font-size:15px;font-weight:700}
+  .list-head span{font-size:12.5px;color:var(--fg-3)}
+  .row{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:14px;padding:14px 18px;
+    border-bottom:1px solid var(--paper-3);align-items:start}
+  .row:last-child{border-bottom:0}
+  .row:hover{background:var(--paper-2)}
+  .score{font-family:var(--mono);font-size:19px;font-weight:500;line-height:1.1}
+  .score small{display:block;font-family:var(--sans);font-size:10.5px;font-weight:600;letter-spacing:0;margin-top:3px}
+  .fact{font-size:14px;line-height:1.45;font-weight:600}
+  .act{font-size:12.5px;line-height:1.5;color:var(--fg-2);margin-top:4px}
+  .money{font-family:var(--mono);font-size:14px;font-weight:500;text-align:right;white-space:nowrap}
+  .money small{display:block;font-family:var(--sans);font-size:10.5px;color:var(--fg-3);margin-top:3px;font-weight:500}
+  .list-foot{padding:11px 18px;background:var(--paper-2);border-top:1px solid var(--rule);
+    font-size:12.5px;color:var(--fg-3);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+  /* ── The board: the figures the product keeps ─────────────────────── */
+  .board{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+  .tile{border:1px solid var(--rule);border-radius:var(--r);padding:15px 16px;background:var(--paper);
+    display:flex;flex-direction:column;min-height:112px}
+  .tile.dark{background:var(--navy);border-color:var(--navy);color:#fff}
+  .tile.span2{grid-column:span 2}
+  .t-label{font-size:12px;color:var(--fg-3)}
+  .tile.dark .t-label{color:#9FB4C6}
+  .t-fig{font-family:var(--display);font-size:27px;font-weight:700;letter-spacing:-.02em;margin-top:5px;line-height:1.08}
+  .t-note{font-size:11.5px;color:var(--fg-3);margin-top:4px;line-height:1.45}
+  .tile.dark .t-note{color:#9FB4C6}
+  .spark{margin-top:auto;padding-top:8px}
+
+  /* ── Proof ────────────────────────────────────────────────────────── */
+  .proof{border-top:1px solid var(--rule);margin-top:40px;padding:18px 0 36px;display:flex;gap:10px;
+    flex-wrap:wrap;align-items:center}
+  .chip{font-size:12px;color:var(--fg-2);border:1px solid var(--rule);border-radius:999px;padding:6px 12px;
+    background:var(--paper-2)}
+  .proof-note{margin-left:auto;font-size:12.5px;color:var(--fg-3)}
+  @media(max-width:860px){.proof-note{margin-left:0}}
+
+  /* ── What it answers ──────────────────────────────────────────────── */
+  .band{background:var(--paper-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:56px 0}
+  .band h2{font-family:var(--display);font-size:30px;font-weight:700;letter-spacing:-.022em;margin:0 0 6px}
+  .band p.sub{color:var(--fg-2);font-size:15px;margin:0 0 28px;max-width:70ch}
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  @media(max-width:1060px){.cards{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:620px){.cards{grid-template-columns:1fr}.board{grid-template-columns:1fr}}
+  .card{background:var(--paper);border:1px solid var(--rule);border-radius:var(--r);padding:18px}
+  .card h3{font-family:var(--display);font-size:15.5px;font-weight:700;margin:0 0 6px}
+  .card p{font-size:13px;line-height:1.5;color:var(--fg-2);margin:0 0 10px}
+  .card .fig{font-family:var(--mono);font-size:13px;color:var(--emerald-dk);font-weight:500}
+</style>
+</head>
+<body>
+
+<!-- The urgency is a real date with a real price on it, not an adjective. -->
+<div class="clock-strip">
+  <div class="wrap clock-inner">
+    <span class="pulse" aria-hidden="true"></span>
+    <span>Next dated item on this book: <b>advance tax, 75% instalment</b></span>
+    <span class="countdown" id="cd">loading</span>
+    <span><b>₹94,004</b> of interest if it slips</span>
+    <a class="clock-more" href="#">See all 176 dated items</a>
+  </div>
+</div>
+
+<nav>
+  <div class="wrap nav-inner">
+    <div class="logo">fin<span>lyt</span>tech</div>
+    <div class="nav-links">
+      <a href="#">The Condition</a><a href="#">Solutions &amp; pricing</a><a href="#">Month-End Clock</a>
+      <a href="#">For CAs</a><a href="#">Why FinLytTech</a><a href="#">Blog</a>
+    </div>
+    <div class="nav-cta">
+      <a href="#" style="font-size:13px;color:var(--fg-2);font-weight:500">Sign in</a>
+      <a class="btn btn-dark btn-sm" href="#">Book a demo</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-top">
+    <span class="eyebrow">Read from your books, ranked by what it costs</span>
+    <h1>₹3.30 lakh of this year is sitting on dates <em>nobody is watching</em>.</h1>
+    <p class="lede">
+      FinLytTech reads the books you already keep in Tally, Zoho or ERPNext and ranks what is costing you,
+      in rupees, with the date it falls due. Every figure opens into the voucher behind it, so your CA can
+      check it before you act on it.
+    </p>
+    <div class="hero-cta">
+      <a class="btn btn-dark" href="#">Book a demo on your own books</a>
+      <a class="btn btn-ghost" href="#">What is your month-end costing you?</a>
+    </div>
+    <div class="reassure">
+      <span><b>Read-only.</b> Nothing is written back to your books.</span>
+      <span><b>India-hosted.</b> One tenant per company.</span>
+    </div>
+    </div>
+  </div>
+  <div class="wrap hero-grid">
+
+    <div>
+      <div class="list">
+        <div class="list-head">
+          <h2>What needs your attention</h2>
+          <span>8 signals from FY 2021-22, highest cost first</span>
+        </div>
+
+        <div class="row">
+          <div class="score" style="color:var(--red)">78<small style="color:var(--red)">High</small></div>
+          <div>
+            <div class="fact">One customer is 44.06% of revenue.</div>
+            <div class="act">Geographic and customer mix is thinner than the headline suggests. Sign a written supply agreement this quarter.</div>
+          </div>
+          <div class="money">₹68.45 L<small>revenue exposed</small></div>
+        </div>
+
+        <div class="row">
+          <div class="score" style="color:var(--red)">76<small style="color:var(--red)">High</small></div>
+          <div>
+            <div class="fact">Gross margin of 76.54 sits far above the usual range.</div>
+            <div class="act">Purchases may be missing from the book. This figure is left out of your health score until it is checked.</div>
+          </div>
+          <div class="money" style="color:var(--fg-3)">Not sized<small>check the books</small></div>
+        </div>
+
+        <div class="row">
+          <div class="score" style="color:var(--amber)">74<small style="color:#B4791F">Elevated</small></div>
+          <div>
+            <div class="fact">Debtor days are 129.4 against a 90-day norm.</div>
+            <div class="act">Start with invoices past 60 days: call the three oldest accounts this week.</div>
+          </div>
+          <div class="money">₹55.08 L<small>tied up in the book</small></div>
+        </div>
+
+        <div class="row">
+          <div class="score" style="color:var(--amber)">71<small style="color:#B4791F">Elevated</small></div>
+          <div>
+            <div class="fact">Tax of ₹41.78 L is booked as a lump, not spread across instalments.</div>
+            <div class="act">Split the remainder across the next two advance-tax dates so operations are not hit on payment day.</div>
+          </div>
+          <div class="money">₹41.78 L<small>at risk</small></div>
+        </div>
+
+        <div class="list-foot">
+          <span>Every figure traces to a posted voucher.</span>
+          <span>3 signals carry no rupee figure, and say so rather than inventing one.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- The board a promoter actually opens on: cash, time, and what is due. -->
+    <div>
+      <div class="board">
+        <div class="tile dark span2">
+          <div class="t-label">Free to spend today</div>
+          <div class="t-fig" style="color:#6FE3B4">₹45.74 L</div>
+          <div class="t-note">of ₹59.09 L in the bank. ₹9.08 L is held as buffer, and ₹12.23 L stays spare right through the year.</div>
+          <div class="spark">
+            <svg viewBox="0 0 300 54" preserveAspectRatio="none" style="width:100%;height:54px;display:block" aria-hidden="true">
+              <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#6FE3B4" stop-opacity=".34"/><stop offset="100%" stop-color="#6FE3B4" stop-opacity="0"/>
+              </linearGradient></defs>
+              <path d="M0 42 L18 40 L34 22 L52 21 L70 20 L96 19 L118 14 L140 15 L168 13 L196 12 L224 11 L252 16 L276 15 L300 15 L300 54 L0 54 Z" fill="url(#g)"/>
+              <path d="M0 42 L18 40 L34 22 L52 21 L70 20 L96 19 L118 14 L140 15 L168 13 L196 12 L224 11 L252 16 L276 15 L300 15"
+                fill="none" stroke="#6FE3B4" stroke-width="1.8" vector-effect="non-scaling-stroke"/>
+            </svg>
+          </div>
+        </div>
+
+        <div class="tile">
+          <div class="t-label">If collections stop today</div>
+          <div class="t-fig">35.8<span style="font-size:14px;font-weight:600;color:var(--fg-3)"> weeks</span></div>
+          <div class="t-note">of payments covered by cash on hand.</div>
+        </div>
+
+        <div class="tile">
+          <div class="t-label">Cash conversion cycle</div>
+          <div class="t-fig">143<span style="font-size:14px;font-weight:600;color:var(--fg-3)"> days</span></div>
+          <div class="t-note">129 debtor, 57 stock, less 43 creditor.</div>
+        </div>
+
+        <div class="tile">
+          <div class="t-label">Financial health</div>
+          <div class="t-fig" style="color:var(--emerald-dk)">759</div>
+          <div class="t-note">Strong, on 86% of the full weight. Three figures were left out because the book looks incomplete.</div>
+        </div>
+
+        <div class="tile">
+          <div class="t-label">Next 8 weeks</div>
+          <div class="t-fig" style="color:var(--amber)">−₹26.50 L</div>
+          <div class="t-note">₹23.84 L due in, ₹50.34 L due out. Two advance-tax dates do most of it.</div>
+        </div>
+
+        <div class="tile span2" style="background:var(--paper-2)">
+          <div class="t-label">The month ahead, from your own dated bills</div>
+          <div style="display:flex;gap:7px;margin-top:11px;flex-wrap:wrap">
+            <span class="chip" style="background:#FDF2E7;border-color:#F3D7AE">15 Dec · advance tax · ₹94,004</span>
+            <span class="chip" style="background:#FDF2E7;border-color:#F3D7AE">27 Sep · supplier bill hits 180 days · ₹65,135</span>
+            <span class="chip">3 May · ₹4,679 receivable ageing</span>
+          </div>
+          <div class="t-note" style="margin-top:10px">176 dated items across the year, each priced. 87 days carry movement; the rest are quiet.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="proof">
+      <span class="chip">Tally Prime</span><span class="chip">Zoho Books</span><span class="chip">ERPNext</span>
+      <span class="chip">Any ERP via API</span><span class="chip">Excel</span>
+      <span class="proof-note">Read-only connectors · one tenant per company · your data trains nothing</span>
+    </div>
+  </div>
+</header>
+
+<section class="band">
+  <div class="wrap">
+    <h2>Four questions, answered off the same postings</h2>
+    <p class="sub">Each one is a query against the ledger you already keep, not a second system to maintain. The figures below came from one real book.</p>
+    <div class="cards">
+      <div class="card">
+        <h3>Where did the cash go?</h3>
+        <p>Every payment grouped by what it was for, not by accounting category. On this book, tax took 56% of everything that went out.</p>
+        <span class="fig">₹54.15 L tax · ₹41.04 L suppliers</span>
+      </div>
+      <div class="card">
+        <h3>What is free to spend?</h3>
+        <p>The projected balance from the way your book behaves, less the buffer it needs. Green cash, by date, for a year ahead.</p>
+        <span class="fig">₹45.74 L today · ₹12.23 L all year</span>
+      </div>
+      <div class="card">
+        <h3>What falls due, and what does it cost?</h3>
+        <p>Advance tax, 43B(h), the 180-day input-credit rule and ageing receivables, each with a rupee figure and a date.</p>
+        <span class="fig">176 items · ₹3.30 L a year</span>
+      </div>
+      <div class="card">
+        <h3>Am I normal for a business like mine?</h3>
+        <p>Your days and margins against firms of the same industry and size, built from official series. Shown only once the cohort is deep enough.</p>
+        <span class="fig">129 debtor days vs a 90-day band</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // A countdown only earns its place if it is real. This one runs to the next
+  // advance-tax instalment, the same date the Finance Calendar prices.
+  (function () {
+    var el = document.getElementById('cd');
+    function nextInstalment() {
+      var now = new Date();
+      var dates = [new Date(now.getFullYear(), 5, 15), new Date(now.getFullYear(), 8, 15),
+                   new Date(now.getFullYear(), 11, 15), new Date(now.getFullYear() + 1, 2, 15)];
+      for (var i = 0; i < dates.length; i++) if (dates[i] > now) return dates[i];
+      return dates[dates.length - 1];
+    }
+    function tick() {
+      var ms = nextInstalment() - new Date();
+      var d = Math.floor(ms / 86400000);
+      var h = Math.floor(ms / 3600000) % 24;
+      var m = Math.floor(ms / 60000) % 60;
+      var s = Math.floor(ms / 1000) % 60;
+      el.textContent = d + 'd ' + String(h).padStart(2, '0') + ':' + String(m).padStart(2, '0') + ':' + String(s).padStart(2, '0');
+    }
+    tick(); setInterval(tick, 1000);
+  })();
+</script>
+</body>
+</html>
