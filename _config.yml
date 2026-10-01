@@ -56,6 +56,7 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - vendor
+  - models
   - node_modules
   - .jekyll-cache
 
