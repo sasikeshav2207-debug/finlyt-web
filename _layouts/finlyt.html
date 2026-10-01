@@ -12,6 +12,7 @@
 <link rel="stylesheet" href="/assets/finlyt.css">
 <link rel="stylesheet" href="/assets/blog.css">
 {% if page.mec %}<link rel="stylesheet" href="/assets/month-end-clock.css">{% endif %}
+{% if page.usp %}<link rel="stylesheet" href="/assets/usp.css">{% endif %}
 <link rel="canonical" href="{{ page.url | absolute_url }}">
 </head>
 <body>
@@ -32,7 +33,8 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="#2E9E6B" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
       </button>
 
-      <a class="nav-link nav-link-new{% if page.nav == 'clock' %} is-active{% endif %}" href="/month-end-clock/">Month-End Clock<span class="nav-new" aria-label="new">New</span></a>
+      <a class="nav-link{% if page.nav == 'clock' %} is-active{% endif %}" href="/month-end-clock/">Month-End Clock</a>
+      <a class="nav-link nav-link-new{% if page.nav == 'three' %} is-active{% endif %}" href="/what-you-get/">Three Signals<span class="nav-new" aria-label="new">New</span></a>
 
 
       <button type="button" class="nav-trigger{% if page.nav == 'for-cas' %} is-active{% endif %}"
@@ -88,6 +90,7 @@
           <a class="np-chip" href="/products/#api">Any ERP via API</a>
         </div>
         <a class="np-item" href="/month-end-clock/" style="margin-top:14px"><span class="np-name">Month-End Clock</span><span class="np-desc">What your month-end pack costs in senior time</span></a>
+        <a class="np-item" href="/what-you-get/"><span class="np-name">Three Signals</span><span class="np-desc">Score, Industry Pack and Finance Calendar, playable</span></a>
       </div>
     </div>
   </div>
@@ -138,6 +141,7 @@
         <a href="/products/#ced">Custom Enterprise Dashboard</a>
         <a href="/products/#api">Any ERP via API</a>
         <a href="/month-end-clock/">Month-End Clock</a>
+        <a href="/what-you-get/">Three Signals</a>
       </div>
 
       <div class="footer-col">
@@ -173,5 +177,6 @@
 
 <script src="/assets/finlyt.js"></script>
 {% if page.mec %}<script src="/assets/month-end-clock.js"></script>{% endif %}
+{% if page.usp %}<script src="/assets/usp.js"></script>{% endif %}
 </body>
 </html>
