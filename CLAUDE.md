@@ -12,7 +12,7 @@ exactly one host:
 | Surface | Domain | Host | Repo | Local path |
 |---|---|---|---|---|
 | **Marketing site (this repo)** | `finlyt.net` | **GitHub Pages** | `sasikeshav2207-debug/finlyt-web` | `C:/Users/sasik/OneDrive/Trading/FinLyt/Web` |
-| Dashboard app | `dashboard.finlyt.net` | Vercel (team `fin-lyt-s-projects`) | `sasikeshav2207-debug/finlyt-app` | `C:/Users/sasik/OneDrive/Trading/FinLyt/App` |
+| Dashboard app | `dashboard.finlyt.net` | **Cloudflare** (moved off Vercel 1 Oct 2026, $43/month) | `sasikeshav2207-debug/finlyt-app` | `C:/Users/sasik/OneDrive/Trading/FinLyt/App` |
 | Backend API | `finlyt-backend.onrender.com` | Render | part of `finlyt-app` | — |
 | Shakti vertical | `shakti.finlyt.net` | GitHub Pages | `finlyt-shakti-web` | — |
 
