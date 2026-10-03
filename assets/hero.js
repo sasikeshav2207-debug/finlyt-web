@@ -32,8 +32,10 @@
 
   var REDUCED = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  var T = { line1: 300, word: 85, stamp: 1750, line2: 2050, chips: 2250, chip: 38,
-    lede: 2750, cta: 2950, src: 3100, green: 3250 };
+  var T = { line1: 300, word: 85, rewind: 900, rewindDur: 1000, stamp: 1980, line2: 2150,
+    chips: 2350, chip: 38, lede: 2850, cta: 3050, src: 3200, green: 3350 };
+  var REEL_REPEAT = 5;        // enough rows that the reel never runs out
+  var REWIND_FLOOR_MONTHS = 14; // how far back the attempt gets before it gives up
 
   var LINE_1 = ['We', "couldn't", 'build', 'a', 'time', 'machine.'];
   var LINE_2 = ['So', 'we', 'built', 'the', 'next', 'best', 'thing.'];
@@ -56,11 +58,18 @@
   var DOW = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   var MON = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
 
+  function fmt(d) {
+    return (d.getDate() < 10 ? '0' : '') + d.getDate() + ' ' + MON[d.getMonth()] + ' ' + d.getFullYear();
+  }
+
   /** The last close most books are actually sitting on: the end of last month. */
-  function pastDate() {
-    var d = new Date();
-    d.setDate(0);
-    return d.getDate() + ' ' + MON[d.getMonth()] + ' ' + d.getFullYear();
+  function lastClose() { var d = new Date(); d.setDate(0); return d; }
+
+  /** As far back as the attempt gets before the tape runs out. */
+  function floorDate() {
+    var d = lastClose();
+    d.setMonth(d.getMonth() - REWIND_FLOOR_MONTHS);
+    return d;
   }
 
   function build(React, ReactDOM) {
@@ -94,6 +103,32 @@
 
     function Hero() {
       var box = useRef(null);
+      var dateRef = useRef(null);
+      var raf = useRef(0);
+
+      var reel = [];
+      for (var r = 0; r < REEL_REPEAT; r += 1) { reel = reel.concat(LEDGER); }
+
+      /* The date reels backwards while the strip does, accelerating the way a
+         tape does, and stops where the attempt gives up. Written straight to
+         the node: sixty React renders a second to change one string would be
+         a poor trade. */
+      function countBack() {
+        if (REDUCED || !dateRef.current) return;
+        var from = lastClose().getTime(), to = floorDate().getTime();
+        var node = dateRef.current, t0 = performance.now();
+        cancelAnimationFrame(raf.current);
+        node.textContent = fmt(new Date(from));   // a replay starts from today again
+        function step(now) {
+          var k = (now - t0 - T.rewind) / T.rewindDur;
+          if (k < 0) { raf.current = requestAnimationFrame(step); return; }
+          if (k >= 1) { node.textContent = fmt(new Date(to)); return; }
+          var e = k * k * k;                       // slow, then a rush
+          node.textContent = fmt(new Date(from + (to - from) * e));
+          raf.current = requestAnimationFrame(step);
+        }
+        raf.current = requestAnimationFrame(step);
+      }
 
       /* The sequence is pure CSS once is-play is on, so it is driven on the
          node rather than through state. A transition-delay also runs on the way
@@ -110,10 +145,14 @@
         requestAnimationFrame(function () {
           el.classList.remove('is-reset');
           el.classList.add('is-play');
+          countBack();
         });
       }
 
-      useEffect(function () { play(); }, []);
+      useEffect(function () {
+        play();
+        return function () { cancelAnimationFrame(raf.current); };
+      }, []);
 
       function word(w, i, group, lead) {
         return h('span', {
@@ -177,10 +216,13 @@
           h('div', { className: 'hero2-pbody' },
             h('div', { className: 'hero2-past' },
               h('div', { className: 'hero2-past-h' }, 'Past'),
-              h('div', { className: 'hero2-past-date' }, pastDate()),
-              LEDGER.map(function (row, i) {
-                return h('div', { key: i, className: 'hero2-row' }, h('b', null, row[0]), h('span', null, row[1]));
-              }),
+              h('div', { className: 'hero2-past-date', ref: dateRef }, fmt(lastClose())),
+              h('div', { className: 'hero2-reelbox' },
+                h('div', { className: 'hero2-reel' },
+                  reel.map(function (row, i) {
+                    return h('div', { key: i, className: 'hero2-row' }, h('b', null, row[0]), h('span', null, row[1]));
+                  }))),
+              h('i', { className: 'hero2-head', 'aria-hidden': 'true' }),
               h('div', { className: 'hero2-hindsight' }, 'hindsight'),
               h('div', { className: 'hero2-stamp',
                 style: REDUCED ? null : { transitionDelay: T.stamp + 'ms' } }, 'REWIND UNAVAILABLE')),
