@@ -1,17 +1,23 @@
 /* Hero v2 — the failed rewind, in React.
  *
- * The finished hero is already in index.html as plain markup, so the page is
- * complete before this file runs and complete if it never does. React takes the
- * same container over to play the sequence:
+ * The finished hero is already plain markup in index.html, so the page is
+ * complete before this runs and complete if it never does. React takes the same
+ * container over to play the sequence.
  *
- *   1  the headline types in                 "We couldn't build a time machine."
- *   2  a stamp lands on the past             REWIND UNAVAILABLE
- *   3  the headline finishes                 "So we built the next best thing."
- *   4  the weeks ahead fill, one at a time
- *   5  the green-cash line arrives
+ * The timings below were measured off the design reference rather than guessed,
+ * and the motion is the reference's: words do not type, they rise and fade in
+ * one after another, and the calendar fills chip by chip while the second line
+ * is still arriving.
  *
- * Anyone who has asked for less motion is taken straight to step 5.
- * No figure here is a real one; the panel says so on its face.
+ *     300ms   line one begins, a word every 85ms
+ *    1900ms   REWIND UNAVAILABLE lands on the past
+ *    2250ms   line two begins, same cadence
+ *    2400ms   the weeks fill, a chip every 85ms, overlapping line two
+ *    3400ms   the green-cash line
+ *
+ * Every step is a CSS transition with its own delay, so replaying is a matter
+ * of dropping one class and putting it back. Anyone who has asked for less
+ * motion gets the finished state and no transitions at all.
  */
 (function () {
   'use strict';
@@ -26,11 +32,12 @@
 
   var REDUCED = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---------------------------------------------------------------- content */
+  var T = { line1: 300, word: 85, stamp: 1750, line2: 2050, chips: 2250, chip: 38,
+    lede: 2750, cta: 2950, src: 3100, green: 3250 };
 
-  var LINE_1 = "We couldn't build a time machine.";
-  var LINE_2A = 'So we built the ';
-  var LINE_2B = 'next best thing';
+  var LINE_1 = ['We', "couldn't", 'build', 'a', 'time', 'machine.'];
+  var LINE_2 = ['So', 'we', 'built', 'the', 'next', 'best', 'thing.'];
+  var LEAD_FROM = 4; // "next best thing." carries the accent
 
   var LEDGER = [
     ['TALLY · SALES', '₹ ●,●●,●●●'],
@@ -39,7 +46,7 @@
     ['TALLY · PURCHASE', '₹ ●,●●,●●●']
   ];
 
-  // week index, weekday index (0 = Mon), kind, label
+  // week, weekday (0 = Mon), kind, label — in the order they light up
   var CHIPS = [
     [0, 0, 'in', 'Customer'], [0, 2, 'out', 'Vendor'], [0, 4, 'in', 'Customer'],
     [1, 1, 'stat', 'TDS'], [1, 2, 'in', 'Customer'], [1, 3, 'out', 'Salaries'],
@@ -55,8 +62,6 @@
     d.setDate(0);
     return d.getDate() + ' ' + MON[d.getMonth()] + ' ' + d.getFullYear();
   }
-
-  /* ---------------------------------------------------------------- the view */
 
   function build(React, ReactDOM) {
     var h = React.createElement;
@@ -78,70 +83,55 @@
         function leave() { node.style.removeProperty('--mx'); node.style.removeProperty('--my'); }
         node.addEventListener('pointermove', move);
         node.addEventListener('pointerleave', leave);
-        return function () { node.removeEventListener('pointermove', move); node.removeEventListener('pointerleave', leave); };
+        return function () {
+          node.removeEventListener('pointermove', move);
+          node.removeEventListener('pointerleave', leave);
+        };
       }, []);
       return h('span', { className: 'mark3d' + (REDUCED ? '' : ' mark3d-float'), ref: ref,
         dangerouslySetInnerHTML: { __html: MARK_SVG }, 'aria-hidden': 'true' });
     }
 
     function Hero() {
-      // 0 typing one · 1 stamp · 2 typing two · 3 weeks · 4 green · 5 done
-      var s = useState(REDUCED ? 5 : 0), phase = s[0], setPhase = s[1];
-      var t1 = useState(REDUCED ? LINE_1.length : 0), n1 = t1[0], setN1 = t1[1];
-      var t2 = useState(REDUCED ? LINE_2A.length + LINE_2B.length : 0), n2 = t2[0], setN2 = t2[1];
-      var w = useState(REDUCED ? 3 : 0), weeks = w[0], setWeeks = w[1];
-      var r = useState(0), run = r[0], setRun = r[1];
-      var timers = useRef([]);
+      var box = useRef(null);
 
-      function clear() { timers.current.forEach(clearTimeout); timers.current = []; }
-      function after(ms, fn) { timers.current.push(setTimeout(fn, ms)); }
+      /* The sequence is pure CSS once is-play is on, so it is driven on the
+         node rather than through state. A transition-delay also runs on the way
+         out, so a replay has to paint one frame with transitions off first,
+         otherwise the hero fades away over three seconds instead of starting
+         again. */
+      function play() {
+        var el = box.current;
+        if (!el) return;
+        if (REDUCED) { el.classList.remove('is-reset'); el.classList.add('is-play'); return; }
+        el.classList.remove('is-play');
+        el.classList.add('is-reset');
+        void el.offsetWidth;
+        requestAnimationFrame(function () {
+          el.classList.remove('is-reset');
+          el.classList.add('is-play');
+        });
+      }
 
-      useEffect(function () {
-        if (REDUCED) return;
-        clear();
-        setPhase(0); setN1(0); setN2(0); setWeeks(0);
-        var i = 0;
-        function typeOne() {
-          i += 1; setN1(i);
-          if (i < LINE_1.length) after(26, typeOne);
-          else after(260, function () {
-            setPhase(1);
-            after(620, function () {
-              setPhase(2);
-              var j = 0, total = LINE_2A.length + LINE_2B.length;
-              (function typeTwo() {
-                j += 1; setN2(j);
-                if (j < total) after(26, typeTwo);
-                else after(200, function () {
-                  setPhase(3);
-                  [0, 1, 2].forEach(function (k) { after(260 * k, function () { setWeeks(k + 1); }); });
-                  after(260 * 3 + 220, function () { setPhase(4); after(500, function () { setPhase(5); }); });
-                });
-              })();
-            });
-          });
-        }
-        after(420, typeOne);
-        return clear;
-      }, [run]);
+      useEffect(function () { play(); }, []);
 
-      var typed1 = LINE_1.slice(0, n1);
-      var full2 = LINE_2A + LINE_2B;
-      var typed2 = full2.slice(0, n2);
-      var seg2a = typed2.slice(0, Math.min(n2, LINE_2A.length));
-      var seg2b = n2 > LINE_2A.length ? typed2.slice(LINE_2A.length) : '';
+      function word(w, i, group, lead) {
+        return h('span', {
+          key: group + i, className: 'hw' + (lead ? ' lead' : ''),
+          style: REDUCED ? null : { transitionDelay: (T[group] + i * T.word) + 'ms' }
+        }, w);
+      }
 
       var headline = h('h1', null,
-        typed1,
-        phase === 0 ? h('span', { className: 'caret' }) : null,
-        phase >= 2 ? h('br', null) : null,
-        phase >= 2 ? seg2a : null,
-        phase >= 2 ? h('span', { className: 'lead' }, seg2b) : null,
-        phase >= 2 && n2 >= full2.length ? '.' : null,
-        phase === 2 && n2 < full2.length ? h('span', { className: 'caret' }) : null
+        h('span', { className: 'hline' }, LINE_1.map(function (w, i) {
+          return [word(w, i, 'line1', false), ' '];
+        })),
+        h('span', { className: 'hline' }, LINE_2.map(function (w, i) {
+          return [word(w, i, 'line2', i >= LEAD_FROM), ' '];
+        }))
       );
 
-      var grid = [h('span', { key: 'sp' }, '')];
+      var grid = [h('span', { key: 'sp' })];
       DOW.forEach(function (d) { grid.push(h('span', { key: 'd' + d, className: 'hero2-dow' }, d)); });
       [0, 1, 2].forEach(function (wk) {
         grid.push(h('span', { key: 'w' + wk, className: 'hero2-wk' }, 'WEEK ' + (wk + 1)));
@@ -150,27 +140,30 @@
           CHIPS.forEach(function (c) { if (c[0] === wk && c[1] === di) chip = c; });
           grid.push(h('div', {
             key: wk + '-' + di,
-            className: 'hero2-cell' + (chip ? ' is-' + chip[2] : '') + (weeks > wk ? ' shown' : '')
-          }, chip ? [h('i', { key: 'i', className: 'k-' + (chip[2] === 'stat' ? 'stat' : chip[2]) }),
-                     h('span', { key: 's' }, chip[3])] : null));
+            className: 'hero2-cell' + (chip ? ' is-' + chip[2] : ''),
+            style: REDUCED ? null : { transitionDelay: (T.chips + (wk * 6 + di) * T.chip) + 'ms' }
+          }, chip ? [h('i', { key: 'i', className: 'k-' + chip[2] }), h('span', { key: 's' }, chip[3])] : null));
         });
       });
 
-      return h('div', { className: 'hero2-inner' },
+      return h('div', {
+        className: 'hero2-inner hero2-anim is-reset',
+        ref: box
+      },
         h('div', null,
           h('span', { className: 'hero2-eyebrow' }, h('i', null), 'Delivering Excellence through FinTelligence'),
           headline,
-          h('p', { className: 'hero2-lede' },
+          h('p', { className: 'hero2-lede hero2-rise', style: REDUCED ? null : { transitionDelay: T.lede + 'ms' } },
             'Your books already hold the weeks ahead: what customers owe, what vendors expect, and when the tax office wants its share. FinLytTech puts it all on a calendar, so you decide before it happens. In business, hindsight is the most expensive way to learn.'),
-          h('div', { className: 'hero2-cta' },
+          h('div', { className: 'hero2-cta hero2-rise', style: REDUCED ? null : { transitionDelay: T.cta + 'ms' } },
             h('a', { className: 'btn-dark', href: '/contact/#demo' }, 'Book a demo on your books'),
             h('a', { className: 'btn-ghost', href: 'https://dashboard.finlyt.net/demo' }, 'See it live')),
-          h('div', { className: 'hero2-sources' },
+          h('div', { className: 'hero2-sources hero2-rise', style: REDUCED ? null : { transitionDelay: T.src + 'ms' } },
             h('b', null, 'Reads Tally · Zoho · ERPNext · any ERP via API · Excel'), ' · India-hosted, always')
         ),
         h('div', { className: 'hero2-panel' },
           h('div', { className: 'hero2-phead' },
-            h('button', { type: 'button', className: 'hero2-rewind', onClick: function () { setRun(run + 1); },
+            h('button', { type: 'button', className: 'hero2-rewind', onClick: play,
               title: 'Replay', 'aria-label': 'Replay the intro' },
               h('svg', { viewBox: '0 0 24 24', width: 15, height: 15, fill: 'none', stroke: 'currentColor',
                 strokeWidth: 2.2, strokeLinecap: 'round', strokeLinejoin: 'round', 'aria-hidden': 'true' },
@@ -189,22 +182,20 @@
                 return h('div', { key: i, className: 'hero2-row' }, h('b', null, row[0]), h('span', null, row[1]));
               }),
               h('div', { className: 'hero2-hindsight' }, 'hindsight'),
-              h('div', { className: 'hero2-stamp' + (phase >= 1 ? ' is-on' : '') }, 'REWIND UNAVAILABLE')),
+              h('div', { className: 'hero2-stamp',
+                style: REDUCED ? null : { transitionDelay: T.stamp + 'ms' } }, 'REWIND UNAVAILABLE')),
             h('div', { className: 'hero2-weeks' },
               h('div', { className: 'hero2-today' }, h('b', null, 'TODAY')),
               h('div', { className: 'hero2-weeks-h' }, 'Weeks ahead'),
               h('div', { className: 'hero2-grid' }, grid))),
-          h('div', { className: 'hero2-green' + (phase >= 4 ? ' shown' : '') },
+          h('div', { className: 'hero2-green', style: REDUCED ? null : { transitionDelay: T.green + 'ms' } },
             'Green cash available ', h('b', null, '₹ ●●,●●,●●●'), ' · stays spare for ', h('b', null, '●●'), ' weeks'),
           h('div', { className: 'hero2-foot' }, 'illustration · your figures appear here'))
       );
     }
 
-    var root = ReactDOM.createRoot(MOUNT);
-    root.render(h(Hero, null));
+    ReactDOM.createRoot(MOUNT).render(h(Hero, null));
   }
-
-  /* ------------------------------------------------------------ bring React in */
 
   function load(src) {
     return new Promise(function (res, rej) {
