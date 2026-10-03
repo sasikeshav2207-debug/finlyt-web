@@ -116,6 +116,18 @@
       var dateRef = useRef(null);
       var raf = useRef(0);
 
+      /* An intro is for arriving, not for every time someone comes back. The
+         page does not survive in the back/forward cache here, so returning to
+         it is a full reload and the sequence would run again over a reader who
+         has already seen it - which reads as the page changing under them.
+         Once per session, then. */
+      function seen(set) {
+        try {
+          if (set) { sessionStorage.setItem('finlyt.hero.played', '1'); return true; }
+          return sessionStorage.getItem('finlyt.hero.played') === '1';
+        } catch (e) { return false; }   // private windows, blocked storage
+      }
+
       var reel = [];
       for (var r = 0; r < REEL_REPEAT; r += 1) { reel = reel.concat(LEDGER); }
 
@@ -132,7 +144,7 @@
         function step(now) {
           var k = (now - t0 - T.rewind) / T.rewindDur;
           if (k < 0) { raf.current = requestAnimationFrame(step); return; }
-          if (k >= 1) { node.textContent = fmt(new Date(to)); return; }
+          if (k >= 1) { node.textContent = fmt(new Date(from)); return; }
           var e = k * k * k;                       // slow, then a rush
           node.textContent = fmt(new Date(from + (to - from) * e));
           raf.current = requestAnimationFrame(step);
@@ -145,10 +157,19 @@
          out, so a replay has to paint one frame with transitions off first,
          otherwise the hero fades away over three seconds instead of starting
          again. */
+      /** The finished hero, with no motion at all. */
+      function settle() {
+        var el = box.current;
+        if (!el) return;
+        cancelAnimationFrame(raf.current);
+        el.classList.add('is-reset', 'is-play');
+        if (dateRef.current) dateRef.current.textContent = fmt(lastClose());
+      }
+
       function play() {
         var el = box.current;
         if (!el) return;
-        if (REDUCED) { el.classList.remove('is-reset'); el.classList.add('is-play'); return; }
+        if (REDUCED) { settle(); return; }
         el.classList.remove('is-play');
         el.classList.add('is-reset');
         void el.offsetWidth;
@@ -160,8 +181,16 @@
       }
 
       useEffect(function () {
-        play();
-        return function () { cancelAnimationFrame(raf.current); };
+        if (seen()) settle();
+        else { play(); setTimeout(function () { seen(true); }, T.green + 900); }
+
+        // if the page is ever restored from the back/forward cache, leave it be
+        function onShow(e) { if (e.persisted) settle(); }
+        window.addEventListener('pageshow', onShow);
+        return function () {
+          window.removeEventListener('pageshow', onShow);
+          cancelAnimationFrame(raf.current);
+        };
       }, []);
 
       function word(w, i, group, lead) {
@@ -212,7 +241,7 @@
         ),
         h('div', { className: 'hero2-panel' },
           h('div', { className: 'hero2-phead' },
-            h('button', { type: 'button', className: 'hero2-rewind', onClick: play,
+            h('button', { type: 'button', className: 'hero2-rewind', onClick: function () { play(); },
               title: 'Replay', 'aria-label': 'Replay the intro' },
               h('svg', { viewBox: '0 0 24 24', width: 15, height: 15, fill: 'none', stroke: 'currentColor',
                 strokeWidth: 2.2, strokeLinecap: 'round', strokeLinejoin: 'round', 'aria-hidden': 'true' },
