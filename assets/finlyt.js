@@ -86,7 +86,7 @@
       kpis: [["Green cash", "₹ ●●,●●,●●●"], ["Stays spare", "●● weeks"], ["Owed to you", "₹ ●●,●●,●●●"], ["Due this week", "₹ ●●,●●,●●●"]]
     },
     ced: {
-      tag: "CED · your industry's shape, in your cloud",
+      tag: "Enterprise Intelligence · your industry's shape, in your cloud",
       head: "When your industry's data fits no template.",
       body: "The same substrate deployed into your own cloud, India region, adapted to how your business actually runs, and operated by FinLytTech.",
       points: [

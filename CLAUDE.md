@@ -82,7 +82,7 @@ _layouts/post.html       individual article
 
 index.html        /              Home
 condition.html    /condition/    The Condition
-products.html     /products/     the three Solutions · Finance Calendar · provenance · ERP · CED · API · sources
+products.html     /products/     the three Solutions · Finance Calendar · provenance · ERP · Enterprise Intelligence · API · sources
 month-end-clock.html /month-end-clock/ the Month-End Clock calculator (assets/month-end-clock.css/.js, loaded when front matter has `mec: true`)
 pricing.html      /pricing/
 for-cas.html      /for-cas/      seats · partner programme · implementation
@@ -187,6 +187,6 @@ before starting work here** — `deploy.sh` does this for you.
   businesses. Never "MIS software", never tiers, never "for startups and SMEs".
 - Pricing: per named login per month. Cashflow Analytics ₹1,000, Business
   Decisions ₹5,000, Capital Access ₹10,000. CA firms buy seats inside the firm.
-  Enterprise ERP by conversation (pilot-first); CED by quotation.
+  Enterprise ERP by conversation (pilot-first); Enterprise Intelligence by quotation.
 - Trial: not advertised on the marketing pages since the Sep 2026 refresh;
   terms.html still carries the 30-day trial clause pending a founder decision.
