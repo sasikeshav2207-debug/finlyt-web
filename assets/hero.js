@@ -4,20 +4,30 @@
  * complete before this runs and complete if it never does. React takes the same
  * container over to play the sequence.
  *
- * The timings below were measured off the design reference rather than guessed,
- * and the motion is the reference's: words do not type, they rise and fade in
- * one after another, and the calendar fills chip by chip while the second line
- * is still arriving.
+ * The timings below were measured off the design reference rather than guessed.
+ * Words do not type, they rise and fade in one after another; the rewind is
+ * attempted and fails; the calendar fills cell by cell while the second line is
+ * still arriving.
  *
  *     300ms   line one begins, a word every 85ms
- *    1900ms   REWIND UNAVAILABLE lands on the past
- *    2250ms   line two begins, same cadence
- *    2400ms   the weeks fill, a chip every 85ms, overlapping line two
- *    3400ms   the green-cash line
+ *     900ms   the rewind is attempted - the button lights, the ledger reels
+ *             backwards under motion blur, the date counts back, a playhead
+ *             sweeps left across the past
+ *    1900ms   the tape runs out and the reel snaps home
+ *    1980ms   REWIND UNAVAILABLE lands on the past
+ *    2150ms   line two begins, same cadence
+ *    2350ms   the weeks fill, a cell every 38ms, overlapping line two
+ *    2850ms   the copy, then the buttons, then the connector line
+ *    3350ms   the green-cash line
  *
- * Every step is a CSS transition with its own delay, so replaying is a matter
- * of dropping one class and putting it back. Anyone who has asked for less
- * motion gets the finished state and no transitions at all.
+ * One caution for whoever edits this next: verify motion by measuring the
+ * property the effect actually uses. An opacity probe is blind to a reel
+ * sliding 430px, which is exactly how the rewind went missing the first time.
+ *
+ * Every step is a CSS transition or keyframe with its own delay, so replaying
+ * is a matter of dropping one class and putting it back. Only the counting date
+ * needs JavaScript, and it writes straight to the node. Anyone who has asked for
+ * less motion gets the finished state, no transitions, and no reel at all.
  */
 (function () {
   'use strict';
