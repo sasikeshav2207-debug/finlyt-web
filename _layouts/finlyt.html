@@ -13,6 +13,8 @@
 <link rel="stylesheet" href="/assets/blog.css">
 {% if page.mec %}<link rel="stylesheet" href="/assets/month-end-clock.css">{% endif %}
 {% if page.usp %}<link rel="stylesheet" href="/assets/usp.css">{% endif %}
+{% if page.hero %}<link rel="stylesheet" href="/assets/hero.css">
+<link rel="preconnect" href="https://unpkg.com" crossorigin>{% endif %}
 <link rel="canonical" href="{{ page.url | absolute_url }}">
 </head>
 <body>
@@ -178,5 +180,6 @@
 <script src="/assets/finlyt.js"></script>
 {% if page.mec %}<script src="/assets/month-end-clock.js"></script>{% endif %}
 {% if page.usp %}<script src="/assets/usp.js"></script>{% endif %}
+{% if page.hero %}<script src="/assets/hero.js" defer></script>{% endif %}
 </body>
 </html>

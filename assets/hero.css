@@ -1,0 +1,151 @@
+/* Hero v2 — the failed rewind.
+   Static markup in index.html renders the finished state on its own. React
+   mounts over it for the animation; if React never arrives, or the reader has
+   asked for less motion, what is already on screen is the right answer. */
+
+.hero2 { background: var(--paper); padding: 56px 40px 64px; position: relative; overflow: hidden }
+.hero2::before { content: ''; position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(circle, rgba(13,27,42,.06) 1px, transparent 1.5px);
+  background-size: 24px 24px }
+.hero2-inner { position: relative; max-width: 1280px; margin: 0 auto;
+  display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.05fr); gap: 52px; align-items: center }
+
+/* ---- left column ---- */
+.hero2-eyebrow { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 22px;
+  font: 600 11px var(--font-mono); letter-spacing: .12em; text-transform: uppercase;
+  color: var(--emerald-700); background: var(--emerald-50);
+  border: 1px solid var(--emerald-200); border-radius: 999px; padding: 7px 14px }
+.hero2-eyebrow i { width: 6px; height: 6px; border-radius: 999px; background: var(--brand-emerald);
+  animation: fl-tick 1.8s ease-in-out infinite }
+
+.hero2 h1 { font: 700 60px/1.06 var(--font-display); letter-spacing: -.034em;
+  color: var(--ink); margin: 0 0 22px; max-width: 17ch; text-wrap: balance }
+.hero2 h1 .lead { color: var(--brand-emerald) }
+/* the caret only exists while the line is being typed */
+.hero2 h1 .caret { display: inline-block; width: 3px; height: .78em; margin-left: 4px;
+  background: var(--brand-emerald); vertical-align: -.04em; animation: hero2-caret .9s step-end infinite }
+@keyframes hero2-caret { 0%, 100% { opacity: 1 } 50% { opacity: 0 } }
+
+.hero2-lede { font: 400 17.5px/1.6 var(--font-sans); color: var(--fg-2); margin: 0 0 28px; max-width: 54ch }
+.hero2-cta { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 18px }
+.hero2-sources { font: 500 11.5px var(--font-mono); color: var(--fg-3) }
+.hero2-sources b { color: var(--emerald-700); font-weight: 600 }
+
+/* ---- the panel ---- */
+.hero2-panel { border: 1px solid var(--rule); border-radius: var(--r-xl); background: var(--paper);
+  box-shadow: var(--shadow-lg); overflow: hidden; min-width: 0 }
+.hero2-phead { display: flex; align-items: center; gap: 12px; padding: 12px 16px;
+  border-bottom: 1px solid var(--rule); background: var(--paper-2) }
+.hero2-rewind { width: 30px; height: 30px; border-radius: 9px; border: 1px solid var(--rule-strong);
+  background: var(--paper); display: grid; place-items: center; cursor: pointer; flex-shrink: 0;
+  color: var(--ink-mute); transition: border-color .15s, color .15s, transform .15s }
+.hero2-rewind:hover { border-color: var(--brand-emerald); color: var(--emerald-700) }
+.hero2-rewind:active { transform: scale(.94) }
+.hero2-ptitle { font: 600 11.5px var(--font-mono); letter-spacing: .1em; color: var(--ink); white-space: nowrap }
+.hero2-legend { margin-left: auto; display: inline-flex; gap: 12px; font: 500 10.5px var(--font-mono); color: var(--fg-3) }
+.hero2-legend span { display: inline-flex; align-items: center; gap: 5px }
+.hero2-legend i { width: 7px; height: 7px; border-radius: 999px }
+.k-in { background: #1B7A4E } .k-out { background: #B42318 } .k-stat { background: #B8480D }
+
+.hero2-pbody { display: grid; grid-template-columns: 168px 1fr; min-height: 268px }
+
+/* past column */
+.hero2-past { position: relative; padding: 14px 14px 12px; border-right: 1px solid var(--rule);
+  background: linear-gradient(to right, var(--paper-3), var(--paper-2)) }
+.hero2-past-h { font: 600 9.5px var(--font-mono); letter-spacing: .12em; color: var(--navy-300); text-transform: uppercase }
+.hero2-past-date { font: 500 10.5px var(--font-mono); color: var(--fg-3); margin: 3px 0 10px }
+.hero2-row { border: 1px solid var(--rule); border-radius: 7px; background: var(--paper);
+  padding: 6px 8px; margin-bottom: 6px; opacity: .55; filter: grayscale(1) }
+.hero2-row b { display: block; font: 500 9px var(--font-mono); color: var(--fg-3); letter-spacing: .06em }
+.hero2-row span { font: 500 10.5px var(--font-mono); color: var(--navy-300) }
+.hero2-hindsight { font: italic 400 11px var(--font-sans); color: var(--navy-300); margin-top: 8px }
+
+.hero2-stamp { position: absolute; top: 48%; left: 50%; z-index: 3;
+  transform: translate(-50%, -50%) rotate(-11deg) scale(2.4); opacity: 0;
+  border: 2px solid var(--navy-400); border-radius: 5px; padding: 5px 10px; white-space: nowrap;
+  font: 700 11px var(--font-mono); letter-spacing: .08em; color: var(--navy-400);
+  background: rgba(255,255,255,.82) }
+.hero2-stamp.is-on { animation: hero2-stamp .42s cubic-bezier(.2,.9,.3,1.2) forwards }
+@keyframes hero2-stamp {
+  0%   { opacity: 0; transform: translate(-50%,-50%) rotate(-11deg) scale(2.4) }
+  70%  { opacity: 1; transform: translate(-50%,-50%) rotate(-11deg) scale(.94) }
+  100% { opacity: 1; transform: translate(-50%,-50%) rotate(-11deg) scale(1) }
+}
+.hero2-stamp.is-static { opacity: 1; transform: translate(-50%,-50%) rotate(-11deg) scale(1) }
+
+/* today divider */
+.hero2-today { position: absolute; left: -1px; top: 0; bottom: 0; width: 2px;
+  background: var(--brand-emerald); z-index: 2 }
+.hero2-today b { position: absolute; top: 12px; left: 50%; transform: translateX(-50%);
+  font: 700 8.5px var(--font-mono); letter-spacing: .1em; color: #fff;
+  background: var(--brand-emerald); border-radius: 999px; padding: 3px 8px }
+
+/* weeks ahead */
+.hero2-weeks { padding: 14px 16px 12px; position: relative; min-width: 0 }
+.hero2-weeks-h { font: 600 9.5px var(--font-mono); letter-spacing: .12em; color: var(--ink);
+  text-transform: uppercase; margin: 0 0 8px 52px }
+.hero2-grid { display: grid; grid-template-columns: 46px repeat(6, minmax(0,1fr)); gap: 5px; align-items: center }
+.hero2-dow { font: 500 9.5px var(--font-mono); color: var(--navy-300); text-align: center }
+.hero2-wk { font: 500 9px var(--font-mono); color: var(--navy-300); letter-spacing: .06em }
+.hero2-cell { height: 40px; border: 1px solid var(--rule); border-radius: 7px; background: var(--paper-2);
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px;
+  opacity: 0; transform: translateY(5px); transition: opacity .34s var(--ease-out, ease), transform .34s var(--ease-out, ease) }
+.hero2-cell.is-in  { background: rgba(27,122,78,.09);  border-color: rgba(27,122,78,.4) }
+.hero2-cell.is-out { background: rgba(180,35,24,.07);  border-color: rgba(180,35,24,.35) }
+.hero2-cell.is-stat{ background: rgba(184,72,13,.08);  border-color: rgba(184,72,13,.4) }
+.hero2-cell.shown { opacity: 1; transform: none }
+.hero2-cell i { width: 6px; height: 6px; border-radius: 999px }
+.hero2-cell span { font: 500 8.5px var(--font-mono); color: var(--ink-soft); line-height: 1 }
+
+.hero2-green { margin: 12px 16px 0; border: 1px solid rgba(27,122,78,.4); background: rgba(27,122,78,.07);
+  border-radius: var(--r-md); padding: 10px 14px; font: 500 13px var(--font-sans); color: var(--emerald-800);
+  opacity: 0; transform: translateY(5px); transition: opacity .4s ease, transform .4s ease }
+.hero2-green.shown { opacity: 1; transform: none }
+.hero2-green b { font-family: var(--font-mono); font-weight: 600 }
+.hero2-foot { padding: 9px 16px 12px; text-align: right; font: 500 10px var(--font-mono); color: var(--navy-300) }
+
+/* ---- the mark, given depth ---- */
+.mark3d { width: 27px; height: 27px; perspective: 420px; flex-shrink: 0 }
+.mark3d svg { width: 100%; height: 100%; display: block;
+  transform: rotateX(var(--mx, 10deg)) rotateY(var(--my, -16deg));
+  transform-style: preserve-3d; transition: transform .25s ease-out;
+  filter: drop-shadow(0 6px 10px rgba(13,27,42,.18)) }
+.mark3d:hover svg { transition: transform .08s linear }
+.mark3d-float svg { animation: mark3d-float 7s ease-in-out infinite }
+@keyframes mark3d-float {
+  0%, 100% { transform: rotateX(10deg) rotateY(-16deg) translateY(0) }
+  50%      { transform: rotateX(4deg)  rotateY(14deg)  translateY(-5px) }
+}
+
+/* ---- responsive ---- */
+@media (max-width: 1080px) {
+  .hero2-inner { grid-template-columns: 1fr; gap: 34px }
+  .hero2 h1 { font-size: 48px; max-width: none }
+}
+@media (max-width: 760px) {
+  .hero2 { padding: 36px 20px 44px }
+  .hero2 h1 { font-size: 38px; margin-bottom: 18px }
+  .hero2-lede { font-size: 16px }
+  .hero2-pbody { grid-template-columns: 120px 1fr }
+  .hero2-weeks-h { margin-left: 40px }
+  .hero2-grid { grid-template-columns: 34px repeat(6, minmax(0,1fr)); gap: 3px }
+  .hero2-cell { height: 34px }
+  .hero2-cell span { display: none }
+  .hero2-stamp { font-size: 9px; padding: 4px 7px }
+  /* the legend is the first thing to go when the header runs out of room */
+  .hero2-legend span { font-size: 0 }
+  .hero2-legend i { width: 8px; height: 8px }
+  .hero2-legend { gap: 7px }
+}
+@media (max-width: 420px) {
+  .hero2 h1 { font-size: 32px }
+  .hero2-cta .btn-dark, .hero2-cta .btn-ghost { width: 100% ; text-align: center }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero2-cell, .hero2-green { transition: none }
+  .hero2-stamp.is-on { animation: none; opacity: 1; transform: translate(-50%,-50%) rotate(-11deg) scale(1) }
+  .mark3d-float svg { animation: none }
+  .hero2 h1 .caret { animation: none; opacity: 0 }
+  .hero2-eyebrow i { animation: none }
+}
